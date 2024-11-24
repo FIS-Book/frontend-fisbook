@@ -15,7 +15,7 @@ The following is the structure of the `src/` directory of the **FISBook** projec
 | - ...         | Additional reusable components                                        |
 | 🛠 **features/**    | Application-specific modules or features                              |
 | - auth/         | Authentication components (login, register)                          |
-| - books/        | Component to manage books (e.g., list, details)                       |
+| - catalogue/        | Component to manage books (e.g., list, details)                       |
 | - ...           | Other feature-specific modules                                        |
 | 🎣 **hooks/**      | Custom React hooks for reusable logic                                 |
 | - useFetch.js   | Example of a custom hook to fetch data from APIs                      |

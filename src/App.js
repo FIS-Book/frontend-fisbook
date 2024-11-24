@@ -1,14 +1,37 @@
-import './App.css';
+import './assets/styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
+import Header from "./components/Header";
+import Catalogue from "./feature/catalogue/Catalogue.js"
 
 function App() {
+
+  const user = {
+    name: "John Doe"
+  };
+  const books = [
+    {
+      id: 1,
+      title: "The Catcher in the Rye",
+      author: "J.D. Salinger"
+    },
+    {
+      id: 2,
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee"
+    },
+    {
+      id: 3,
+      title: "1984",
+      author: "George Orwell"
+    },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="Logo" className="App-logo" style={{ height: '60px' }} />
-        <h1>Book Catalog</h1>
-      </header>
+      <Header user={user} />
+      <div className="container">
+        <Catalogue books={books} />
+      </div>
     </div>
   );
 }
