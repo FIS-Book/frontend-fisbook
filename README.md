@@ -1,4 +1,4 @@
-![FISBook Logo](src\assets\images\Logo.png) 
+![FISBook Logo](./src/assets/images/Logo.png) 
 
 ## Project Structure
 
