@@ -1,38 +1,69 @@
-# FISBook
+![FISBook Logo](./src/logo.svg) 
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+The following is the structure of the `src/` directory of the **FISBook** project:
 
-### `npm start`
+| **Folder**         | **Description**                                                       |
+|--------------------|-----------------------------------------------------------------------|
+| 📂 **assets/**     | Static assets such as images, fonts, and styles                       |
+| - images/       | Static images (e.g., logos, icons, etc.)                              |
+| - fonts/        | Custom fonts used across the application                              |
+| - styles/      | CSS, SCSS, or global variables files for styling                      |
+| 🧩 **components/**  | Reusable UI components                                                |
+| - Header/       | Header component for the application                                  |
+| - ...         | Additional reusable components                                        |
+| 🛠 **features/**    | Application-specific modules or features                              |
+| - auth/         | Authentication components (login, register)                          |
+| - books/        | Component to manage books (e.g., list, details)                       |
+| - ...           | Other feature-specific modules                                        |
+| 🎣 **hooks/**      | Custom React hooks for reusable logic                                 |
+| - useFetch.js   | Example of a custom hook to fetch data from APIs                      |
+| 🔧 **services/**    | Business logic, APIs, and data management                             |
+| - api.js        | Functions to handle HTTP requests to the backend                      |
+| - authService.js| Authentication service handling login/logout                         |
+| 🧪 **test/**       | Folder for tests                               |
+| App.test.js       | Example of Test file for testing the App component.                              |
+| - ...           | Other test                                              |
+| 🧰 **utils/**       | Utility functions for common operations                               |
+| - formatDate.js | Utility function to format date strings                               |
+| - ...           | Other utility functions                                               |
+| 💻 **App.js**       | Root component of the application                                     |
+| 🚀 **index.js**     | Entry point of the application (renders App)                          |
+| 🌐 **index.css**    | Global styles applied across the application                          |
+| 🧪 **setupTests.js**| Configuration for unit tests                                          |
 
-Runs the app in the development mode.\
+---
+
+## Available Scripts 🛠
+
+In the project directory, you can run the following commands:
+
+### 🏃 `npm start`
+
+Runs the application in **development mode**.  
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will automatically reload when you make changes.  
+You may also see lint errors in the console.
 
-### `npm test`
+### 🔬 `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in **interactive watch mode**.  
+For more details, check the [running tests documentation](https://facebook.github.io/create-react-app/docs/running-tests).
 
-### `npm run build`
+### 🏗️ `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the application for **production** into the `build` folder.  
+It optimizes the app for the best performance and correctly bundles React in production mode.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The build is minified, and the filenames include hashes for cache busting.  
+Your app is now ready to be deployed!  
+Check out the [deployment documentation](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ⚡ `npm run eject`
 
-### `npm run eject`
+**Warning:** This is a one-way operation. Once you `eject`, you can't go back!  
+If you need full control over the configuration files (like Babel, Webpack, ESLint), use `eject`. This removes the build dependency and copies the configuration files directly into your project.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You don’t have to eject unless necessary. The default configuration is usually sufficient for most applications.
