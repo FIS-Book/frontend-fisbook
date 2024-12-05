@@ -1,7 +1,9 @@
 import './assets/styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
 import Catalogue from "./feature/catalogue/Catalogue.js"
+import BookDetails from "./feature/catalogue/BookDetails.js"
 
 function App() {
 
@@ -27,12 +29,13 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <Router>
       <Header user={user} />
-      <div className="container">
-        <Catalogue books={books} />
-      </div>
-    </div>
+      <Routes>
+        <Route exact path="/" element={<Catalogue books={books} />}/>
+        <Route path="/book/:id" element={<BookDetails books={books[0]} />} />
+      </Routes>
+    </Router>
   );
 }
 
