@@ -1,22 +1,24 @@
 // src/components/AddGenre.js
 import React, { useState } from 'react';
 import '../../assets/styles/AddGenre.css';
+import { useNavigate, useLocation } from 'react-router-dom'; // Importamos useNavigate para redirección
 
-const AddGenre = ({ userId }) => {
+
+const AddGenre = () => {
   const [genre, setGenre] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const navigate = useNavigate(); // Usamos useNavigate para manejar la redirección
+  const location = useLocation(); // Usamos useLocation para acceder al estado
 
-    // Validación de campos obligatorios
-    if (!genre || !title) {
-      setError("El género y el título son obligatorios.");
-      return;
-    }
+  // Recuperamos el userId desde el estado de la navegación
+  const { userId } = location.state || {};
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();    
 
     const newGenre = {
       userId, // Se asume que el userId viene como prop o desde el contexto
@@ -28,7 +30,7 @@ const AddGenre = ({ userId }) => {
     try {
       setIsSubmitting(true);
       const response = await fetch("http://localhost:8080/api/v1/readings/add-genre", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,11 +38,13 @@ const AddGenre = ({ userId }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Error al agregar el nuevo género.");
+       // Si la respuesta no es 200-299, tratamos de obtener el mensaje de error en texto
+       const errorText = await response.text(); // Leemos la respuesta como texto
+       throw new Error(errorText); // Lanza el error con el texto del backend
       }
 
       // Redirige a la página de lectura después de enviar con éxito
-      window.location.href = "/"; // O usa React Router `navigate("/")`
+      navigate(-1); // Retroceder a la página anterior
     } catch (error) {
       setError(error.message);
     } finally {
@@ -48,9 +52,13 @@ const AddGenre = ({ userId }) => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1); // Retrocede a la página anterior
+  };
+
   return (
     <div className="add-genre-container">
-      <h2>Nuevo Género</h2>
+      <h2>Crear nueva lista de lectura</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
@@ -81,12 +89,18 @@ const AddGenre = ({ userId }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        <div>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Agregar Género"}
-          </button>
-        </div>
-      </form>
+         {/* Contenedor para los botones */}
+      <div className="button-container">
+        {/* Botón Atrás */}
+        <button className="btn btn-primary" onClick={handleBack}>
+          Atrás
+        </button>
+        {/* Botón Agregar Género */}
+        <button className="btn btn-primary" onClick={handleSubmit}>
+          {isSubmitting ? "Enviando..." : "Agregar Género"}
+        </button>
+      </div>
+      </form> 
     </div>
   );
 };

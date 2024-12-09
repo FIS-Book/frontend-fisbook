@@ -41,3 +41,22 @@
     font-size: 1rem;
     cursor: pointer;
   }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 10px; /* Para darle un espacio al lado del texto */
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  .btn-danger:focus {
+    outline: none;
+  }
+  

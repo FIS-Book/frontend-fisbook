@@ -42,7 +42,7 @@ function App() {
           />
           <Route
             path="/reading-list"
-            element={<Reading userId="002" />}
+            element={<Reading userId="002" email="edwinarevaloangulo@gmail.com" />}
           />
           <Route path="/add-genre" element={<AddGenre />} />
         </Routes>

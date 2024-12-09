@@ -50,3 +50,39 @@
   font-size: 0.9rem;
   text-align: center;
 }
+
+.add-genre-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre los botones */
+  align-items: center; /* Alineación vertical */
+  margin-top: 20px;
+}
+
+.button-container .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.button-container .btn-secondary {
+  /* Estilo del botón Atrás (puedes personalizarlo como quieras) */
+  background-color: #007bff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.button-container .btn-primary {
+  /* Estilo del botón Agregar Género */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.button-container .btn:disabled {
+  opacity: 0.6;
+}
