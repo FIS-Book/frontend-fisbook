@@ -1,12 +1,21 @@
 import React from "react";
 import logo from "../assets/images/Logo.png"; // Importa el logo
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+
 
 function Header({ user }) {
     return (
         <header className="header">
             <div className="logo-container">
                 <img src={logo} alt="FISBook Logo" className="logo" />
+            </div>
+            
+            <div className="d-flex justify-content-center align-items-center">
+                <nav>
+                    <Link to="/" className="text-white mx-3">Catálogo</Link>
+                    <Link to="/reading-list" className="text-white mx-3">Lista de Lectura</Link>
+                </nav>               
             </div>
             <button className="user-profile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2C3E50" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
