@@ -10,32 +10,15 @@ function App() {
   const user = {
     name: "John Doe"
   };
-  const books = [
-    {
-      id: 1,
-      title: "The Catcher in the Rye",
-      author: "J.D. Salinger"
-    },
-    {
-      id: 2,
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee"
-    },
-    {
-      id: 3,
-      title: "1984",
-      author: "George Orwell"
-    },
-  ];
-
+  
   return (
     <Router>
        <div className="App">
           <Header user={user} />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Catalogue books={books} />} />
-              <Route path="/book-details/:id" element={<BookDetails books={books} />} />
+              <Route path="/" element={<Catalogue  />} />
+              <Route path="/book-details/:id" element={<BookDetails />} />
             </Routes>
           </div>
         </div> 
