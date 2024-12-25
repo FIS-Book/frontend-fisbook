@@ -18,7 +18,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Catalogue  />} />
-              <Route path="/book-details/:id" element={<BookDetails />} />
+              <Route path="/book-details/:isbn" element={<BookDetails />} />
             </Routes>
           </div>
         </div> 
