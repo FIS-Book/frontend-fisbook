@@ -32,10 +32,12 @@
 .book-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #faedd6;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     /* Asegura que los libros ocupen todo el ancho disponible */
 }
@@ -44,11 +46,15 @@
     width: 50px;
     height: auto;
     margin-right: 15px;
+    object-fit: cover;
+    border-radius: 3px;
 }
 
 .book-details {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    margin-left: 10px;
 }
 
 .book-details h4 {
@@ -60,4 +66,20 @@
 .book-details p {
     color: #4A4A4A;
     font-size: 14px;
+}
+
+.btn-primary {
+    align-self: flex-end;
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color:#0056b3;
 }
