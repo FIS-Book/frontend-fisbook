@@ -1,8 +1,19 @@
 import './assets/styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "./components/Header";
-import Catalogue from "./feature/catalogue/Catalogue.js"
+import React from 'react';
+import BookDetail from './feature/reviews/BookDetail';
 
+function App() {
+    return (
+        <div>
+            <BookDetail />
+        </div>
+    );
+};
+
+export default App;
+
+/*
 function App() {
 
   const user = {
@@ -35,5 +46,5 @@ function App() {
     </div>
   );
 }
-
 export default App;
+*/
