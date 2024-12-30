@@ -12,7 +12,7 @@ function Catalogue() {
     // Función para obtener los libros desde el backend
     const fetchBooks = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/books'); // Llama al endpoint del backend
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books`); // Llama al endpoint del backend
             setBooks(response.data); // Almacena los libros en el estado
             setLoading(false); // Indica que terminó la carga
         } catch (err) {
@@ -25,7 +25,7 @@ function Catalogue() {
      // Función para obtener los libros destacados (featured)
      const fetchFeaturedBooks = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/books/featured'); // Llama al endpoint de libros destacados
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/featured`); // Llama al endpoint de libros destacados
             setFeaturedBooks(response.data); // Almacena los libros destacados
         } catch (err) {
             console.error('Error al obtener los libros destacados:', err);

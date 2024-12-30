@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+
 function BookDetails({ books }) {
     const { isbn } = useParams(); // Obtener el ISBN del libro de la URL
     console.log('ISBN recibido:', isbn)
@@ -13,7 +14,7 @@ function BookDetails({ books }) {
         console.log('ISBN recibido:', isbn);
         const fetchBook = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/books/isbn/${isbn}`); // Llama al endpoint del backend
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/isbn/${isbn}`); // Llama al endpoint del backend
                 setBook(response.data);
             } catch (err) {
                 console.error('Error al obtener el libro:', err);
