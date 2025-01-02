@@ -5,81 +5,102 @@
     background-color: #f5f5f5;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .book-title {
+}
+
+.book-title {
     text-align: center;
     color: #2C3E50;
     margin-bottom: 20px;
-  }
-  
-  .book-details-content {
+}
+
+.book-details-content {
     display: flex;
     flex-direction: row; /* Alinea imagen a la izquierda y la descripción a la derecha */
     align-items: flex-start;
     justify-content: space-between;
-  }
-  
-  .book-cover-container {
+}
+
+.book-cover-container {
     flex-shrink: 0; /* Evita que la imagen se reduzca en tamaño */
     width: 200px; /* Ancho de la imagen */
     margin-right: 20px; /* Espacio entre la imagen y el contenido de la derecha */
-  }
-  
-  .book-cover-large {
+}
+
+.book-cover-large {
     width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
     height: auto;
     border-radius: 8px;
     object-fit: cover;
-  }
-  
-  .book-info {
+}
+
+.book-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-  }
-  
-  .book-info p {
+}
+
+.book-info p {
     font-size: 16px;
     color: #4A4A4A;
     margin-bottom: 10px;
-  }
-  
-  .book-info strong {
+}
+
+.book-info strong {
     color: #2C3E50;
-  }
-  
-  .book-buttons {
+}
+
+.book-buttons {
     margin-top: 20px;
-  }
-  
-  .book-buttons button {
+}
+
+.book-buttons button {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
-  }
-  
-  .btn-primary {
+}
+
+.btn-primary {
     background-color: #007bff;
     color: white;
     border: none;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #0056b3;
-  }
-  
-  .btn-secondary {
+}
+
+.btn-secondary {
     background-color: #28a745;
     color: white;
     border: none;
-  }
-  
-  .btn-secondary:hover {
+}
+
+.btn-secondary:hover {
     background-color: #218838;
-  }
-  
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.best-seller {
+    background-color: #ff9800; /* Naranja para bestseller */
+}
+
+.award-winner {
+    background-color: #4caf50; /* Verde para premiado */
+}
+
+.default {
+    background-color: #9e9e9e; /* Gris para sin clasificación */
+}
 
 /* Respuestas responsivas (adaptación a pantallas pequeñas) */
 @media (max-width: 768px) {
