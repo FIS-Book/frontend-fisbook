@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../../assets/styles/LogIn.css';
+import { useNavigate } from 'react-router-dom'; // Importing the navigation hook
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    
+    const navigate = useNavigate(); // Hook to handle redirection
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,21 +16,30 @@ function Login() {
         setLoading(true);
 
         try {
-            // Realiza la solicitud al backend para autenticar al usuario
-            const response = await axios.post('http://localhost:3001/users/login', { email, password });
-            const token = response.data.token;
+            const response = await fetch('http:/localhost:3000/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+              });
 
-            // Almacena el token en localStorage
-            localStorage.setItem('token', token);
-            alert('Inicio de sesión exitoso');
-            setLoading(false);
+              if (!response.ok) {
+                throw new Error('Error en la autenticación');
+              }
 
-            // Aquí puedes redirigir al usuario a otra página
-            window.location.href = '/dashboard';
-        } catch (err) {
-            setError('Credenciales incorrectas. Intenta nuevamente.');
-            setLoading(false);
-        }
+              const data = await response.json();
+              localStorage.setItem('token', data.token); // Store the JWT in localStorage
+              window.location.href = '/catalog'; // Redirect to the catalog page (change the route as needed)
+
+            } catch (error) {
+              setError(error.message);
+            }
+    };
+
+    // Function to handle redirection to the register page
+    const handleRegisterRedirect = () => {
+        navigate('/register'); // Redirect to the register page
     };
 
     return (
@@ -64,8 +75,14 @@ function Login() {
                     {loading ? 'Iniciando...' : 'Iniciar Sesión'}
                 </button>
             </form>
+            
+            {/* Register Button to redirect to the register page */}
+            <button className="btn btn-secondary" onClick={handleRegisterRedirect}>
+                Register User
+            </button>
         </div>
     );
 }
 
 export default Login;
+
