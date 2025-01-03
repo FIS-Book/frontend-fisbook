@@ -48,6 +48,29 @@
     margin-bottom: 20px;
 }
 
+/* Input de búsqueda */
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+  
+/* Dropdown de filtros */
+.filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+  
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+}
 
 .book-column {
     display: flex;
@@ -104,7 +127,7 @@
 .btn-primary {
     align-self: flex-end;
     margin-left: auto;
-    background-color: #007bff;
+    background-color: #2C3E50;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -116,3 +139,40 @@
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.btn-primary svg {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Botón "Home" flotante a la izquierda */
+.btn-home {
+    position: fixed;
+    left: 40px; /* Distancia desde la izquierda de la pantalla */
+    top: 80px; /* Distancia desde la parte superior */
+    padding: 10px 20px;
+    background-color: #D3D3D3; 
+    color: black;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+  
+.btn-home:hover {
+    background-color: #f9f9f9; 
+}
+  
+.btn-home svg {
+    margin-right: 8px;
+    font-size: 20px;
+}
+  
+
+  
+
+  

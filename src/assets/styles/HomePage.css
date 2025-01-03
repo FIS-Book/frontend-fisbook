@@ -77,12 +77,12 @@
 
 /* Estilos para el botón Ver catálogo */
 .button-catalogue {
-    background-color: #007bff;   /* Color azul */
-    color: white;                /* Texto blanco */
-    border: none;                /* Sin borde */
+    background-color: #2C3E50;   
+    color: whitesmoke;                
+    border: black;                
     padding: 10px 20px;          /* Espaciado interno */
-    font-size: 16px;             /* Tamaño de fuente */
-    font-weight: bold;           /* Negrita */
+    font-size: 16px;            
+    font-weight: bold;          
     border-radius: 8px;          /* Bordes redondeados */
     cursor: pointer;             /* Aparece como puntero al pasar el ratón */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
@@ -93,12 +93,18 @@
 }
 
 .button-catalogue:hover {
-    background-color: #0056b3;   /* Cambiar color al pasar el ratón */
+    background-color: #D3D3D3;   /* Cambiar color al pasar el ratón */
     transform: translateY(-3px); /* Sutil efecto de desplazamiento */
 }
 
 .button-catalogue:active {
     transform: translateY(0);    /* Devuelve al estado original al hacer clic */
+}
+
+.button-catalogue svg {
+    margin-right: 0.5rem; /* Espacio entre el icono y el texto */
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 /* Asegúrate de que el contenedor del botón esté centrado */
@@ -108,3 +114,4 @@
     align-items: center;         /* Centrado vertical */
     margin-top: 20px;
 }
+
