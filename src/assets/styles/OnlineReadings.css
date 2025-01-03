@@ -1,75 +1,97 @@
-/* OnlineReading.css */
-
-/* Contenedor principal del libro */
-.book-container {
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
+.online-reading-container {
     text-align: center;
-}
-
-.book {
+    margin-top: 50px;
+  }
+  
+  .pdf-viewer {
     position: relative;
-    width: 100%;
-    height: 500px; /* Altura fija para simular el libro */
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.book-page {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    overflow-y: auto;
+    height: 600px; /* Ajusta la altura para la visualización del PDF */
+    max-width: 100%;
+  }
+  
+  .pdf-page {
     position: absolute;
     top: 0;
     left: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.page-content {
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden; /* Asegura que las páginas ocultas no interfieran */
+    transition: opacity 0.8s ease-in-out; /* Transición más suave */
+  }
+  
+  .pdf-page.page-1 {
+    opacity: 1;
+    visibility: visible; /* La primera página es visible */
+  }
+  
+  .pdf-page.page-2 {
+    opacity: 1;
+    visibility: visible; /* Página 2 */
+  }
+  
+  .pdf-page.page-3 {
+    opacity: 1;
+    visibility: visible; /* Página 3 */
+  }
+  
+  .pdf-page.page-4 {
+    opacity: 1;
+    visibility: visible; /* Página 4 */
+  }
+  
+  .pdf-page.page-5 {
+    opacity: 1;
+    visibility: visible; /* Página 5 */
+  }
+  
+  .pdf-image {
+    width: 100%;   /* La imagen ocupa todo el ancho del contenedor */
+    height: auto;  /* Mantiene la relación de aspecto de la imagen */
+    max-width: 100%;  /* Asegura que la imagen no se estire más allá del contenedor */
+    border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pdf-text {
+    padding: 20px;
+    text-align: left;
+    font-family: 'Georgia', serif;
     font-size: 18px;
     line-height: 1.6;
     color: #333;
-}
-
-/* Botones para navegar entre páginas */
-.controls {
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+  }
+  
+  .pdf-text h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .pdf-text p {
+    margin-bottom: 20px;
+    text-indent: 30px;
+  }
+  
+  .navigation-buttons {
     margin-top: 20px;
-}
-
-button {
+  }
+  
+  button {
     padding: 10px 20px;
     margin: 0 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-}
-
-button:disabled {
-    background-color: #ddd;
+  }
+  
+  button:disabled {
     cursor: not-allowed;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-button:active {
-    background-color: #004085;
-}
-
-/* Estilo de mensaje de error */
-.error-message {
-    color: red;
-    margin-top: 10px;
-}
+    opacity: 0.5;
+  }
+  

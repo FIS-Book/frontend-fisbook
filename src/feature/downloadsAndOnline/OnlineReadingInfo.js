@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../assets/styles/DownloadsInfo.css'; // Make sure this stylesheet exists
+import '../../assets/styles/OnlineReadings.css'; // Make sure this stylesheet exists
 
-function OnlineReadingInfo() {
+function OnlineReadings() {
     const [readings, setReadings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [selectedReading, setSelectedReading] = useState(null); // Store the selected reading
     const [searchId, setSearchId] = useState(''); // ID to search for a reading
 
-    // Fetch the list of readings when the page loads
+    // Fetch the list of online readings when the page loads
     useEffect(() => {
         const fetchReadings = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/online-readings', {
+                const response = await axios.get('http://localhost:3000/api/v1/readings', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the saved token
                     },
@@ -29,6 +29,24 @@ function OnlineReadingInfo() {
         fetchReadings();
     }, []);
 
+    // Function to update the readings
+    const handleUpdate = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('http://localhost:3000/api/v1/readings', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the saved token
+                },
+            });
+            setReadings(response.data); // Update the list of readings
+            setError(''); // Clear the error
+        } catch (err) {
+            setError('Error updating readings');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // Function to delete the selected reading
     const handleDelete = async () => {
         if (!selectedReading) {
@@ -37,7 +55,7 @@ function OnlineReadingInfo() {
         }
 
         try {
-            await axios.delete(`http://localhost:3000/api/v1/online-readings/${selectedReading._id}`, {
+            await axios.delete(`http://localhost:3000/api/v1/readings/${selectedReading._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the saved token
                 },
@@ -49,7 +67,7 @@ function OnlineReadingInfo() {
         }
     };
 
-    // Function to search for a reading
+    // Function to search for a reading by ID
     const handleSearch = async () => {
         if (!searchId) {
             alert('Please enter an ID to search');
@@ -57,7 +75,7 @@ function OnlineReadingInfo() {
         }
 
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/online-readings/${searchId}`, {
+            const response = await axios.get(`http://localhost:3000/api/v1/readings/${searchId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the saved token
                 },
@@ -74,38 +92,6 @@ function OnlineReadingInfo() {
         setSelectedReading(reading);
     };
 
-    // Function to update the selected reading
-    const handleUpdate = async () => {
-        if (!selectedReading) {
-            alert('No reading selected');
-            return;
-        }
-
-        const updatedReadingData = {
-            ...selectedReading,
-            // Here you can update the data you want, for example:
-            // title: 'New Title', 
-            // author: 'New Author',
-            // language: 'es',
-            // format: 'EPUB',
-            // etc.
-        };
-
-        try {
-            const response = await axios.put(`http://localhost:3000/api/v1/online-readings/${selectedReading._id}`, updatedReadingData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the saved token
-                },
-            });
-            const updatedReading = response.data;
-            setReadings(readings.map((reading) => (reading._id === selectedReading._id ? updatedReading : reading))); // Update the reading in the list
-            setSelectedReading(updatedReading); // Update the selected reading
-            alert('Reading updated successfully');
-        } catch (err) {
-            setError('Error updating the reading');
-        }
-    };
-
     return (
         <div className="container">
             <h1>Online Readings</h1>
@@ -114,7 +100,7 @@ function OnlineReadingInfo() {
             {/* Button bar */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Search</button>
-                <button onClick={handleUpdate} disabled={!selectedReading}>Update</button>
+                <button onClick={handleUpdate}>Update</button>
                 <button onClick={handleDelete} disabled={!selectedReading}>Delete</button>
             </div>
 
@@ -144,4 +130,4 @@ function OnlineReadingInfo() {
     );
 }
 
-export default OnlineReadingInfo;
+export default OnlineReadings;

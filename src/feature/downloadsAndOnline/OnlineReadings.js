@@ -1,69 +1,81 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../../assets/styles/OnlineReadings.css'; // Asegúrate de que este archivo de estilos exista
+import React, { useState } from 'react';
+import '../../assets/styles/OnlineReadings.css'; // Asegúrate de tener este archivo de estilos
 
-function OnlineReading() {
-    const [book, setBook] = useState(null); // Estado para almacenar el libro
-    const [page, setPage] = useState(1); // Estado para llevar el control de la página actual
-    const [error, setError] = useState('');
+function OnlineReadings() {
+  const [page, setPage] = useState(1);  // Guardamos la página actual
 
-    // Obtener el libro cuando se cargue el componente
-    useEffect(() => {
-        const fetchBook = async () => {
-            try {
-                // Realizar solicitud para obtener el libro (puedes reemplazar este endpoint con el de tu API)
-                const response = await axios.get('http://localhost:3000/api/v1/online-readings/1', { 
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-                });
-                setBook(response.data);
-            } catch (err) {
-                setError('Error al cargar el libro.');
-            }
-        };
-
-        fetchBook();
-    }, []);
-
-    // Función para pasar a la siguiente página
-    const nextPage = () => {
-        if (book && page < book.totalPages) {
-            setPage(page + 1);
-        }
-    };
-
-    // Función para regresar a la página anterior
-    const prevPage = () => {
-        if (page > 1) {
-            setPage(page - 1);
-        }
-    };
-
-    // Verifica si hay un libro y si tiene contenido
-    if (!book) {
-        return <div>Loading...</div>;
+  // Función para cambiar a la siguiente página
+  const nextPage = () => {
+    if (page < 5) {
+      setPage(page + 1);  // Cambia a la siguiente página (simulando un PDF de 5 páginas)
     }
+  };
 
-    return (
-        <div className="book-container">
-            {error && <p className="error-message">{error}</p>}
+  // Función para volver a la página anterior
+  const prevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);  // Vuelve a la página anterior
+    }
+  };
 
-            <div className="book">
-                <div className="book-page">
-                    <div className="page-content">
-                        {/* Aquí puedes mostrar el contenido de la página */}
-                        <h2>{book.titulo}</h2>
-                        <p>{book.content[page - 1]}</p> {/* Mostrando el contenido de la página actual */}
-                    </div>
-                </div>
+  return (
+    <div className="online-reading-container">
+      <h1>Reading PDF: Example Book</h1>
+      <div className="pdf-viewer">
+        <div className={`pdf-page ${page === 1 ? 'page-1' : ''}`}>
+          {/* Página 1 - Portada real */}
+          {page === 1 ? (
+            <img
+              src="https://via.placeholder.com/800x1100.png?text=Book+Cover" // Imagen de portada real
+              alt="Book Cover"
+              className="pdf-image"
+            />
+          ) : (
+            <div className="pdf-text">
+              <h2>Page {page}</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique risus ut felis ullamcorper,
+                et auctor enim posuere. Vivamus aliquam vel velit sed egestas. Suspendisse potenti. Mauris non ligula
+                vel ligula faucibus mollis.
+              </p>
+              <p>
+                Vivamus vel enim orci. Etiam sed velit sit amet libero posuere vulputate. Cras eget purus dolor. Donec
+                malesuada turpis non quam cursus, ut dictum arcu cursus. Integer fringilla ligula sed augue dapibus
+                aliquam.
+              </p>
             </div>
-
-            {/* Botones para navegar entre las páginas */}
-            <div className="controls">
-                <button onClick={prevPage} disabled={page === 1}>Anterior</button>
-                <button onClick={nextPage} disabled={page === book.totalPages}>Siguiente</button>
-            </div>
+          )}
         </div>
-    );
+        {/* Las demás páginas, que muestran texto */}
+        {page > 1 && (
+          <div className={`pdf-page page-${page}`}>
+            <div className="pdf-text">
+              <h2>Page {page}</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique risus ut felis ullamcorper,
+                et auctor enim posuere. Vivamus aliquam vel velit sed egestas. Suspendisse potenti. Mauris non ligula
+                vel ligula faucibus mollis.
+              </p>
+              <p>
+                Vivamus vel enim orci. Etiam sed velit sit amet libero posuere vulputate. Cras eget purus dolor. Donec
+                malesuada turpis non quam cursus, ut dictum arcu cursus. Integer fringilla ligula sed augue dapibus
+                aliquam.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="navigation-buttons">
+        <button onClick={prevPage} disabled={page === 1}>
+          Previous
+        </button>
+        <button onClick={nextPage} disabled={page === 5}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default OnlineReading;
+export default OnlineReadings;

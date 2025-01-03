@@ -8,8 +8,10 @@ import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Admin from './feature/users/Admin.js';
 import DownloadsInfo from './feature/downloadsAndOnline/DownloadsInfo.js';
+import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
+
 
 function App() {
 
@@ -89,10 +91,12 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<h1>Bienvenido al Dashboard</h1>} />
             {/* Catalogo de libros */}
-            <Route path="/catalogue" element={<Catalogue books={books} />} />
-            {/* Página de administradores */}
-             {/* Página de información de online readings */}
-             <Route path="/onlineReadings" element={<OnlineReadings OnlineReadings={onlineReadings} />} />
+            <Route path="/catalogue" element={<Catalogue books={books} />} />            
+            {/* Página de online readings */}
+            <Route path="/onlineReadings" element={<OnlineReadings OnlineReadings={onlineReadings} />} />
+            {/* Página de descargas */}
+            <Route path="/Downloads" element={<Downloads Downloads={downloads} />} />
+             {/* Página de administradores */}
             <Route path="/admin" element={<Admin admin={admin} />} />
             {/* Página de información de usuarios */}
             <Route path="/admin/users" element={<Users users={users} />} />
