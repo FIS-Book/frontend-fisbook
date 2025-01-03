@@ -13,7 +13,7 @@ function HomePage() {
   // Función para obtener los libros destacados (featured)
   const fetchFeaturedBooks = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/featured`); // Llama al endpoint de libros destacados
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/featured`); // Llama al endpoint de libros destacados
       setFeaturedBooks(response.data); // Almacena los libros destacados
     } catch (err) {
       console.error('Error al obtener los libros destacados:', err);
@@ -24,7 +24,7 @@ function HomePage() {
   // Función para obtener las estadísticas del backend
   const fetchStats = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/stats`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/stats`);
       console.log('Stats Response:', response);
       setStats(response.data.data); // Almacena las estadísticas
     } catch (err) {
@@ -35,7 +35,7 @@ function HomePage() {
   // Función para obtener los libros recientes del backend
   const fetchLatestBooks = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/latest`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/latest`);
       setLatestBooks(response.data); // Almacena los libros recientes
     } catch (err) {
       console.error('Error al obtener los libros recientes:', err);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../assets/styles/Catalogue.css';
 
@@ -8,11 +9,12 @@ function Catalogue() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   // Función para obtener los libros desde el backend
   const fetchBooks = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books`); // Llama al endpoint del backend
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books`); // Llama al endpoint del backend
       setBooks(response.data); // Almacena los libros en el estado
       setFilteredBooks(response.data); // Inicialmente, todos los libros en la lista filtrada 
       setLoading(false); // Indica que terminó la carga
@@ -57,7 +59,7 @@ function Catalogue() {
   // Manejo del evento de click en el botón
   const handleViewDetails = (book) => {
     const bookDetailsUrl = `/book-details/${book.isbn}`;
-    window.open(bookDetailsUrl, '_blank');
+    navigate(bookDetailsUrl);
   };
 
   // Renderizar libros cuando estén disponibles

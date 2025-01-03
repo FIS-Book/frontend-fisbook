@@ -12,7 +12,7 @@ function BookDetails() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/books/isbn/${isbn}`); // Llama al endpoint del backend
+        const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/isbn/${isbn}`); // Llama al endpoint del backend
         setBook(response.data);
       } catch (err) {
         console.error('Error al obtener el libro:', err);
