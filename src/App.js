@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
+import Profile from './feature/users/Profile.js';
 
 function App() {
 
@@ -51,6 +52,8 @@ function App() {
             <Route path="/users" element={<Users users={users} />} />
             {/* Registro de usuarios */}
             <Route path="/register" element={<Register />} />
+            {/* User Profile */}
+            <Route path="/users/:id" element={<Profile />} />
           </Routes>
         </div>
       </div>
