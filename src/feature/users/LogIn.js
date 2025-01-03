@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../../assets/styles/LogIn.css';
+import { Link } from 'react-router-dom'; // Importing Link
+import axios from 'axios'; // Import axios
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,20 +15,30 @@ function Login() {
         setLoading(true);
 
         try {
-            // Realiza la solicitud al backend para autenticar al usuario
-            const response = await axios.post('http://localhost:3001/users/login', { email, password });
-            const token = response.data.token;
+            const response = await axios.post(
+                'http://localhost:3000/api/v1/auth/users/login', 
+                {
+                    email,
+                    password
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json', // Asegura que el tipo de contenido sea JSON
+                    }
+                }
+            );
 
-            // Almacena el token en localStorage
-            localStorage.setItem('token', token);
-            alert('Inicio de sesión exitoso');
-            setLoading(false);
+            // Si la respuesta es exitosa
+            console.log('Response:', response); // Verifica la respuesta de la API
+            localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
+            window.location.href = '/catalogue'; // Redirect to the catalog page (change the route as needed)
 
-            // Aquí puedes redirigir al usuario a otra página
-            window.location.href = '/dashboard';
-        } catch (err) {
-            setError('Credenciales incorrectas. Intenta nuevamente.');
-            setLoading(false);
+        } catch (error) {
+            // Maneja el error si ocurre
+            console.error('Login error:', error); // Verifica si ocurre algún error
+            setError(error.response?.data?.message || 'Error en la autenticación');
+        } finally {
+            setLoading(false); // Finaliza el estado de carga
         }
     };
 
@@ -64,8 +75,15 @@ function Login() {
                     {loading ? 'Iniciando...' : 'Iniciar Sesión'}
                 </button>
             </form>
+            
+            {/* Register Button to redirect to the register page */}
+            <p className="login-redirect">
+                No tengo cuenta. <Link to="/register"> Registrarme </Link>
+            </p>
         </div>
     );
 }
 
 export default Login;
+
+

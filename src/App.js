@@ -6,6 +6,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
+import Register from './feature/users/Register.js';
 
 function App() {
 
@@ -48,6 +49,8 @@ function App() {
             <Route path="/catalogue" element={<Catalogue books={books} />} />
             {/* Página de usuarios */}
             <Route path="/users" element={<Users users={users} />} />
+            {/* Registro de usuarios */}
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </div>
