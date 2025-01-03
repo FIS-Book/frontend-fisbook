@@ -10,8 +10,8 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [plan, setPlan] = useState('basic'); // Default plan
-    const [rol, setRol] = useState('user'); // Default role
+    const [plan, setPlan] = useState('Plan1'); // Default plan
+    const [rol, setRol] = useState('User'); // Default role
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -22,9 +22,15 @@ function Register() {
         setError('');
         setLoading(true);
 
-        // Check if passwords match
+        // Validaciones adicionales
         if (password !== confirmPassword) {
             setError('Las contraseñas no coinciden');
+            setLoading(false);
+            return;
+        }
+
+        if (password.length < 8) {
+            setError('La contraseña debe tener al menos 8 caracteres');
             setLoading(false);
             return;
         }
@@ -48,11 +54,12 @@ function Register() {
             navigate('/');
 
         } catch (error) {
-            console.log("Error de Axios:", error); // Muestra detalles del error
-            // Si ocurre un error, maneja el error
-            setError(error.response?.data?.message || 'Error al registrar usuario');
+            const errorMessage =
+                error.response?.data?.message || error.message || 'Error al registrar usuario';
+            console.error("Error de Axios:", error); // Muestra detalles del error en consola
+            setError(errorMessage); // Muestra el error al usuario
         } finally {
-            setLoading(false); // Detén la carga independientemente de si fue exitoso o no
+            setLoading(false); // Detén la carga independientemente del resultado
         }
     };
 
@@ -70,6 +77,7 @@ function Register() {
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -82,6 +90,7 @@ function Register() {
                         value={apellidos}
                         onChange={(e) => setApellidos(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -94,6 +103,7 @@ function Register() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -106,6 +116,7 @@ function Register() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -118,6 +129,7 @@ function Register() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -130,6 +142,7 @@ function Register() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
+                        disabled={loading}
                     />
                 </div>
                 <div className="form-group">
@@ -139,10 +152,11 @@ function Register() {
                         className="form-control"
                         value={plan}
                         onChange={(e) => setPlan(e.target.value)}
+                        disabled={loading}
                     >
-                        <option value="basic">Plan1</option>
-                        <option value="premium">Plan2</option>
-                        <option value="premium">Plan3</option>
+                        <option value="Plan1">Plan1</option>
+                        <option value="Plan2">Plan2</option>
+                        <option value="Plan3">Plan3</option>
                     </select>
                 </div>
                 <div className="form-group">
@@ -151,10 +165,11 @@ function Register() {
                         id="rol"
                         className="form-control"
                         value={rol}
-                        onChange={(e) => setRol(e.target.value)}
+                        onChange={(e) => setRol(e.target.value)} // Mantiene el valor exacto
+                        disabled={loading}
                     >
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
                     </select>
                 </div>
                 {error && <p className="error-message">{error}</p>}
@@ -172,3 +187,4 @@ function Register() {
 }
 
 export default Register;
+
