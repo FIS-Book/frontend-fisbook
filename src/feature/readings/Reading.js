@@ -135,6 +135,11 @@ const Reading = ({ userId, email }) => {
     navigate('/homePage'); // Ruta del HomePage
   };
 
+  // Función para manejar el click en un libro
+  const handleBookClick = (isbn) => {
+    navigate(`/catalogue/book-details/${isbn}`);  
+  };
+
   // Renderizamos los géneros y libros
   return (
     <div>
@@ -150,6 +155,7 @@ const Reading = ({ userId, email }) => {
       {readings.genres.map((genre, index) => (
         <div key={index} className="genre-block">
           {/* Primer Bloque: Género */}
+          {console.log(genre)}
           <div className="genre-block-item">
             <h4>Género: {genre.genre}</h4>
             <button 
@@ -164,6 +170,8 @@ const Reading = ({ userId, email }) => {
           <div className="genre-block-item">
             <h4>{genre.title}</h4>
             <p>{genre.description}</p>
+            <p><strong>Número de reseñas: {genre.numberReviews}</strong></p>
+            <p><strong>Puntuación: {genre.score}</strong></p>
           </div>
   
           {/* Tercer Bloque: Libros */}
@@ -172,14 +180,18 @@ const Reading = ({ userId, email }) => {
             <ul>
               {genre.books.map((book, bookIndex) => (
                 <li key={bookIndex}>
-                  <strong>{book.title}</strong> (ISBN: {book.isbn})
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+
+                  <strong onClick={()=> handleBookClick(book.isbn)} style={{ cursor: 'pointer' }}>{book.title}</strong> (ISBN: {book.isbn})
                    {/* Botón para eliminar */}
                 <button 
                   className="btn btn-danger" 
                   onClick={() => handleDeleteBook(genre.genre, book.isbn)}
+                  style={{marginLeft: 'auto'}}
                 >
                   Eliminar
                 </button>
+                  </div>
                 </li>
               ))}
             </ul>
