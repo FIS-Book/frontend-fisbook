@@ -5,14 +5,15 @@ import { useNavigate, useLocation } from 'react-router-dom'; // Importamos useNa
 
 
 const AddGenre = () => {
-  const [genre, setGenre] = useState('');
+  const navigate = useNavigate(); // Usamos useNavigate para manejar la redirección
+  const location = useLocation(); // Usamos useLocation para acceder al estado
+
+  const [genre, setGenre] = useState(location.state.genre);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const navigate = useNavigate(); // Usamos useNavigate para manejar la redirección
-  const location = useLocation(); // Usamos useLocation para acceder al estado
 
   // Recuperamos el userId desde el estado de la navegación
   const { userId } = location.state || {};

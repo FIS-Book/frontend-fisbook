@@ -10,7 +10,7 @@ const useFetchFeaturedBooks = () => {
   useEffect(() => {
     const fetchFeaturedBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/featured`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/featured`);
         setFeaturedBooks(response.data);
       } catch (err) {
         console.error('Error al obtener los libros destacados:', err);

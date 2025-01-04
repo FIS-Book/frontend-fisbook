@@ -8,7 +8,9 @@ function Header({ user }) {
     return (
         <header className="header">
             <div className="logo-container">
-                <img src={logo} alt="FISBook Logo" className="logo" />
+                <Link to="/homePage">
+                    <img src={logo} alt="FISBook Logo" className="logo" />
+                </Link>
             </div>
             
             <div className="d-flex justify-content-center align-items-center">

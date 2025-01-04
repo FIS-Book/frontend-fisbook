@@ -1,0 +1,70 @@
+/* Admin.css */
+
+/* Contenedor principal de la página */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Título de la página */
+.admin-container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Texto introductorio */
+.intro-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de los botones */
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Tres botones por fila */
+    gap: 20px;
+    width: 80%;
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+/* Estilo general para los botones */
+.admin-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilo para cuando el mouse pasa sobre el botón */
+.admin-button:hover {
+    background-color: #2C3E50;
+}
+
+/* Estilo para pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    .buttons-container {
+        grid-template-columns: 1fr;  /* Una columna en pantallas pequeñas */
+    }
+
+    .admin-container h1 {
+        font-size: 28px;
+    }
+
+    .intro-text {
+        font-size: 16px;
+    }
+}

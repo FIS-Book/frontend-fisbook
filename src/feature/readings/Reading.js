@@ -67,12 +67,14 @@ const Reading = ({ userId, email }) => {
 
         // Enviar el correo
       const emailPayload = {
+        from:"edwareang@alum.us.es",
+        // keyEmail:"fisbook2025",
         to: email,
         subject: `Lista de lecturas "${genre}" eliminada`,
         body: `Estimado usuario,\n\nLe informamos que su lista de lecturas para el género "${genre}" ha sido eliminada exitosamente. Esta acción resultó en la eliminación de ${booksDeleted} libro(s) asociado(s) a la lista.\n\nSi esta acción no fue realizada por usted o necesita más asistencia, por favor contáctenos inmediatamente.\n\nSaludos cordiales,\nEl equipo de FISBOOK.`,
       };
 
-      const emailResponse = await fetch("http://localhost:8080/api/v1/email", {
+      const emailResponse = await fetch("http://localhost:8080/api/v1/readings/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +132,7 @@ const Reading = ({ userId, email }) => {
 
   // Manejo del evento para volver al HomePage
   const handleGoToHome = () => {
-    navigate('/'); // Ruta del HomePage
+    navigate('/homePage'); // Ruta del HomePage
   };
 
   // Renderizamos los géneros y libros
