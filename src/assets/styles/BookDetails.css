@@ -1,0 +1,163 @@
+.book-details-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-title {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 20px;
+}
+
+.book-details-content {
+    display: flex;
+    flex-direction: row; /* Alinea imagen a la izquierda y la descripción a la derecha */
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.book-cover-container {
+    flex-shrink: 0; /* Evita que la imagen se reduzca en tamaño */
+    width: 200px; /* Ancho de la imagen */
+    margin-right: 20px; /* Espacio entre la imagen y el contenido de la derecha */
+}
+
+.book-cover-large {
+    width: 100%; 
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.book-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info p {
+    font-size: 16px;
+    color: #4A4A4A;
+    margin-bottom: 10px;
+}
+
+.book-info strong {
+    color: #2C3E50;
+}
+
+.book-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo general de los botones */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn svg {
+    margin-right: 0.5rem; /* Espacio entre el icono y el texto */
+    width: 1.2 rem;
+    height: 1.2rem;
+}
+  
+.btn-primary {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2C3E50;;
+}
+
+.btn-secondary {
+    background-color: #31b164;
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #218838;
+}
+
+/* Botón específico para "Volver al Catálogo" */
+.btn-return {
+    background-color: #f79862; 
+    color: #F9F9F9; 
+    border: 1px solid #ced4da;
+}
+  
+.btn-return:hover {
+    background-color: #FF7F50; 
+    color: #000; 
+    transform: scale(1.05); 
+}
+  
+.btn-return:active {
+    background-color: #fb6128; 
+    transform: scale(0.95); 
+}
+  
+/* Alineación para centrar el botón "Volver al Catálogo" */
+.btn-return-container {
+    margin-top: 30px;
+    text-align: center; /* Centrar el botón */
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.best-seller {
+    background-color: #ff9800; /* Naranja para bestseller */
+}
+
+.award-winner {
+    background-color: #4caf50; /* Verde para premiado */
+}
+
+
+/* Respuestas responsivas (adaptación a pantallas pequeñas) */
+@media (max-width: 768px) {
+    .book-details-container {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center;
+    }
+
+    .book-cover-large {
+        width: 200px; /* Ajusta el tamaño de la imagen */
+    }
+
+    .book-details {
+        margin-left: 0;
+        text-align: center; /* Centra el texto en pantallas pequeñas */
+    }
+
+    .book-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%; /* Los botones ocupan todo el ancho en pantallas pequeñas */
+        margin-bottom: 10px;
+    }
+}
