@@ -1,5 +1,4 @@
 // Book Item Component
-
 import React from 'react';
 
 const BookItem = ({ book, onViewDetails }) => (

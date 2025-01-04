@@ -1,5 +1,4 @@
 // Search Bar Component
-
 import React from 'react';
 
 const SearchBar = ({ searchTerm, onSearchChange, filterBy, onFilterChange }) => (
