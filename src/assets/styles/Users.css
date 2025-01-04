@@ -52,3 +52,7 @@ button:disabled {
     color: red;
     margin-top: 10px;
 }
+
+.selected-row {
+    background-color: #f0f8ff; /* Cambia el color de fondo */
+}

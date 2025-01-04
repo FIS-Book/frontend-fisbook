@@ -8,8 +8,8 @@ function Users() {
     const [error, setError] = useState('');
     const [selectedUser, setSelectedUser] = useState(null); // Store the selected user
 
-    // Fetches the list of users when the page loads
-    useEffect(() => {
+     // Fetches the list of users when the page loads
+     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const response = await axios.get('http://localhost:3000/api/v1/auth/users', {
@@ -30,20 +30,22 @@ function Users() {
 
     // Function to delete the selected user
     const handleDelete = async () => {
-        if (!selectedUser) {
-            alert('No user selected');
+        if (!selectedUser || !selectedUser.id) { // Cambiado _id por id
+            alert('No user selected or invalid ID');
             return;
         }
-
+    
+        console.log('Deleting user with ID:', selectedUser.id); // Asegúrate de que esto imprima el ID correcto
         try {
-            await axios.delete(`http://localhost:3000/api/v1/auth/users/${selectedUser._id}`, {
+            await axios.delete(`http://localhost:3000/api/v1/auth/users/${selectedUser.id}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            setUsers(users.filter((user) => user._id !== selectedUser._id)); // Removes the user from the list
-            setSelectedUser(null); // Deselect the user after deletion
+            setUsers(users.filter((user) => user.id !== selectedUser.id)); // Cambiado _id por id
+            setSelectedUser(null); // Deselecciona al usuario después de eliminarlo
         } catch (err) {
+            console.error('Error deleting user:', err.response || err.message || err);
             setError('Error deleting user');
         }
     };
@@ -64,20 +66,36 @@ function Users() {
         };
 
         try {
-            const response = await axios.put(`http://localhost:3000/api/v1/auth/users/${selectedUser._id}`, newUserData, {
+            const response = await axios.put(`http://localhost:3000/api/v1/auth/users/${selectedUser.id}`, newUserData, { // Cambiado _id por id
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
             const updatedUser = response.data;
-            setUsers(users.map(user => (user._id === selectedUser._id ? updatedUser : user))); // Updates the user in the list
+            setUsers(users.map(user => (user.id === selectedUser.id ? updatedUser : user))); // Cambiado _id por id
             setSelectedUser(updatedUser); // Updates the selected user
         } catch (err) {
             setError('Error updating user');
         }
     };
 
-    // Function to search for a user
+    // Function to select a user
+    const handleSelectUser = (user) => {
+        if (selectedUser && selectedUser.id === user.id) {
+            // If the same user is clicked, deselect it
+            console.log('Deselected user:', user); 
+            setSelectedUser(null);
+        } else {
+            // If a different user is clicked, select it
+            console.log('Selected user:', user); 
+            setSelectedUser(user);
+        }
+    };
+
+    // Verificar selectedUser antes de renderizar
+    console.log('Selected user in render:', selectedUser);
+
+    // Searches for a user by ID
     const handleSearch = async () => {
         const userId = prompt('Enter the user ID to search for:');
         if (userId) {
@@ -89,20 +107,19 @@ function Users() {
                 });
                 alert(JSON.stringify(response.data, null, 2)); // Shows user details
             } catch (err) {
+                console.error('Error searching for user:', err.response || err.message || err);
                 setError('Error searching for user');
             }
         }
-    };
-
-    // Function to select a user
-    const handleSelectUser = (user) => {
-        setSelectedUser(user);
     };
 
     return (
         <div>
             <h1>Fisbook Users</h1>
             {error && <p className="error-message">{error}</p>}
+
+            {/* Instruction */}
+            <p>Click on a user to select them, then choose an action (Update/Delete).</p>
 
             {/* General Buttons */}
             <div className="buttons-container">
@@ -115,32 +132,41 @@ function Users() {
                 <p>Loading...</p>
             ) : (
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Plan</th>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((user) => (
+                        <tr 
+                            key={user.id}
+                            onClick={() => handleSelectUser(user)} 
+                            style={{ 
+                                cursor: 'pointer', 
+                                backgroundColor: selectedUser && selectedUser.id === user.id ? 'lightblue' : 'transparent'
+                            }}
+                        >
+                            <td>{user.username}</td>
+                            <td>{user.nombre}</td>
+                            <td>{user.apellidos}</td>
+                            <td>{user.email}</td>
+                            <td>{user.rol}</td>
+                            <td>{user.plan}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user) => (
-                            <tr key={user._id} onClick={() => handleSelectUser(user)} style={{ cursor: 'pointer' }}>
-                                <td>{user.username}</td> {/* Username */}
-                                <td>{user.nombre}</td> {/* Name */}
-                                <td>{user.apellidos}</td> {/* Surname */}
-                                <td>{user.email}</td> {/* Email */}
-                                <td>{user.rol}</td> {/* Role */}
-                                <td>{user.plan}</td> {/* Plan */}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                    ))}
+                </tbody>
+            </table>
             )}
         </div>
     );
 }
 
 export default Users;
+
+
