@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import '../../assets/styles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
+import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
 import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import SearchBar from '../../components/CatalogueComponents/SearchBar';
 import BookList from '../../components/CatalogueComponents/BookList';
-import useFetchBooks from '../../hooks/useFetchBooks';
-import useFilteredBooks from '../../hooks/useFilteredBooks';
 
 
 function Catalogue() {

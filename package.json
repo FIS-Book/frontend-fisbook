@@ -9,6 +9,7 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "frontend-fisbook": "file:",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
@@ -21,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://57.152.88.187",
+  //"proxy": "http://57.152.88.187",
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,7 +42,6 @@
       "last 1 safari version"
     ]
   },
-  
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
