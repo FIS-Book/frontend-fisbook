@@ -10,7 +10,7 @@ const useFetchLatestBooks = () => {
   useEffect(() => {
     const fetchLatestBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/latest`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/latest`);
         setLatestBooks(response.data);
       } catch (err) {
         console.error('Error al obtener los libros recientes:', err);

@@ -1,11 +1,10 @@
 import './assets/styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import HomePage from "./feature/catalogue/HomePage.js";
 import Catalogue from "./feature/catalogue/Catalogue.js"
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
@@ -17,58 +16,34 @@ import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
 
+
 function App() {
-
-  const user = {
-    name: "John Doe"
-  };
-  const books = [
-    {
-      id: 1,
-      title: "The Catcher in the Rye",
-      author: "J.D. Salinger"
-    },
-    {
-      id: 2,
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee"
-    },
-    {
-      id: 3,
-      title: "1984",
-      author: "George Orwell"
-    },
-  ];
-
   return (
     <Router>
       <div className="App">
-        <Header user={user} />
+        <Header user={{name: "John Doe"}}/>
         <div className="container">
           <Routes>
             {/* Página principal */}
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<h1>Bienvenido al Dashboard</h1>} />
+            <Route path="/" element={<Login />}
+            />           
+            {/* Home Page */}
+            <Route path="/homePage" element={<HomePage />} />
             {/* Catalogo de libros */}
-            <Route path="/catalogue" element={<Catalogue books={books} />} />
-            {/* Página de usuarios */}
-            <Route path="/users" element={<Users users={users} />} />
-            {/* Página de Registro */}
+            <Route path="/catalogue" element={<Catalogue />} />
+            <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
+            {/* Microservicio Usuarios */}
+            <Route path="/users" element={<Users/>} />
             <Route path="/register" element={<Register />} />
-            {/* User Profile */}
             <Route path="/users/:id" element={<Profile />} />
-            {/* Página de lecturas online */}
-            <Route path="/onlineReadings" element={<OnlineReadings OnlineReadings={onlineReadings} />} />
-            {/* Página de descargas */}
-            <Route path="/Downloads" element={<Downloads Downloads={downloads} />} />
-             {/* Página de administradores */}
-            <Route path="/admin" element={<Admin admin={admin} />} />
-            {/* Página de información de usuarios */}
-            <Route path="/admin/users" element={<Users users={users} />} />
-            {/* Página de información de descargas */}
-            <Route path="/admin/downloads" element={<DownloadsInfo DownloadsInfo={downloads} />} />
-            {/* Página de información de online readings */}
-            <Route path="/admin/onlineReadings" element={<OnlineReadingInfo OnlineReadingInfo={onlineReadings} />} />
+            {/* Microservicio Descargas */}
+            <Route path="/onlineReadings" element={<OnlineReadings />} />
+            <Route path="/downloads" element={<Downloads />} />
+            {/* Página de administradores */}
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/downloads" element={<DownloadsInfo />} />
+            <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
           </Routes>
         </div>
       </div>

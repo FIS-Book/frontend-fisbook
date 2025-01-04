@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import '../../assets/styles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import SearchBar from '../../components/CatalogueComponents/SearchBar';
 import BookList from '../../components/CatalogueComponents/BookList';
 import useFetchBooks from '../../hooks/useFetchBooks';
 import useFilteredBooks from '../../hooks/useFilteredBooks';
-import '../../assets/styles/Catalogue.css';
-import { useNavigate } from 'react-router-dom';
 
 
 function Catalogue() {
@@ -25,13 +24,13 @@ function Catalogue() {
 
   // Manejo del evento para ir a la página de detalles de un libro
   const handleViewDetails = (book) => {
-    const bookDetailsUrl = `/book-details/${book.isbn}`;
+    const bookDetailsUrl = `/catalogue/book-details/${book.isbn}`;
     navigate(bookDetailsUrl);
   };
 
   // Manejo del evento para volver al HomePage
   const handleGoToHome = () => {
-    navigate('/'); // Ruta del HomePage
+    navigate('/homePage'); // Ruta del HomePage
   };
 
   // Renderización condicional según el estado de carga o error

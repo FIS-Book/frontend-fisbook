@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +32,7 @@ function Login() {
             // Si la respuesta es exitosa
             console.log('Response:', response); // Verifica la respuesta de la API
             localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
-            window.location.href = '/catalogue'; // Redirect to the catalog page (change the route as needed)
+            window.location.href = '/homePage'; // Redirect to the catalog page (change the route as needed)
 
         } catch (error) {
             // Maneja el error si ocurre

@@ -18,7 +18,7 @@ function HomePage() {
 
   // Función para manejar el click en un libro
   const handleBookClick = (isbn) => {
-    navigate(`/book-details/${isbn}`);  
+    navigate(`/catalogue/book-details/${isbn}`);  
   };
 
   // Categorizar los libros destacados por `featuredType`
