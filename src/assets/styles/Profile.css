@@ -1,0 +1,87 @@
+/* Estilos generales del perfil */
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Estilo de los datos del usuario */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-details p {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.profile-details strong {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Estilo para las listas de lecturas y reseñas */
+.profile-list {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #555;
+}
+
+.profile-list li {
+    font-size: 1rem;
+    color: #444;
+}
+
+/* Botón de edición o acciones adicionales */
+.profile-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.profile-actions button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-actions button:hover {
+    background-color: #0056b3;
+}
+
+.profile-actions button:focus {
+    outline: none;
+}
+
+/* Estilo del error */
+.error-message {
+    color: #e74c3c;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 15px;
+}

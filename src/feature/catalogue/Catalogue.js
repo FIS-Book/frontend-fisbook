@@ -6,6 +6,7 @@ import BookList from '../../components/CatalogueComponents/BookList';
 import useFetchBooks from '../../hooks/useFetchBooks';
 import useFilteredBooks from '../../hooks/useFilteredBooks';
 import '../../assets/styles/Catalogue.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function Catalogue() {
