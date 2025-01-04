@@ -1,17 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/styles/HomePage.css';
-import useFetchStats from '../../hooks/useFetchStats';
+import { useFetchStats, useFetchFeaturedBooks, useFetchLatestBooks } from '../../hooks/useCatalogueHooks';
+import { getUserRole } from '../../hooks/useAuth';
 import StatsBox from '../../components/CatalogueComponents/StatsBox';
 import ButtonCatalogue from '../../components/CatalogueComponents/ButtonCatalogue';
 import ButtonReadings from '../../components/CatalogueComponents/ButtonReadings';
-import useFetchFeaturedBooks from '../../hooks/useFeaturedBooks';
-import useFetchLatestBooks from '../../hooks/useFetchLatestBooks';
 import RecentBooks from '../../components/CatalogueComponents/RecentBooks';
 import FeaturedBooks from '../../components/CatalogueComponents/FeaturedBooks';
 
 function HomePage() {
   const navigate = useNavigate();
+  const userRole = getUserRole();
  
   const { featuredBooks, loading: featuredLoading, error: featuredError } = useFetchFeaturedBooks();
   const { latestBooks, loading: latestLoading, error: latestError } = useFetchLatestBooks();
@@ -25,6 +25,7 @@ function HomePage() {
   // Categorizar los libros destacados por `featuredType`
   const bestsellers = featuredBooks.filter(book => book.featuredType === 'bestSeller');
   const awardWinner = featuredBooks.filter(book => book.featuredType === 'awardWinner');
+
 
   return (
     <div>
@@ -40,6 +41,7 @@ function HomePage() {
           }}
         >
             <ButtonCatalogue label="Ver catálogo" onClick={() => navigate('/catalogue')} />
+            {userRole === 'Admin' && <ButtonCatalogue label="Administrar catálogo" onClick={() => navigate('/admin/catalogue')} />}
             <ButtonReadings label="Ver mis listas de lectura" onClick={() => navigate('/reading-list')} />
         </div>
       

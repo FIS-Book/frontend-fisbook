@@ -1,16 +1,52 @@
 import React, { useState, useEffect } from "react";
 import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import '../../assets/styles/Reading.css';
+import { getUserId, getUserMail } from '../../hooks/useAuth';
 
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 
-const Reading = ({ userId, email }) => {
+const Reading = () => {
   const [readings, setReadings] = useState(null); // Estado para almacenar los datos de la respuesta
   const [loading, setLoading] = useState(true);   // Estado para saber si los datos están cargando
   const [error, setError] = useState(null);       // Estado para capturar cualquier error
+  const [dataUpToDate, setDataUpToDate] = useState(false);
 
   const navigate = useNavigate(); // Hook para manejar la navegación
 
+  const userId = getUserId();
+  const email = getUserMail();
+
+  const noListasErrorMessage = "No se pudieron cargar las lecturas";
+  const handleFirstListCreation = async () => {
+    try{
+      const createResponse = await fetch(`http://localhost:8080/api/v1/readings/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      const dummyGenreBody = {
+        userId,
+        genre: "Fiction",
+        title: "Este es el título de su lista",
+        description: "Esta es la descripción de su lista",
+      };
+  
+      const response = await fetch("http://localhost:8080/api/v1/readings/add-genre", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dummyGenreBody),
+      });
+    } catch(error) {
+      setError("Imposible inicializar una primera lista")
+    } finally {
+      setDataUpToDate(false)
+    }
+  }
+  
   // Este hook se ejecutará cuando el componente se monte o cuando userId cambie
   useEffect(() => {
     const fetchReadings = async () => {
@@ -27,14 +63,15 @@ const Reading = ({ userId, email }) => {
         const data = await response.json();
         setReadings(data);  // Guardamos la respuesta en el estado
       } catch (error) {
-        setError("No se pudieron cargar las lecturas");  // Si ocurre un error, lo capturamos
+        setError(noListasErrorMessage);  // Si ocurre un error, lo capturamos
       } finally {
         setLoading(false);  // Indicamos que la carga ha terminado
+        setDataUpToDate(true);
       }
     };
 
     fetchReadings(); // Llamamos a la función de fetch cuando el componente se monta
-  }, [userId]);  // Dependencia: si cambia el userId, vuelve a ejecutarse
+  }, [userId, dataUpToDate]);  // Dependencia: si cambia el userId, vuelve a ejecutarse
 
   // Función para eliminar un género****************************************************************************************************
   const handleDeleteGenre = async (genre) => {
@@ -125,6 +162,7 @@ const Reading = ({ userId, email }) => {
 
   // Renderizamos el contenido basado en el estado
   if (loading) return <p>Cargando...</p>;   // Mientras se cargan los datos
+  if (error===noListasErrorMessage) return <button onClick={handleFirstListCreation}>Inicializar una lista</button>;
   if (error) return <p>{error}</p>;         // Si ocurre un error
   if (!readings || !readings.genres || readings.genres.length === 0) {
     return <p>No se encontraron géneros o libros.</p>;  // Si no hay géneros, mostramos un mensaje
@@ -139,7 +177,7 @@ const Reading = ({ userId, email }) => {
   const handleBookClick = (isbn) => {
     navigate(`/catalogue/book-details/${isbn}`);  
   };
-
+  console.log(userId)
   // Renderizamos los géneros y libros
   return (
     <div>

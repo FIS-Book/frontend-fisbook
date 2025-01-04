@@ -2,9 +2,11 @@
 import React, { useEffect, useState }  from 'react';
 
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
+import { getUserId } from '../../hooks/useAuth';
+import { use } from 'react';
 
 function AddListButton({ book }) {
-  const userId="002" // CHANGE ME AFTER AUTH
+  const userId = getUserId();
   const navigate = useNavigate(); // Hook para manejar la navegación
   
   const {categories, isbn, title} = book || {}
@@ -12,6 +14,7 @@ function AddListButton({ book }) {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  
 
   // Este hook se ejecutará cuando el componente se monte o cuando userId cambie
   useEffect(() => {

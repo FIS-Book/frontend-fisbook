@@ -17,7 +17,7 @@ import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
-
+import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
             {/* Catalogo de libros */}
             <Route path="/catalogue" element={<Catalogue />} />
             <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
+            <Route path="/admin/catalogue" element={<AdminCatalogue />} />
             {/* Microservicio Usuarios */}
             <Route path="/users" element={<Users/>} />
             <Route path="/register" element={<Register />} />
@@ -46,7 +47,7 @@ function App() {
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/downloads" element={<DownloadsInfo />} />
             <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
-            <Route path="/reading-list" element={<Reading userId="002" email="edwinarevaloangulo@gmail.com" />} />
+            <Route path="/reading-list" element={<Reading />} />
             <Route path="/add-genre" element={<AddGenre />} />
           </Routes>
         </div>
