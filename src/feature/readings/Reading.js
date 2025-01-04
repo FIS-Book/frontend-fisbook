@@ -15,7 +15,7 @@ const Reading = ({ userId, email }) => {
     const fetchReadings = async () => {
       try {
         // Realizamos la solicitud a la API del backend
-        const response = await fetch(`http://localhost:8080/api/v1/readings/${userId}`);
+        const response = await fetch(`http://localhost:8080/api/v1/readings?userId=${userId}`);
         
         // Verificamos si la respuesta es válida
         if (!response.ok) {
