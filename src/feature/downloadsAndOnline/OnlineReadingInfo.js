@@ -13,7 +13,7 @@ function OnlineReadings() {
     useEffect(() => {
         const fetchReadings = async () => {
             try {
-                const response = await axios.get('http://localhost:2000/api/v1/read-and-download/onlineReadings', {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/onlineReadings`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

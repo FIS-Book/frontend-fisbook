@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../assets/styles/LogIn.css';
-import { Link } from 'react-router-dom'; // Importing Link
-import axios from 'axios'; // Import axios
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,8 +32,7 @@ function Login() {
             // Si la respuesta es exitosa
             console.log('Response:', response); // Verifica la respuesta de la API
             localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
-            window.location.href = '/homePage'; // Redirect to the catalog page (change the route as needed)
-
+            navigate('/homePage'); 
         } catch (error) {
             // Maneja el error si ocurre
             console.error('Login error:', error); // Verifica si ocurre algún error

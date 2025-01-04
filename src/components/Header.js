@@ -1,14 +1,15 @@
 import React from "react";
 import logo from "../assets/images/Logo.png"; // Importa el logo
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 function Header({ user }) {
     return (
         <header className="header">
             <div className="logo-container">
-            <a href="/homePage">
-                <img src={logo} alt="FISBook Logo" className="logo" />
-            </a>
+                <Link to="/homePage">
+                    <img src={logo} alt="FISBook Logo" className="logo" />
+                </Link>
             </div>
             <button className="user-profile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2C3E50" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">

@@ -19,7 +19,7 @@ import BookDetails from './feature/catalogue/BookDetails.js';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/'>
       <div className="App">
         <Header user={{name: "John Doe"}}/>
         <div className="container">
