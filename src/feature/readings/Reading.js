@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import '../../assets/styles/Reading.css';
 
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
@@ -127,10 +128,16 @@ const Reading = ({ userId, email }) => {
     return <p>No se encontraron géneros o libros.</p>;  // Si no hay géneros, mostramos un mensaje
   }
 
+  // Manejo del evento para volver al HomePage
+  const handleGoToHome = () => {
+    navigate('/'); // Ruta del HomePage
+  };
+
   // Renderizamos los géneros y libros
   return (
     <div>
       {/* Nueva funcionalidad: Nuevo Género */}
+      <HomeButton onClick={handleGoToHome} />
       <div className="new-genre-header">
         <h3>Nueva lista de lectura</h3>
         <button className="btn btn-primary" onClick={() => navigate("/add-genre", { state: { userId } })}>

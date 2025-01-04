@@ -1,63 +1,178 @@
+/* Estilo general del contenedor principal */
 .container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    flex: 1;
     padding: 20px;
 }
 
+/* Contenedor principal del catálogo */
 .catalogue-container {
-    width: 80%;
-    /* Ajusta el tamaño del catálogo */
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; /* Un poco más ancho que el máximo de los libros */
+    max-width: 600px; /* Ajusta el ancho máximo del contenedor principal */
+    padding: 20px;
     background-color: #D3D3D3;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    box-sizing: border-box;
 }
 
+/* Título del catálogo */
 .catalogue-container h2 {
     text-align: center;
     color: #2C3E50;
     margin-bottom: 20px;
 }
 
-.catalogue {
-    display: flex;
-    flex-direction: column;
-    /* Cambiado a columna para mostrar la lista vertical */
-    gap: 15px;
-    /* Espacio entre los libros */
+/* Barra de búsqueda */
+.search-bar {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    max-width: 600px; /* Ancho máximo para limitarlo */
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
+/* Contenedor de la barra de búsqueda */
+.search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ocupa todo el ancho del contenedor principal */
+    margin-bottom: 20px;
+}
+
+/* Input de búsqueda */
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+  
+/* Dropdown de filtros */
+.filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+  
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.book-column {
+    display: flex;
+    flex-direction: column; /* Asegura que los libros se apilen verticalmente */
+    width: 100%;
+    padding: 15px;
+}
+
+
+/* Contenedor individual de cada libro */
 .book-item {
     display: flex;
     align-items: center;
     background-color: #faedd6;
-    padding: 15px;
+    width: 100%; /* Ajusta al ancho del contenedor principal */
+    max-width: 600px;
+    padding: 15px 30px;
+    margin-bottom: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    /* Asegura que los libros ocupen todo el ancho disponible */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 80px;
+    box-sizing: border-box;
 }
 
+/* Imagen de la portada del libro */
 .book-cover {
-    width: 50px;
+    width: 70px;
     height: auto;
-    margin-right: 15px;
+    margin-right: 20px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
+/* Detalles del libro (título y autor) */
 .book-details {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    margin-left: 10px;
 }
 
 .book-details h4 {
-    font-size: 16px;
+    font-size: 18px;
     color: #2C3E50;
     margin: 0;
 }
 
 .book-details p {
     color: #4A4A4A;
-    font-size: 14px;
+    font-size: 16px;
 }
+
+/* Botón de ver detalle */
+.btn-primary {
+    align-self: flex-end;
+    margin-left: auto;
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary svg {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Botón "Home" flotante a la izquierda */
+.btn-home {
+    position: fixed;
+    left: 40px; /* Distancia desde la izquierda de la pantalla */
+    top: 80px; /* Distancia desde la parte superior */
+    padding: 10px 20px;
+    background-color: #D3D3D3; 
+    color: black;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+  
+.btn-home:hover {
+    background-color: #f9f9f9; 
+}
+  
+.btn-home svg {
+    margin-right: 8px;
+    font-size: 20px;
+}
+  
+
+  
+
+  

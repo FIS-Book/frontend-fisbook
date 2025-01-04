@@ -30,7 +30,7 @@ const AddGenre = () => {
     try {
       setIsSubmitting(true);
       const response = await fetch("http://localhost:8080/api/v1/readings/add-genre", {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
