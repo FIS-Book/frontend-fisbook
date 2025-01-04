@@ -1,23 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
+import SearchBar from '../../components/CatalogueComponents/SearchBar';
+import BookList from '../../components/CatalogueComponents/BookList';
+import useFetchBooks from '../../hooks/useFetchBooks';
+import useFilteredBooks from '../../hooks/useFilteredBooks';
 import '../../assets/styles/Catalogue.css';
 
-function Catalogue({ books }) {
-    return (
-        <div className="catalogue-container">
-            <h2>Book Catalogue</h2>
-            <div className="catalogue">
-                {books.map((book) => (
-                    <div key={book.id} className="book-item">
-                        <img src={book.cover} alt={book.title} className="book-cover" />
-                        <div className="book-details">
-                            <h4>{book.title}</h4>
-                            <p>{book.author}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
+
+function Catalogue() {
+
+  const navigate = useNavigate();
+
+  // Estado para el filtro y búsqueda
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterBy, setFilterBy] = useState('title');
+
+  // Obtener libros desde el hook personalizado
+  const { books, loading, error } = useFetchBooks();
+
+  // Obtener libros filtrados desde el hook personalizado
+  const filteredBooks = useFilteredBooks(books, searchTerm, filterBy);
+
+  // Manejo del evento para ir a la página de detalles de un libro
+  const handleViewDetails = (book) => {
+    const bookDetailsUrl = `/book-details/${book.isbn}`;
+    navigate(bookDetailsUrl);
+  };
+
+  // Manejo del evento para volver al HomePage
+  const handleGoToHome = () => {
+    navigate('/'); // Ruta del HomePage
+  };
+
+  // Renderización condicional según el estado de carga o error
+  if (loading) {
+    return <p>Cargando libros...</p>;
+  }
+
+  if (error) {
+    return  <p>{error}</p>;
+  }
+
+  // Renderizar libros cuando estén disponibles
+  return (
+    <div className="catalogue-container">
+      <h2>Catálogo de Libros</h2>
+      <HomeButton onClick={handleGoToHome} />
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearchChange={(e) => setSearchTerm(e.target.value)}
+        filterBy={filterBy}
+        onFilterChange={(e) => setFilterBy(e.target.value)} 
+      />  
+      <BookList books={filteredBooks} onViewDetails={handleViewDetails} />
+    </div>
+  );
+} 
 
 export default Catalogue;
