@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import languageMap from '../utils/languageMap';
+import { requestWithAuth } from './useAuth';
 
 // Custom hook to fetch featured books from the API
 export const useFetchFeaturedBooks = () => {
@@ -11,8 +12,8 @@ export const useFetchFeaturedBooks = () => {
   useEffect(() => {
     const fetchFeaturedBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/featured`);
-        setFeaturedBooks(response.data);
+        const response = await requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/featured`);
+        setFeaturedBooks(response);
       } catch (err) {
         console.error('Error al obtener los libros destacados:', err);
         setError('No se pudo cargar los libros destacados.');
@@ -40,8 +41,8 @@ export const useFetchBooks = (isbn = null) => {
         if (isbn) {
           url = `${url}/isbn/${isbn}`;
         }
-        const response = await axios.get(url);
-        setBooks(isbn ? response.data : response.data);
+        const response = await requestWithAuth(url);
+        setBooks(response);
         setLoading(false);
       } catch (err) {
         console.error('Error al obtener los libros:', err);
@@ -65,8 +66,8 @@ export const useFetchLatestBooks = () => {
   useEffect(() => {
     const fetchLatestBooks = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/latest`);
-        setLatestBooks(response.data);
+        const response = await requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/latest`);
+        setLatestBooks(response);
       } catch (err) {
         console.error('Error al obtener los libros recientes:', err);
         setError('No se pudo cargar los libros recientes.');
@@ -89,8 +90,8 @@ export const useFetchStats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/stats`);
-        setStats(response.data.data);
+        const response = await requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/stats`);
+        setStats(response.data);
       } catch (err) {
         console.error('Error al obtener estadísticas:', err);
       } finally {
