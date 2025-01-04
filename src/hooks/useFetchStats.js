@@ -9,7 +9,7 @@ const useFetchStats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL || ""}/api/v1/books/stats`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/stats`);
         setStats(response.data.data);
       } catch (err) {
         console.error('Error al obtener estadísticas:', err);
