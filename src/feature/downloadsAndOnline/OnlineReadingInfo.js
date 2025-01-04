@@ -39,7 +39,7 @@ function OnlineReadings() {
     const handleUpdate = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/readings', {
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                 },
@@ -66,7 +66,7 @@ function OnlineReadings() {
         }
 
         try {
-            await axios.delete(`http://localhost:3000/api/v1/readings/${selectedReading.id}`, {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings/${selectedReading.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                 },
@@ -86,7 +86,7 @@ function OnlineReadings() {
         }
 
         try {
-            const response = await axios.get(`http://localhost:3000/api/v1/readings/${searchId}`, {
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings/${searchId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                 },

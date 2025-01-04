@@ -13,7 +13,7 @@ function DownloadsInfo() {
     useEffect(() => {
         const fetchDownloads = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/read-and-download/downloads', {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/downloads`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
@@ -38,7 +38,7 @@ function DownloadsInfo() {
         }
 
         try {
-            await axios.delete(`http://localhost:3000/api/v1/read-and-download/downloads/${selectedDownload.id}`, {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/downloads/${selectedDownload.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                 },
@@ -55,7 +55,7 @@ function DownloadsInfo() {
         const downloadId = prompt('Enter the download ID to search for:');
         if (downloadId) {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/read-and-download/downloads/${downloadId}`, {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/downloads/${downloadId}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
                     },

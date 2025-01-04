@@ -14,7 +14,7 @@ const Profile = () => {
                 const token = localStorage.getItem('token'); // Obtener el token desde localStorage
                 // Solicitar los datos del usuario, incluyendo el token en los encabezados
                 const response = await axios.get(
-                    `http://localhost:3000/api/v1/auth/users/${id}`,
+                    `${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${id}`,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}` // Agregar el token al header Authorization

@@ -37,7 +37,7 @@ function Register() {
 
         try {
             // Reemplaza fetch por axios
-            const response = await axios.post('http://localhost:3000/api/v1/auth/users/register', {
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/register`, {
                 nombre,
                 apellidos,
                 username,

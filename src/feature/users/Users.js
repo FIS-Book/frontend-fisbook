@@ -12,7 +12,7 @@ function Users() {
      useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/v1/auth/users', {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
                     },
@@ -37,7 +37,7 @@ function Users() {
     
         console.log('Deleting user with ID:', selectedUser.id); // Asegúrate de que esto imprima el ID correcto
         try {
-            await axios.delete(`http://localhost:3000/api/v1/auth/users/${selectedUser.id}`, {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -66,7 +66,7 @@ function Users() {
         };
 
         try {
-            const response = await axios.put(`http://localhost:3000/api/v1/auth/users/${selectedUser.id}`, newUserData, { // Cambiado _id por id
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, newUserData, { // Cambiado _id por id
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -100,7 +100,7 @@ function Users() {
         const userId = prompt('Enter the user ID to search for:');
         if (userId) {
             try {
-                const response = await axios.get(`http://localhost:3000/api/v1/auth/users/${userId}`, {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
                     },
