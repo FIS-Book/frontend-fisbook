@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/styles/HomePage.css';
-import useFetchStats from '../../hooks/useFetchStats';
+import { useFetchStats, useFetchFeaturedBooks, useFetchLatestBooks } from '../../hooks/useCatalogueHooks';
 import StatsBox from '../../components/CatalogueComponents/StatsBox';
 import ButtonCatalogue from '../../components/CatalogueComponents/ButtonCatalogue';
-import useFetchFeaturedBooks from '../../hooks/useFeaturedBooks';
-import useFetchLatestBooks from '../../hooks/useFetchLatestBooks';
 import RecentBooks from '../../components/CatalogueComponents/RecentBooks';
 import FeaturedBooks from '../../components/CatalogueComponents/FeaturedBooks';
 
