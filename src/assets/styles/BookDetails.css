@@ -132,8 +132,49 @@
 
 .award-winner {
     background-color: #4caf50; /* Verde para premiado */
+}  
+
+.review-card {
+    border: 1px solid #ddd; /* Borde para separar cada reseña */
+    border-radius: 5px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #f9f9f9; /* Fondo ligero */
+  }
+  
+.review-header {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el nombre y el score */
+    align-items: center; /* Alineación vertical */
+    margin-bottom: 8px; /* Separación del resto del contenido */
+    }
+
+.review-user {
+    font-size: 1em;
+    color: #333;
 }
 
+.review-score {
+    text-align: right;
+    display: flex;
+    align-items: center; /* Asegura que las estrellas se alineen correctamente */
+}
+
+.review-body {
+margin-top: 8px;
+}
+
+.review-title {
+font-size: 1.1em;
+font-weight: bold;
+margin-bottom: 4px;
+}
+
+.review-comment {
+font-size: 0.95em;
+color: #555;
+margin: 0;
+}
 
 /* Respuestas responsivas (adaptación a pantallas pequeñas) */
 @media (max-width: 768px) {
@@ -159,5 +200,52 @@
     .btn-primary, .btn-secondary {
         width: 100%; /* Los botones ocupan todo el ancho en pantallas pequeñas */
         margin-bottom: 10px;
+    }
+    .book-reviews {
+    margin-top: 32px;
+    }
+    
+    .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espacio entre las reseñas */
+    }
+    
+    .review-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .review-header {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Espacio entre estrellas y título */
+        margin-bottom: 8px;
+        }
+    
+    .review-title {
+    font-size: 1.2em;
+    margin: 0;
+    }
+    
+    .review-username {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 8px;
+    }
+    
+    .review-comment {
+    font-size: 1em;
+    color: #333;
+    }
+    
+    .rating-display {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: #ffc107; /* Color dorado para las estrellas */
     }
 }
