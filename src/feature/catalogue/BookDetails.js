@@ -1,11 +1,12 @@
 import '../../assets/styles/BookDetails.css';
 import React from 'react';
-import { useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import languageMap from '../../utils/languageMap';
+import {useFetchBooks} from '../../hooks/useCatalogueHooks';
 import BookCover from '../../components/CatalogueComponents/BookCover';
 import BookInfo from '../../components/CatalogueComponents/BookInfo';
 import BookDetailsButtons from '../../components/CatalogueComponents/BookDetailsButtons';
-import useFetchBooks from '../../hooks/useFetchBooks';
+
 
 function BookDetails() {
   const { isbn } = useParams(); // Obtener el ISBN del libro de la URL
