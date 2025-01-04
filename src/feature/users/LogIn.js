@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../assets/styles/LogIn.css';
-import { useNavigate } from 'react-router-dom'; // Importing the navigation hook
+import { Link } from 'react-router-dom'; // Importing Link
+import axios from 'axios'; // Import axios
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -16,30 +17,31 @@ function Login() {
         setLoading(true);
 
         try {
-            const response = await fetch('http:/localhost:3000/api/v1/auth/login', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
+            const response = await axios.post(
+                'http://localhost:3000/api/v1/auth/users/login', 
+                {
+                    email,
+                    password
                 },
-                body: JSON.stringify({ email, password }),
-              });
+                {
+                    headers: {
+                        'Content-Type': 'application/json', // Asegura que el tipo de contenido sea JSON
+                    }
+                }
+            );
 
-              if (!response.ok) {
-                throw new Error('Error en la autenticación');
-              }
+            // Si la respuesta es exitosa
+            console.log('Response:', response); // Verifica la respuesta de la API
+            localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
+            window.location.href = '/catalogue'; // Redirect to the catalog page (change the route as needed)
 
-              const data = await response.json();
-              localStorage.setItem('token', data.token); // Store the JWT in localStorage
-              window.location.href = '/catalog'; // Redirect to the catalog page (change the route as needed)
-
-            } catch (error) {
-              setError(error.message);
-            }
-    };
-
-    // Function to handle redirection to the register page
-    const handleRegisterRedirect = () => {
-        navigate('/register'); // Redirect to the register page
+        } catch (error) {
+            // Maneja el error si ocurre
+            console.error('Login error:', error); // Verifica si ocurre algún error
+            setError(error.response?.data?.message || 'Error en la autenticación');
+        } finally {
+            setLoading(false); // Finaliza el estado de carga
+        }
     };
 
     return (
@@ -77,12 +79,13 @@ function Login() {
             </form>
             
             {/* Register Button to redirect to the register page */}
-            <button className="btn btn-secondary" onClick={handleRegisterRedirect}>
-                Register User
-            </button>
+            <p className="login-redirect">
+                No tengo cuenta. <Link to="/register"> Registrarme </Link>
+            </p>
         </div>
     );
 }
 
 export default Login;
+
 

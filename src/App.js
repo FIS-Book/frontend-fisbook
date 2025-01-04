@@ -11,7 +11,7 @@ import DownloadsInfo from './feature/downloadsAndOnline/DownloadsInfo.js';
 import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
-
+import Register from './feature/users/Register.js';
 
 function App() {
 
