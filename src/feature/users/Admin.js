@@ -15,7 +15,7 @@ function Admin() {
                 navigate('/admin/downloads');
                 break;
             case 'onlineReading':
-                navigate('/admin/onlineReading');
+                navigate('/admin/onlineReadings');
                 break;
             case 'readingLists':
                 navigate('/admin/readingLists');

@@ -8,8 +8,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    
-    const navigate = useNavigate(); // Hook to handle redirection
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,48 +23,48 @@ function Login() {
                 },
                 {
                     headers: {
-                        'Content-Type': 'application/json', // Asegura que el tipo de contenido sea JSON
+                        'Content-Type': 'application/json', // Ensure the content type is JSON
                     }
                 }
             );
 
-            // Si la respuesta es exitosa
-            console.log('Response:', response); // Verifica la respuesta de la API
+            // If the response is successful
+            console.log('Response:', response); // Check the API response
             localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
             window.location.href = '/catalogue'; // Redirect to the catalog page (change the route as needed)
 
         } catch (error) {
-            // Maneja el error si ocurre
-            console.error('Login error:', error); // Verifica si ocurre algún error
-            setError(error.response?.data?.message || 'Error en la autenticación');
+            // Handle error if it occurs
+            console.error('Login error:', error); // Check if any error occurs
+            setError(error.response?.data?.message || 'Authentication error');
         } finally {
-            setLoading(false); // Finaliza el estado de carga
+            setLoading(false); // End loading state
         }
     };
 
     return (
         <div className="login-container">
-            <h2>Iniciar Sesión</h2>
+            <h2>Log In</h2>
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
-                    <label htmlFor="email">Correo Electrónico</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         id="email"
                         className="form-control"
-                        placeholder="Introduce tu correo"
+                        placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         className="form-control"
-                        placeholder="Introduce tu contraseña"
+                        placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -74,18 +72,16 @@ function Login() {
                 </div>
                 {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="btn btn-primary" disabled={loading}>
-                    {loading ? 'Iniciando...' : 'Iniciar Sesión'}
+                    {loading ? 'Logging in...' : 'Log In'}
                 </button>
             </form>
-            
+
             {/* Register Button to redirect to the register page */}
             <p className="login-redirect">
-                No tengo cuenta. <Link to="/register"> Registrarme </Link>
+                Don't have an account? <Link to="/register"> Register </Link>
             </p>
         </div>
     );
 }
 
 export default Login;
-
-

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import '../../assets/styles/LogIn.css';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios'; // Importa Axios
+import axios from 'axios'; // Import Axios
 
 function Register() {
-    const [nombre, setNombre] = useState('');
-    const [apellidos, setApellidos] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [plan, setPlan] = useState('basic'); // Default plan
-    const [rol, setRol] = useState('user'); // Default role
+    const [role, setRole] = useState('user'); // Default role
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -24,109 +24,109 @@ function Register() {
 
         // Check if passwords match
         if (password !== confirmPassword) {
-            setError('Las contraseñas no coinciden');
+            setError('Passwords do not match');
             setLoading(false);
             return;
         }
 
         try {
-            // Reemplaza fetch por axios
+            // Replace fetch with axios
             const response = await axios.post('http://localhost:3000/api/v1/auth/users/register', {
-                nombre,
-                apellidos,
+                firstName,
+                lastName,
                 username,
                 email,
                 password,
                 plan,
-                rol,
+                role,
             });
 
-            // Si la respuesta es exitosa
-            alert(response.data.message); // Muestra el mensaje de éxito
+            // If the response is successful
+            alert(response.data.message); // Show success message
 
-            // Redirige al login
+            // Redirect to login
             navigate('/');
 
         } catch (error) {
-            console.log("Error de Axios:", error); // Muestra detalles del error
-            // Si ocurre un error, maneja el error
-            setError(error.response?.data?.message || 'Error al registrar usuario');
+            console.log("Axios Error:", error); // Show error details
+            // Handle the error
+            setError(error.response?.data?.message || 'Error registering user');
         } finally {
-            setLoading(false); // Detén la carga independientemente de si fue exitoso o no
+            setLoading(false); // Stop loading regardless of success or failure
         }
     };
 
     return (
         <div className="login-container">
-            <h2>Registrar Usuario</h2>
+            <h2>Register User</h2>
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group">
-                    <label htmlFor="nombre">Nombre</label>
+                    <label htmlFor="firstName">First Name</label>
                     <input
                         type="text"
-                        id="nombre"
+                        id="firstName"
                         className="form-control"
-                        placeholder="Introduce tu nombre"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        placeholder="Enter your first name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="apellidos">Apellidos</label>
+                    <label htmlFor="lastName">Last Name</label>
                     <input
                         type="text"
-                        id="apellidos"
+                        id="lastName"
                         className="form-control"
-                        placeholder="Introduce tus apellidos"
-                        value={apellidos}
-                        onChange={(e) => setApellidos(e.target.value)}
+                        placeholder="Enter your last name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="username">Nombre de Usuario</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         id="username"
                         className="form-control"
-                        placeholder="Introduce tu nombre de usuario"
+                        placeholder="Enter your username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Correo Electrónico</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         id="email"
                         className="form-control"
-                        placeholder="Introduce tu correo"
+                        placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         className="form-control"
-                        placeholder="Introduce tu contraseña"
+                        placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
                         type="password"
                         id="confirmPassword"
                         className="form-control"
-                        placeholder="Confirma tu contraseña"
+                        placeholder="Confirm your password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
@@ -146,12 +146,12 @@ function Register() {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="rol">Rol</label>
+                    <label htmlFor="role">Role</label>
                     <select
-                        id="rol"
+                        id="role"
                         className="form-control"
-                        value={rol}
-                        onChange={(e) => setRol(e.target.value)}
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
                     >
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
@@ -159,13 +159,13 @@ function Register() {
                 </div>
                 {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="btn btn-primary" disabled={loading}>
-                    {loading ? 'Registrando...' : 'Registrar Usuario'}
+                    {loading ? 'Registering...' : 'Register User'}
                 </button>
             </form>
 
             {/* Link to login page */}
             <p className="login-redirect">
-                ¿Ya tienes cuenta? <Link to="/">Iniciar sesión</Link>
+                Already have an account? <Link to="/">Log In</Link>
             </p>
         </div>
     );
