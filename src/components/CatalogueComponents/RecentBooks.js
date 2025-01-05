@@ -1,4 +1,13 @@
-// Component that displays the most recent books in the catalogue
+/* Component that displays the most recent books in the catalogue with their cover image, title, and author. 
+   It receives the following props: 
+    - books: Array with the list of recent books to display.
+    - loading: Boolean to indicate if the books are being loaded.
+    - error: String with the error message.
+    - onBookClick: Function to handle the click event on a book.
+   The RecentBooks component renders the title "Más recientes" and a list of recent books.
+   Each book is displayed with its cover image, title, and author.
+   When a book is clicked, the onBookClick function is called with the book's ISBN as an argument. */
+
 import React from 'react';
 
 const RecentBooks = ({ books, loading, error, onBookClick }) => {

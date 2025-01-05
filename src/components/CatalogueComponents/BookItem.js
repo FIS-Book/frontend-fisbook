@@ -1,5 +1,15 @@
-// Book Item Component
-import React from 'react';
+/* Book Item Component that renders the book details in the catalogue view. 
+   This commponent is used in the BookList component, which is used in the Catalogue component.
+   The BookItem component receives the following props:  
+    - book: Object with the book details. 
+    - onViewDetails: Function to view the details of a book. 
+    - onDelete: Function to delete a book. 
+    - onUpdate: Function to update a book.
+   The BookItem component renders the book cover image, title, and author. 
+   It also renders buttons to view details, delete, and update a book.*/
+
+import React from 'react'; 
+import '../../assets/styles/CatalogueStyles/Catalogue.css';
 
 const BookItem = ({ book, onViewDetails, onDelete, onUpdate }) => (
   <div key={book.isbn} className="book-item">

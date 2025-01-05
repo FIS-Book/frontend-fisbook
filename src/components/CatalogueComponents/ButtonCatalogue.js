@@ -1,4 +1,10 @@
-// Button component for the catalogue
+/* Button component for the catalogue view. This component receives the following props: 
+   - label: String with the button label. 
+   - icon: String with the icon to display. 
+   - onClick: Function to execute when the button is clicked. 
+  The ButtonCatalogue component renders a button with the label and icon passed as props.
+  When the button is clicked, the onClick function is executed. */
+
 import React from 'react';
 
 const ButtonCatalogue = ({ label, icon, onClick }) => (

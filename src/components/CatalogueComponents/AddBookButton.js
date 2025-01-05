@@ -1,6 +1,10 @@
+/* This component is used in the Catalogue component to render a button that allows the user to add a new book.
+   The AddBookButton component receives an onClick function as a prop to handle the click event on the button.
+   If no onClick function is provided, the button will navigate to the add book page. */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/styles/Catalogue.css'; 
+import '../../assets/styles/CatalogueStyles/Catalogue.css'; 
 
 function AddBookButton({ onClick }) {
     const navigate = useNavigate();

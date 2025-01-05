@@ -79,24 +79,24 @@
 }
 
 /* Botón "Leer" */
-.btn-primary {
+.btn-read {
     background-color: #0056b3;
     color: white;
     border: none;
 }
 
-.btn-primary:hover {
+.btn-read:hover {
     background-color: #2C3E50;;
 }
 
 /* Botón "Descargar" */
-.btn-secondary {
+.btn-download {
     background-color: #31b164;
     color: white;
     border: none;
 }
 
-.btn-secondary:hover {
+.btn-download:hover {
     background-color: #218838;
 }
 

@@ -1,4 +1,6 @@
-// Home Button Component
+/* Home Button Component that renders a button to navigate to the home page. 
+   It receives an onClick function to handle the click event. */
+   
 import React from 'react';
 
 const HomeButton = ({ onClick }) => (

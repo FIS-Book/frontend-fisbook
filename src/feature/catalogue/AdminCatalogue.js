@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../assets/styles/Catalogue.css';
+import '../../assets/styles/CatalogueStyles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
 import { requestWithAuth } from '../../hooks/useAuth';
@@ -10,18 +10,12 @@ import AddBookButton from '../../components/CatalogueComponents/AddBookButton';
 
 function AdminCatalogue() {
   const navigate = useNavigate();
-
-  // Estado para búsqueda y filtro
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBy, setFilterBy] = useState('title');
-
-  // Obtener libros desde el hook personalizado
   const { books, loading, error } = useFetchBooks();
-
-  // Filtrar libros
   const filteredBooks = useFilteredBooks(books, searchTerm, filterBy);
 
-  // Manejo del evento "Eliminar libro"
+  // Handle "Delete Book" event
   const handleDeleteBook = async (book) => {
     try {
       await requestWithAuth(`${process.env.REACT_APP_BASE_URL}/api/v1/books/${book.isbn}`, {
@@ -35,13 +29,13 @@ function AdminCatalogue() {
     }
   };
 
-  // Manejo del evento "Actualizar libro"
+  // Handle "Update Book" event
   const handleUpdateBook = (book) => {
     const updateBookUrl = `/admin/catalogue/update-book/${book.isbn}`;
     navigate(updateBookUrl);
   };
 
-  // Renderización condicional
+  
   if (loading) {
     return <p>Cargando libros...</p>;
   }
