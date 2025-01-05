@@ -9,6 +9,7 @@ import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
 import Profile from './feature/users/Profile.js';
+import MyProfile from './feature/users/MyProfile.js';
 import Admin from './feature/users/Admin.js';
 import DownloadsInfo from './feature/downloadsAndOnline/DownloadsInfo.js';
 import Downloads from './feature/downloadsAndOnline/Downloads.js';
@@ -18,10 +19,12 @@ import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
 
 function App() {
+  const [user, setUser] = useState(null); 
+
   return (
     <Router basename='/'>
       <div className="App">
-        <Header user={{name: "John Doe"}}/>
+        <Header user={user} setUser={setUser}/>
         <div className="container">
           <Routes>
             {/* Página principal */}
@@ -34,9 +37,9 @@ function App() {
             <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
             <Route path="/admin/catalogue" element={<AdminCatalogue />} />
             {/* Microservicio Usuarios */}
-            <Route path="/users" element={<Users/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/users/:id" element={<Profile />} />
+            <Route path="/users/me" element={<MyProfile />}/>
             {/* Microservicio Descargas */}
             <Route path="/onlineReadings" element={<OnlineReadings />} />
             <Route path="/downloads" element={<Downloads />} />

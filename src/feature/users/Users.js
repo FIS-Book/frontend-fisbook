@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 import axios from 'axios';
 import '../../assets/styles/Users.css';
 
@@ -7,6 +8,9 @@ function Users() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [selectedUser, setSelectedUser] = useState(null); // Store the selected user
+
+    // Verificar si el token ha expirado al cargar la página
+    useCheckTokenExpiration();
 
      // Fetches the list of users when the page loads
      useEffect(() => {
@@ -35,7 +39,6 @@ function Users() {
             return;
         }
     
-        console.log('Deleting user with ID:', selectedUser.id); // Asegúrate de que esto imprima el ID correcto
         try {
             await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, {
                 headers: {
@@ -83,17 +86,12 @@ function Users() {
     const handleSelectUser = (user) => {
         if (selectedUser && selectedUser.id === user.id) {
             // If the same user is clicked, deselect it
-            console.log('Deselected user:', user); 
             setSelectedUser(null);
         } else {
             // If a different user is clicked, select it
-            console.log('Selected user:', user); 
             setSelectedUser(user);
         }
     };
-
-    // Verificar selectedUser antes de renderizar
-    console.log('Selected user in render:', selectedUser);
 
     // Searches for a user by ID
     const handleSearch = async () => {

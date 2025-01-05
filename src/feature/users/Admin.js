@@ -1,9 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';  // Actualizado a useNavigate
 import '../../assets/styles/Admin.css';
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 
 function Admin() {
     const navigate = useNavigate();  // Usamos useNavigate en lugar de useHistory
+
+    // Verificar si el token ha expirado al cargar la página
+    useCheckTokenExpiration();
 
     // Función que maneja la redirección a cada sección
     const handleNavigation = (section) => {

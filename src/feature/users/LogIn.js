@@ -32,6 +32,9 @@ function Login() {
             // Si la respuesta es exitosa
             console.log('Response:', response); // Verifica la respuesta de la API
             localStorage.setItem('token', response.data.token); // Store the JWT in localStorage
+            const expirationTime = Date.now() + 60 * 60 * 1000; // 1 hora
+            localStorage.setItem('tokenExpiration', expirationTime);
+
             navigate('/homePage'); 
         } catch (error) {
             // Maneja el error si ocurre

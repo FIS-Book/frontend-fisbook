@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import '../../assets/styles/OnlineReadings.css'; // Asegúrate de tener este archivo de estilos
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 
 function OnlineReadings() {
   const [page, setPage] = useState(1);  // Guardamos la página actual
+
+  // Verificar si el token ha expirado al cargar la página
+  useCheckTokenExpiration();
 
   // Función para cambiar a la siguiente página
   const nextPage = () => {
