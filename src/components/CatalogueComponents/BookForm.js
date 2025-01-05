@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestWithAuth } from '../../hooks/useAuth';
 import languageMap from "../../utils/languageMap";
@@ -19,6 +19,7 @@ const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
     });
     const [formErrors, setFormErrors] = useState({});
     const navigate = useNavigate();
+    const errorRef = useRef(null);
 
     useEffect(() => {
         if (isEdit && book) {
@@ -35,6 +36,14 @@ const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
             });
         }
     }, [isEdit, book]);
+
+    useEffect(() => {
+        if (Object.keys(formErrors).length > 0 && errorRef.current) {
+            errorRef.current.scrollIntoView({ behavior: 'smooth' });
+            errorRef.current.focus();
+        }
+    }, [formErrors]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -88,7 +97,7 @@ const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
             <h1 className="form-header">{isEdit ? "Editar Libro" : "Crear Nuevo Libro"}</h1>
             {/* Mostrar errores de validación fuera del formulario */}
             {Object.keys(formErrors).length > 0 && (
-                <div className="error-messages">
+                <div className="error-messages" ref={errorRef} tabIndex="-1">
                     <ul>
                         {Object.keys(formErrors).map((key) => (
                             <li key={key}>
