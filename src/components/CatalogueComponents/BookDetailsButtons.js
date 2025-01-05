@@ -1,17 +1,23 @@
-// Component that renders the Read, Download, and Return to Catalogue buttons in the book details view
+/* Component that renders the Read, Download, and Return to Catalogue buttons in the book details view.
+   The BookDetailsButtons component receives the book object as a prop.
+   It renders three buttons: Read, Download, and Return to Catalogue.
+   The Read button opens the book's read link in a new tab.
+   The Download button opens the book's download link in a new tab.
+   The Return to Catalogue button navigates back to the catalogue view. */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function BookDetailsButtons({ book }) {
   const navigate = useNavigate();
 
-  if (!book) return null; // Si no hay información del libro, no renderiza nada
+  if (!book) return null; 
 
   return (
-    <div className='book-buttons'>
-      {/* Botón Leer */}
+    <div className='book-buttons-details'>
+      {/* Read Button */}
       <button 
-        className='btn btn-primary'
+        className='btn btn-read'
         onClick={() => window.open(book.readLink, '_blank')}
         aria-label={`Leer ${book.title}`}> 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye" viewBox="0 0 16 16">
@@ -21,9 +27,9 @@ function BookDetailsButtons({ book }) {
         Leer 
       </button>
 
-      {/* Botón Descargar */}
+      {/* Download Button*/}
       <button 
-        className='btn btn-secondary' 
+        className='btn btn-download' 
         onClick={() => window.open(book.downloadLink, '_blank')}
         aria-label={`Descargar ${book.title}`}> 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-download" viewBox="0 0 16 16">
@@ -33,7 +39,7 @@ function BookDetailsButtons({ book }) {
         Descargar 
       </button>
 
-      {/* Botón Volver al Catálogo */}
+      {/* Return to Catalogue Button */}
       <button 
         className='btn btn-return' 
         onClick={() => navigate('/catalogue')}
