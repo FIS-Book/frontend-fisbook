@@ -1,3 +1,4 @@
+/* Styles for the homepage */
 .catalogue {
     display: flex;
     justify-content: space-between; 
@@ -5,6 +6,7 @@
     margin-top: 20px;
 }
 
+/* Styles for the book column */
 .book-column {
     width: 30%; 
     padding: 10px;
@@ -16,13 +18,7 @@
     margin-bottom: 10px;
 }
 
-/* Estilos para la lista de libros destacados */
-.featured-books {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Estilos para cada libro */
+/* Styles for each book */
 .book-item {
     display: flex;
     align-items: center;
@@ -33,7 +29,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para la imagen de portada */
+/* Styles for the cover image */
 .book-cover {
     width: 70px;
     height: auto;
@@ -42,7 +38,7 @@
     border-radius: 5px;
 }
 
-/* Estilos para los detalles del libro */
+/* Styles for the book details */
 .book-details {
     display: flex;
     flex-direction: column;
@@ -60,7 +56,7 @@
     font-size: 16px;
 }
 
-/* Estilos para las estadísticas */
+/* Styles for the statistics */
 .stats-box {
     background-color: #D3D3D3;
     padding: 20px;
@@ -80,7 +76,7 @@
     color: #4A4A4A;
 }
 
-/* Estilos para el botón Ver catálogo */
+/* Styles for buttons */
 .button-catalogue {
     background-color: #2C3E50;   
     color: whitesmoke;                
@@ -110,12 +106,5 @@
     margin-right: 0.5rem; 
     width: 1.2rem;
     height: 1.2rem;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;    
-    align-items: center;         
-    margin-top: 20px;
 }
 

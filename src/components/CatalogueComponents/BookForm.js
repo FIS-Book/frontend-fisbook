@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestWithAuth } from '../../hooks/useAuth';
 import languageMap from "../../utils/languageMap";
-import '../../assets/styles/BookForm.css';
+import '../../assets/styles/CatalogueStyles/BookForm.css';
 
 
 const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
