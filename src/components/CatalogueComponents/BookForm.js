@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestWithAuth } from '../../hooks/useAuth';
 import languageMap from "../../utils/languageMap";
-import '../../assets/styles/BookForm.css';
+import '../../assets/styles/CatalogueStyles/BookForm.css';
 
 
 const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
@@ -12,10 +12,10 @@ const BookForm = ({ book = null, isEdit, onSubmitSuccess, onCancel }) => {
         author: book?.author || '',
         description: book?.description || '',
         publicationYear: book?.publicationYear || '',
-        language: book?.language || '',
+        language: book?.language || Object.keys(languageMap)[0],
         totalPages: book?.totalPages || '',
         categories: book?.categories ? book.categories.join(', ') : '',
-        featuredType: book?.featuredType || '',
+        featuredType: book?.featuredType || 'none',
     });
     const [formErrors, setFormErrors] = useState({});
     const navigate = useNavigate();
