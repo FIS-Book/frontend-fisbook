@@ -13,21 +13,33 @@ function AdminBookForm({ mode }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isEdit && isbn) {
-      setLoading(true);
-      setError(null);
+    const fetchBook = async () => {
+      if (isEdit && isbn) {
+        setLoading(true);
+        setError(null);
 
-      requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/isbn/${isbn}`)
-        .then((data) => {
-          setBook(data);
-        })
-        .catch((err) => {
-          setError(err.message || "Error al obtener el libro");
-        })
-        .finally(() => {
+        try {
+          const response = await requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/isbn/${isbn}`, {
+            method: "GET"
+          });
+          console.log("Books by ISBN - admin: ");
+          console.log(response);
+          if (response && typeof response === 'object' && response.hasOwnProperty('isbn')) {
+            setBook(response);
+            setLoading(false);
+          } else {
+            throw new Error("No se encontraron libros.");
+          }
+
+        } catch (err) {
+          console.error('Error al obtener el libro', err);
+          setError('No se pudo cargar los datos.');
           setLoading(false);
-        });
-    }
+        }
+      }
+    };
+
+    fetchBook();
   }, [isEdit, isbn]);
 
   const handleCancel = () => {

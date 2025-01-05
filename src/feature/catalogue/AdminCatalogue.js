@@ -24,15 +24,22 @@ function AdminCatalogue() {
   // Handle "Delete Book" event
   const handleDeleteBook = async (book) => {
     try {
-      await requestWithAuth(`${process.env.REACT_APP_BASE_URL}/api/v1/books/${book.isbn}`, {
-        method: 'DELETE',
-      });
+      const response = await requestWithAuth(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/books/${book.isbn}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      console.log('Delete response:', response);
+      if (response.message === 'Book deleted successfully') {
+        alert(`Libro "${book.title}" eliminado con éxito.`);
+        setBooks((prevBooks) => prevBooks.filter((b) => b.isbn !== book.isbn));
+      } else {
+        throw new Error("No se pudo eliminar el libro.");
+      }
 
-      alert(`Libro "${book.title}" eliminado con éxito.`);
-      setBooks((prevBooks) => prevBooks.filter((b) => b.isbn !== book.isbn));
     } catch (error) {
       console.error('Error al eliminar el libro:', error);
-      alert('No se pudo eliminar el libro.');
+      alert(`No se pudo eliminar el libro`);
     }
   };
 
