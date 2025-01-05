@@ -1,9 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import languageMap from "../../utils/languageMap";
 import { requestWithAuth } from "../../hooks/useAuth";
 import BookForm from "../../components/CatalogueComponents/BookForm";
-import '../../assets/styles/BookForm.css';
 
 function AdminBookForm({ mode }) {
   const { isbn } = useParams();
@@ -32,9 +30,15 @@ function AdminBookForm({ mode }) {
     }
   }, [isEdit, isbn]);
 
-  const handleFormSubmitSuccess = () => {
+  const handleCancel = () => {
+    // Lógica para cancelar, como redirigir o cerrar modal
+    console.log('Formulario cancelado');
+    navigate('/admin/catalogue');
+  };
+
+  const handleFormSubmitSuccess = (newBook) => {
     alert(isEdit ? "Libro actualizado con éxito" : "Libro creado con éxito");
-    navigate(`/catalogue/book-details/${book.isbn}`);
+    navigate(`/catalogue/book-details/${newBook.isbn}`);
   };
 
   if (loading) {
@@ -46,15 +50,12 @@ function AdminBookForm({ mode }) {
   }
 
   return (
-    <div>
-      <h1>{isEdit ? "Editar Libro" : "Crear Nuevo Libro"}</h1>
       <BookForm
         book={isEdit ? book : null}
-        languageMap={languageMap}
         isEdit={isEdit}
         onSubmitSuccess={handleFormSubmitSuccess}
+        onCancel={handleCancel}
       />
-    </div>
   );
 };
 

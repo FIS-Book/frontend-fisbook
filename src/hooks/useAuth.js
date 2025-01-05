@@ -40,7 +40,7 @@ export const requestWithAuth = async (url, options = {}) => {
       window.location.href = '/'; 
       throw new Error('Token expirado. Por favor, inicia sesión de nuevo.');
     }
-
-    throw new Error(error.response ? error.response.data : 'Error en la solicitud');
+    
+    return error.response ? error.response : { message: 'Error en la solicitud' };
   }
 };
