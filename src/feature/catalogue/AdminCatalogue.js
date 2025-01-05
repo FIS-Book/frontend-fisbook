@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/styles/CatalogueStyles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
@@ -12,17 +12,24 @@ function AdminCatalogue() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBy, setFilterBy] = useState('title');
-  const { books, loading, error } = useFetchBooks();
-  const filteredBooks = useFilteredBooks(books, searchTerm, filterBy);
+  const { books: fetchedBooks, loading, error } = useFetchBooks();
+  const [books, setBooks] = useState([]); 
 
+  useEffect(() => {
+    setBooks(fetchedBooks);
+  }, [fetchedBooks]);
+
+  const filteredBooks = useFilteredBooks(books, searchTerm, filterBy);
+  
   // Handle "Delete Book" event
   const handleDeleteBook = async (book) => {
     try {
       await requestWithAuth(`${process.env.REACT_APP_BASE_URL}/api/v1/books/${book.isbn}`, {
         method: 'DELETE',
       });
+
       alert(`Libro "${book.title}" eliminado con éxito.`);
-      window.location.reload();
+      setBooks((prevBooks) => prevBooks.filter((b) => b.isbn !== book.isbn));
     } catch (error) {
       console.error('Error al eliminar el libro:', error);
       alert('No se pudo eliminar el libro.');
