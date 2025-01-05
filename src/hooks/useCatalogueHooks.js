@@ -1,7 +1,6 @@
 /* This hook provides utility functions to fetch data from the API related to the catalogue of books. */
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import languageMap from '../utils/languageMap';
 import { requestWithAuth } from './useAuth';
 
