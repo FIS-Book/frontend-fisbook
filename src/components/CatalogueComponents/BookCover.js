@@ -13,7 +13,7 @@ const BookCover = ({ coverImage, title }) => (
         className="book-cover-large"
       />
     </div>
-  );
+);
   
-  export default BookCover;
+export default BookCover;
   

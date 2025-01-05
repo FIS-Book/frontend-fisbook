@@ -35,14 +35,8 @@ function AdminCatalogue() {
     navigate(updateBookUrl);
   };
 
-  
-  if (loading) {
-    return <p>Cargando libros...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
+  if (loading) { return <p>Cargando libros...</p>;}
+  if (error) { return <p>{error}</p>; }
 
   return (
     <div className="catalogue-container">

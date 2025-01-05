@@ -5,10 +5,10 @@
     - error: String with the error message.
     - onBookClick: Function to handle the click event on a book.
    The RecentBooks component renders the title "Más recientes" and a list of recent books.
-   Each book is displayed with its cover image, title, and author.
    When a book is clicked, the onBookClick function is called with the book's ISBN as an argument. */
 
 import React from 'react';
+import BookList from './BookList';
 
 const RecentBooks = ({ books, loading, error, onBookClick }) => {
   return (
@@ -18,23 +18,15 @@ const RecentBooks = ({ books, loading, error, onBookClick }) => {
         <p>Cargando libros recientes...</p>
       ) : error ? (
         <p>{error}</p>
-      ) : books.length > 0 ? (
-        <div className="featured-books">
-          {books.map((book) => (
-            <div key={book.isbn} className="book-item" onClick={() => onBookClick(book.isbn)}>
-              <img src={book.coverImage} alt={`Cover of ${book.title}`} className="book-cover" />
-              <div className="book-details">
-                <h4>{book.title}</h4>
-                <p>{book.author}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       ) : (
-        <p>No hay libros recientes disponibles.</p>
+        <BookList 
+          books={books} 
+          showButtons={false}
+          onCardClick={(book) => onBookClick(book.isbn)}
+        />
       )}
     </div>
   );
-};
-
+}
+        
 export default RecentBooks;

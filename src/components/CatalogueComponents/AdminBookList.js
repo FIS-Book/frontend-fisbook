@@ -1,4 +1,4 @@
-/* This component is used in the AdminBookList component to display a list of books in the admin view.
+/* This component is used in to display a list of books in the admin view.
    The AdminBookList component receives the following props:
      - books: Array with the list of books to display.
      - onDelete: Function to handle the delete event on a book.

@@ -5,7 +5,7 @@
   If the statistics are still loading, a loading message is displayed.
   If there are no statistics available, a message is displayed indicating that the statistics could not be loaded.
   If there are statistics available, they are displayed in the component.
-  The StatsBox component is used in the HomePage component to display the library statistics. */
+  The StatsBox component is used in the HomePage view to display the library statistics. */
 
 import React from 'react';
 

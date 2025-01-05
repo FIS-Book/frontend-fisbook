@@ -6,7 +6,7 @@
 import React from 'react';
 import BookItem from '../CatalogueComponents/BookItem';
 
-const BookList = ({ books, onViewDetails }) => {
+const BookList = ({ books, onViewDetails, showButtons = true, onCardClick}) => {
   if (books.length === 0) {
     return <p>No se encontraron libros con el término de búsqueda.</p>;
   }
@@ -14,7 +14,12 @@ const BookList = ({ books, onViewDetails }) => {
   return (
     <div className="book-column">
       {books.map((book) => (
-        <BookItem key={book.isbn} book={book} onViewDetails={onViewDetails} />
+        <BookItem 
+        key={book.isbn} 
+        book={book} 
+        onViewDetails={showButtons ? onViewDetails : null} 
+        onCardClick={onCardClick}
+        />
       ))}
     </div>
   );

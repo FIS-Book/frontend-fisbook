@@ -1,4 +1,4 @@
-/* BookInfo component to display book information in the BookDetails component. 
+/* BookInfo component to display book information in the BookDetails view. 
    It receives the book object and a language map to display the information.
    The BookInfo component displays the author, description, ISBN, publication year, language, total pages, categories, 
    download count, rating, reviews, reading lists, and classification of the book.

@@ -10,6 +10,7 @@
   If there are no books available, a message is displayed indicating that there are no books available. */
 
 import React from 'react';
+import BookList from './BookList';
 
 const FeaturedBooks = ({ title, books, loading, error, onBookClick }) => {
   return (
@@ -20,17 +21,10 @@ const FeaturedBooks = ({ title, books, loading, error, onBookClick }) => {
       ) : error ? (
         <p>{error}</p>
       ) : books.length > 0 ? (
-        <div className="featured-books">
-          {books.map((book) => (
-            <div key={book.isbn} className="book-item" onClick={() => onBookClick(book.isbn)}>
-              <img src={book.coverImage} alt={`Cover of ${book.title}`} className="book-cover" />
-              <div className="book-details">
-                <h4>{book.title}</h4>
-                <p>{book.author}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <BookList 
+          books={books} 
+          showButtons={false} 
+          onCardClick={(book) => onBookClick(book.isbn)} />
       ) : (
         <p>No hay libros disponibles.</p>
       )}
