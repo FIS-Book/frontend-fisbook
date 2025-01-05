@@ -16,7 +16,7 @@ const Reading = () => {
   const userId = getUserId();
   const email = getUserMail();
   const token = getToken();
- 
+  console.log(userId)
   const noListasErrorMessage = "No se pudieron cargar las lecturas";
   const handleFirstListCreation = async () => {
     try{
@@ -194,7 +194,7 @@ const Reading = () => {
         }}
       >
         <p>No se encontraron géneros o libros.</p>
-        <AgregarButton/>
+        <AgregarButton userId={userId}/>
       </div>  // Si no hay géneros, mostramos un mensaje
     )
   }
@@ -216,7 +216,7 @@ const Reading = () => {
       <HomeButton onClick={handleGoToHome} />
       <div className="new-genre-header">
         <h3>Nueva lista de lectura</h3>
-        <AgregarButton/>
+        <AgregarButton userId={userId}/>
       </div>
   
       {readings.genres.map((genre, index) => (
