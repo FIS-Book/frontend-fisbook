@@ -16,7 +16,6 @@ import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
-import PrivateRoute from './components/Authentication/PrivateRoute.js';
 
 function App() {
   const [user, setUser] = useState(null); 
@@ -27,28 +26,26 @@ function App() {
         <Header user={user} setUser={setUser}/>
         <div className="container">
           <Routes>
-          {/* Página principal - LogIn */}
-          <Route path="/" element={<Login />} />
-            
-            {/* Catálogo */}
-            <Route path="/homePage" element={<PrivateRoute element={<HomePage />} />} />
-            <Route path="/catalogue" element={<PrivateRoute element={<Catalogue />} />} />
-            <Route path="/catalogue/book-details/:isbn" element={<PrivateRoute element={<BookDetails />} />} />
-
-            {/* Usuarios */}
+            {/* Página principal */}
+            <Route path="/" element={<Login />}
+            />           
+            {/* Home Page */}
+            <Route path="/homePage" element={<HomePage />} />
+            {/* Catalogo de libros */}
+            <Route path="/catalogue" element={<Catalogue />} />
+            <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
+            {/* Microservicio Usuarios */}
             <Route path="/register" element={<Register />} />
             <Route path="/users/:id" element={<PrivateRoute element={<Profile />} />} />
             <Route path="/users/me" element={<PrivateRoute element={<MyProfile />} />} />
-
-            {/* Descargas y lecturas en línea */}
-            <Route path="/onlineReadings" element={<PrivateRoute element={<OnlineReadings />} />} />
-            <Route path="/downloads" element={<PrivateRoute element={<Downloads />} />} />
-            
+            {/* Microservicio Descargas */}
+            <Route path="/onlineReadings" element={<OnlineReadings />} />
+            <Route path="/downloads" element={<Downloads />} />
             {/* Página de administradores */}
-            <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
-            <Route path="/admin/users" element={<PrivateRoute element={<Users />} />} />
-            <Route path="/admin/downloads" element={<PrivateRoute element={<DownloadsInfo />} />} />
-            <Route path="/admin/onlineReadings" element={<PrivateRoute element={<OnlineReadingInfo />} />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/downloads" element={<DownloadsInfo />} />
+            <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
           </Routes>
         </div>
       </div>
