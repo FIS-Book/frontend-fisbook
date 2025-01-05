@@ -35,7 +35,6 @@ function Users() {
             return;
         }
     
-        console.log('Deleting user with ID:', selectedUser.id); // Asegúrate de que esto imprima el ID correcto
         try {
             await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, {
                 headers: {
@@ -83,17 +82,12 @@ function Users() {
     const handleSelectUser = (user) => {
         if (selectedUser && selectedUser.id === user.id) {
             // If the same user is clicked, deselect it
-            console.log('Deselected user:', user); 
             setSelectedUser(null);
         } else {
             // If a different user is clicked, select it
-            console.log('Selected user:', user); 
             setSelectedUser(user);
         }
     };
-
-    // Verificar selectedUser antes de renderizar
-    console.log('Selected user in render:', selectedUser);
 
     // Searches for a user by ID
     const handleSearch = async () => {

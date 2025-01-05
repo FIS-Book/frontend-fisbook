@@ -1,87 +1,99 @@
-/* Estilos generales del perfil */
 .profile-container {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-header {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .profile-header {
     text-align: center;
-    margin-bottom: 30px;
-}
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
 
-.profile-header h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
-}
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Hace que sea un círculo */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    margin: 0 auto;
+    display: block; /* Centra la imagen */
+    border: 2px solid #ddd; /* Añade un borde */
+    margin-bottom: 15px; /* Espaciado inferior */
+  }
+  
+  .profile-header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
 
-.profile-header p {
-    font-size: 1.1rem;
-    color: #666;
-}
-
-/* Estilo de los datos del usuario */
-.profile-details {
+.profile-avatar-initials {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    font-size: 48px; 
+    font-weight: bold; 
+    color: white; 
+    text-transform: uppercase; 
 }
-
-.profile-details p {
-    font-size: 1.1rem;
-    color: #444;
-}
-
-.profile-details strong {
-    color: #007BFF;
-    font-weight: bold;
-}
-
-/* Estilo para las listas de lecturas y reseñas */
-.profile-list {
-    padding-left: 20px;
-    list-style-type: disc;
+  
+  
+  .profile-header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .profile-header p {
+    font-size: 16px;
+    color: #777;
+    margin: 5px 0 0;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+    font-size: 14px;
     color: #555;
-}
-
-.profile-list li {
-    font-size: 1rem;
-    color: #444;
-}
-
-/* Botón de edición o acciones adicionales */
-.profile-actions {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.profile-actions button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border: none;
+  }
+  
+  .profile-details p {
+    margin: 10px 0;
+  }
+  
+  .profile-details strong {
+    color: #333;
+  }
+  
+  .profile-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .profile-list li {
+    margin: 5px 0;
+    padding: 5px 10px;
+    background: #f4f4f9;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.profile-actions button:hover {
-    background-color: #0056b3;
-}
-
-.profile-actions button:focus {
-    outline: none;
-}
-
-/* Estilo del error */
-.error-message {
-    color: #e74c3c;
-    font-size: 1rem;
-    text-align: center;
+    color: #444;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
     margin-top: 15px;
+    text-align: center;
+  }
+  
+  .btn {
+    display: block;
+    margin: 0 auto; /* Esto centrará el botón horizontalmente */
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import '../../assets/styles/Profile.css' // Importar los estilos
 
 const Profile = () => {
     const { id } = useParams(); // Obtener el ID del usuario desde la URL
@@ -32,37 +33,55 @@ const Profile = () => {
         fetchUser(); // Llamada a la API cuando se monta el componente
     }, [id]); // Ejecutar nuevamente cuando el ID cambie
 
-    if (loading) return <div>Loading...</div>; // Mostrar mientras carga
-    if (error) return <div>Error: {error}</div>; // Mostrar si hay un error
+    if (loading) return <div className="profile-container">Loading...</div>; // Mostrar mientras carga
+    if (error) return <div className="profile-container error-message">Error: {error}</div>; // Mostrar si hay un error
+
+    const renderAvatar = user.avatar ? (
+        <img
+            src={user.avatar}
+            alt={`${user.nombre} ${user.apellidos}`}
+            className="profile-avatar"
+        />
+    ) : (
+        <div className="profile-avatar profile-avatar-initials">
+            {user.nombre && user.nombre[0].toUpperCase()}
+        </div>
+    );
 
     return (
         <div className="profile-container">
             <div className="profile-header">
+                {renderAvatar}
                 <h1>{user.nombre} {user.apellidos}</h1>
-                <p>{user.username}</p>
+                <p>@{user.username}</p>
             </div>
             <div className="profile-details">
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Rol:</strong> {user.rol}</p>
                 <p><strong>Plan:</strong> {user.plan}</p>
-                <p><strong>Lista de Lecturas:</strong> {user.listaLecturasId && user.listaLecturasId.length > 0 ? 
-                    <ul className="profile-list">
-                        {user.listaLecturasId.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul> : 'No hay lecturas.'}</p>
+                <p>
+                    <strong>Lista de Lecturas:</strong> {user.listaLecturasId && user.listaLecturasId.length > 0 ? (
+                        <ul className="profile-list">
+                            {user.listaLecturasId.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    ) : 'No hay lecturas.'}
+                </p>
                 <p><strong>Número de Descargas:</strong> {user.numDescargas}</p>
-                <p><strong>Reseñas:</strong> {user.resenasId && user.resenasId.length > 0 ? 
-                    <ul className="profile-list">
-                        {user.resenasId.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul> : 'No hay reseñas.'}</p>
+                <p>
+                    <strong>Reseñas:</strong> {user.resenasId && user.resenasId.length > 0 ? (
+                        <ul className="profile-list">
+                            {user.resenasId.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    ) : 'No hay reseñas.'}
+                </p>
             </div>
-            {error && <p className="error-message">{error}</p>}
         </div>
     );
-    
 };
 
 export default Profile;
+

@@ -9,41 +9,46 @@ import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
 import Profile from './feature/users/Profile.js';
+import MyProfile from './feature/users/MyProfile.js';
 import Admin from './feature/users/Admin.js';
 import DownloadsInfo from './feature/downloadsAndOnline/DownloadsInfo.js';
 import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
-
+import PrivateRoute from './components/Authentication/PrivateRoute.js';
 
 function App() {
+  const [user, setUser] = useState(null); 
+
   return (
     <Router basename='/'>
       <div className="App">
-        <Header user={{name: "John Doe"}}/>
+        <Header user={user} setUser={setUser}/>
         <div className="container">
           <Routes>
-            {/* Página principal */}
-            <Route path="/" element={<Login />}
-            />           
-            {/* Home Page */}
-            <Route path="/homePage" element={<HomePage />} />
-            {/* Catalogo de libros */}
-            <Route path="/catalogue" element={<Catalogue />} />
-            <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
-            {/* Microservicio Usuarios */}
-            <Route path="/users" element={<Users/>} />
+          {/* Página principal - LogIn */}
+          <Route path="/" element={<Login />} />
+            
+            {/* Catálogo */}
+            <Route path="/homePage" element={<PrivateRoute element={<HomePage />} />} />
+            <Route path="/catalogue" element={<PrivateRoute element={<Catalogue />} />} />
+            <Route path="/catalogue/book-details/:isbn" element={<PrivateRoute element={<BookDetails />} />} />
+
+            {/* Usuarios */}
             <Route path="/register" element={<Register />} />
-            <Route path="/users/:id" element={<Profile />} />
-            {/* Microservicio Descargas */}
-            <Route path="/onlineReadings" element={<OnlineReadings />} />
-            <Route path="/downloads" element={<Downloads />} />
+            <Route path="/users/:id" element={<PrivateRoute element={<Profile />} />} />
+            <Route path="/users/me" element={<PrivateRoute element={<MyProfile />} />} />
+
+            {/* Descargas y lecturas en línea */}
+            <Route path="/onlineReadings" element={<PrivateRoute element={<OnlineReadings />} />} />
+            <Route path="/downloads" element={<PrivateRoute element={<Downloads />} />} />
+            
             {/* Página de administradores */}
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/users" element={<Users />} />
-            <Route path="/admin/downloads" element={<DownloadsInfo />} />
-            <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
+            <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />
+            <Route path="/admin/users" element={<PrivateRoute element={<Users />} />} />
+            <Route path="/admin/downloads" element={<PrivateRoute element={<DownloadsInfo />} />} />
+            <Route path="/admin/onlineReadings" element={<PrivateRoute element={<OnlineReadingInfo />} />} />
           </Routes>
         </div>
       </div>
