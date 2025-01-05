@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 function BookDetailsButtons({ book }) {
   const navigate = useNavigate();
 
-  if (!book) return null; // Si no hay información del libro, no renderiza nada
+  if (!book) return null; 
 
   return (
-    <div className='book-buttons'>
+    <div className='book-buttons-details'>
       {/* Botón Leer */}
       <button 
         className='btn btn-primary'
