@@ -9,7 +9,7 @@ import '../../assets/styles/CatalogueStyles/Catalogue.css';
 function AddBookButton({ onClick }) {
     const navigate = useNavigate();
 
-    const handleClick = onClick || (() => navigate('/admin/catalogue/add-book'));
+    const handleClick = onClick || (() => navigate('/admin/catalogue/new'));
 
     return (
         <button className="btn-add-book" onClick={handleClick}>

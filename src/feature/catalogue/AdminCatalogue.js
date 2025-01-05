@@ -31,7 +31,7 @@ function AdminCatalogue() {
 
   // Handle "Update Book" event
   const handleUpdateBook = (book) => {
-    const updateBookUrl = `/admin/catalogue/update-book/${book.isbn}`;
+    const updateBookUrl = `/admin/catalogue/edit/${book.isbn}`;
     navigate(updateBookUrl);
   };
 

@@ -10,6 +10,7 @@
 
 import React from 'react'; 
 import '../../assets/styles/CatalogueStyles/Catalogue.css';
+import covernotavailable from '../../assets/images/covernotavailable.png';
 
 const BookItem = ({ book, onViewDetails, onDelete, onUpdate, onCardClick }) => (
   <div 
@@ -19,7 +20,7 @@ const BookItem = ({ book, onViewDetails, onDelete, onUpdate, onCardClick }) => (
     style={{ cursor: onCardClick ? 'pointer' : 'default' }}
   >
     <img 
-      src={book.coverImage} 
+      src={book.coverImage || covernotavailable} 
       alt={`Cover of ${book.title}`} 
       className="book-cover" 
     />

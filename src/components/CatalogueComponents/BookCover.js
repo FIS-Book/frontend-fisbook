@@ -4,11 +4,12 @@
    The BookCover component is used in the BookItem component to display the book cover image. */
 
 import React from 'react';
+import covernotavailable from '../../assets/images/covernotavailable.png';
 
 const BookCover = ({ coverImage, title }) => (
     <div className="book-cover-container">
       <img 
-        src={coverImage || 'default-book-cover.jpg'} 
+        src={coverImage || covernotavailable} 
         alt={`Cover of ${title}`} 
         className="book-cover-large"
       />
