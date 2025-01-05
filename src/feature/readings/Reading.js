@@ -16,7 +16,7 @@ const Reading = () => {
   const userId = getUserId();
   const email = getUserMail();
   const token = getToken();
-  console.log(userId)
+ 
   const noListasErrorMessage = "No se pudieron cargar las lecturas";
   const handleFirstListCreation = async () => {
     try{
