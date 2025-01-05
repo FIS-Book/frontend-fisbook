@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../assets/images/Logo.png"; // Importa el logo
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 function Header({ user }) {
     return (
