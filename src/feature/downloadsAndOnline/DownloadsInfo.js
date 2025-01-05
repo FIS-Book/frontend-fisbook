@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../assets/styles/DownloadsInfo.css'; // Asegúrate de que esta hoja de estilo exista
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 
 function DownloadsInfo() {
     const [downloads, setDownloads] = useState([]);
@@ -8,6 +9,9 @@ function DownloadsInfo() {
     const [error, setError] = useState('');
     const [selectedDownload, setSelectedDownload] = useState(null); // Guarda la descarga seleccionada
     const [searchId, setSearchId] = useState(''); // ID para buscar una descarga
+
+    // Verificar si el token ha expirado al cargar la página
+    useCheckTokenExpiration();
 
     // Obtiene la lista de descargas al cargar la página
     useEffect(() => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../assets/styles/OnlineReadings.css'; // Asegúrate de que esta hoja de estilos exista
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 
 function OnlineReadings() {
     const [readings, setReadings] = useState([]);
@@ -8,6 +9,9 @@ function OnlineReadings() {
     const [error, setError] = useState('');
     const [selectedReading, setSelectedReading] = useState(null); // Almacena la lectura seleccionada
     const [searchId, setSearchId] = useState(''); // ID para buscar una lectura
+
+    // Verificar si el token ha expirado al cargar la página
+    useCheckTokenExpiration();
 
     // Obtén la lista de lecturas en línea cuando se carga la página
     useEffect(() => {

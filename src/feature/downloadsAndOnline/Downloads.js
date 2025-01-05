@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import '../../assets/styles/Downloads.css'; // Ensure the styles are imported
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 
 function Download() {
   const [selectedFormat, setSelectedFormat] = useState('');
   const [isDownloading, setIsDownloading] = useState(false); // State to check if we're "downloading"
   const [progress, setProgress] = useState(0); // Progress of the download
   const [isComplete, setIsComplete] = useState(false); // State to check if the download is complete
-  const [error, setError] = useState('');
+  const [error] = useState('');
+
+  // Verificar si el token ha expirado al cargar la página
+  useCheckTokenExpiration();
 
   const handleDownload = (format) => {
     setSelectedFormat(format);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 import '../../assets/styles/Profile.css' // Importar los estilos
 
 const Profile = () => {
@@ -8,6 +9,9 @@ const Profile = () => {
     const [user, setUser] = useState(null); // Almacenar la información del usuario
     const [loading, setLoading] = useState(true); // Estado de carga
     const [error, setError] = useState(null); // Estado de error
+
+    // Verificar si el token ha expirado al cargar la página
+    useCheckTokenExpiration();
 
     useEffect(() => {
         const fetchUser = async () => {
