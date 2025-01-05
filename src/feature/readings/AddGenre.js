@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import '../../assets/styles/AddGenre.css';
 import { useNavigate, useLocation } from 'react-router-dom'; // Importamos useNavigate para redirección
+import { getToken } from '../../hooks/useAuth';
 
 
 const AddGenre = () => {
+  const token = getToken();
   const navigate = useNavigate(); // Usamos useNavigate para manejar la redirección
   const location = useLocation(); // Usamos useLocation para acceder al estado
 
@@ -30,10 +32,11 @@ const AddGenre = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch("http://localhost:8080/api/v1/readings/add-genre", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings/add-genre`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(newGenre),
       });

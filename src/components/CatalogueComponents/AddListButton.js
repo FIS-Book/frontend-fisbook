@@ -2,11 +2,11 @@
 import React, { useEffect, useState }  from 'react';
 
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
-import { getUserId } from '../../hooks/useAuth';
-import { use } from 'react';
+import { getUserId, getToken } from '../../hooks/useAuth';
 
 function AddListButton({ book }) {
   const userId = getUserId();
+  const token = getToken();
   const navigate = useNavigate(); // Hook para manejar la navegación
   
   const {categories, isbn, title} = book || {}
@@ -21,7 +21,11 @@ function AddListButton({ book }) {
     const fetchReadings = async () => {
       try {
         // Realizamos la solicitud a la API del backend
-        const response = await fetch(`http://localhost:8080/api/v1/readings?userId=${userId}`);
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings?userId=${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
         
         // Verificamos si la respuesta es válida
         if (!response.ok) {
@@ -54,10 +58,11 @@ function AddListButton({ book }) {
 
     try {
       setIsSubmitting(true);
-      const response = await fetch("http://localhost:8080/api/v1/readings/add-book", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings/add-book`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(newBook),
       });

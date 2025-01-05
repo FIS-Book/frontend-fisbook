@@ -3,7 +3,7 @@ import { apiFetch } from './api';
 
 export const getUserReadings = async (userId) => {
   try {
-    return await apiFetch(`http://localhost:8080/api/v1/reading/${userId}`);
+    return await apiFetch(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/reading/${userId}`);
   } catch (error) {
     console.error('Error al obtener la lista de lecturas:', error);
     throw error;
