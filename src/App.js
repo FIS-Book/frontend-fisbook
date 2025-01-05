@@ -36,8 +36,8 @@ function App() {
             <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
             {/* Microservicio Usuarios */}
             <Route path="/register" element={<Register />} />
-            <Route path="/users/:id" element={<PrivateRoute element={<Profile />} />} />
-            <Route path="/users/me" element={<PrivateRoute element={<MyProfile />} />} />
+            <Route path="/users/:id" element={<Profile />} />
+            <Route path="/users/me" element={<MyProfile />}/>
             {/* Microservicio Descargas */}
             <Route path="/onlineReadings" element={<OnlineReadings />} />
             <Route path="/downloads" element={<Downloads />} />
