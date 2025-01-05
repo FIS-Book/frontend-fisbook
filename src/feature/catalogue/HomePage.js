@@ -5,7 +5,7 @@ import { useFetchStats, useFetchFeaturedBooks, useFetchLatestBooks } from '../..
 import { getUserRole } from '../../hooks/useAuth';
 import StatsBox from '../../components/CatalogueComponents/StatsBox';
 import ButtonCatalogue from '../../components/CatalogueComponents/ButtonCatalogue';
-import ButtonReadings from '../../components/CatalogueComponents/ButtonReadings';
+import ButtonReadings from '../../components/ReadingComponents/ButtonReadings';
 import RecentBooks from '../../components/CatalogueComponents/RecentBooks';
 import FeaturedBooks from '../../components/CatalogueComponents/FeaturedBooks';
 

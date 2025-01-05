@@ -78,7 +78,7 @@ function AddListButton({ book }) {
         `El género "${genre}" novel no fue encontrado. Debe crear el género`
       );
       if(confirmation){
-        navigate(`/add-genre`,{state:{genre, userId}});
+        navigate(`/readings-list/add-genre`,{state:{genre, userId}});
       }
       setError(error.message);
     } finally {

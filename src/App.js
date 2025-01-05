@@ -42,13 +42,14 @@ function App() {
             {/* Microservicio Descargas */}
             <Route path="/onlineReadings" element={<OnlineReadings />} />
             <Route path="/downloads" element={<Downloads />} />
+            {/* Microservicio Readings List */}
+            <Route path="/reading-list" element={<Reading />} />
+            <Route path="/readings-list/add-genre" element={<AddGenre />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/downloads" element={<DownloadsInfo />} />
             <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
-            <Route path="/reading-list" element={<Reading />} />
-            <Route path="/add-genre" element={<AddGenre />} />
           </Routes>
         </div>
       </div>
