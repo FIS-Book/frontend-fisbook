@@ -237,8 +237,9 @@ const Reading = () => {
           <div className="genre-block-item">
             <h4>{genre.title}</h4>
             <p>{genre.description}</p>
-            {/* <p><strong>Número de reseñas: {genre.numberReviews}</strong></p>
-            <p><strong>Puntuación: {genre.score}</strong></p> */}
+            <h5>Valoraciones de la lista:</h5>
+            <p><strong>Número de reseñas: {genre.numberReviews}</strong></p>
+            <p><strong>Puntuación: {genre.score}</strong></p>
           </div>
   
           {/* Tercer Bloque: Libros */}
