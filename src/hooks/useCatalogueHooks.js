@@ -43,38 +43,38 @@ export const useFetchBooks = (isbn = null) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        let url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/books`;
-        if (isbn) {
-          url = `${url}/isbn/${isbn}`;
-        }
-        const response = await requestWithAuth(url,
-          {
-            method: 'GET',
-          }
-        );
-        console.log("Books by ISBN: ");
-        console.log(response);
-        if (response && ((Array.isArray(response) && response.length > 0) || (typeof response === 'object' && response.hasOwnProperty('isbn')))) {
-          setBooks(response);
-          setLoading(false);
-        } else {
-          throw new Error("No se encontraron libros.");
-        }
-
-      } catch (err) {
-        console.error('Error al obtener los libros: Error code - ', err);
-        setError('No se pudo cargar los datos.');
-        setLoading(false);
+  const fetchBooks = async () => {
+    try {
+      let url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/books`;
+      if (isbn) {
+        url = `${url}/isbn/${isbn}`;
       }
-    };
+      const response = await requestWithAuth(url,
+        {
+          method: 'GET',
+        }
+      );
+      console.log("Books by ISBN: ");
+      console.log(response);
+      if (response && ((Array.isArray(response) && response.length > 0) || (typeof response === 'object' && response.hasOwnProperty('isbn')))) {
+        setBooks(response);
+        setLoading(false);
+      } else {
+        throw new Error("No se encontraron libros.");
+      }
 
+    } catch (err) {
+      console.error('Error al obtener los libros: Error code - ', err);
+      setError('No se pudo cargar los datos.');
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchBooks();
   }, [isbn]);
 
-  return { books, loading, error };
+  return { books, loading, error, refetch: fetchBooks };
 };
 
 // Custom hook to fetch the latest books from the API
