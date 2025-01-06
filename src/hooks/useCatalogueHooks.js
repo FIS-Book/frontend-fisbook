@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import languageMap from '../utils/languageMap';
 import { requestWithAuth } from './useAuth';
 

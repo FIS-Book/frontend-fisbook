@@ -13,6 +13,14 @@ export const getUserRole = () => {
     return decoded ? decoded.rol : null;
 };
 
+export const getUserInfo = () => {
+  const token = getToken();
+  if (!token) return null;
+
+  const decoded = decodeToken(token);
+  return decoded ? decoded : null;
+};
+
 export const requestWithAuth = async (url, options = {}) => {
   const token = getToken();
   
@@ -41,6 +49,6 @@ export const requestWithAuth = async (url, options = {}) => {
       throw new Error('Token expirado. Por favor, inicia sesión de nuevo.');
     }
 
-    throw new Error(error.response ? error.response.data : 'Error en la solicitud');
+    throw error.response ? error.response.data : 'Error en la solicitud';
   }
 };

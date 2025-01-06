@@ -1,0 +1,118 @@
+/* Contenedor del formulario */
+.review-form {
+    width: 70%; /* Reducir el ancho del formulario */
+    max-width: 600px; /* Limitar el tamaño máximo */
+    margin: 20px auto; /* Centrar el formulario */
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  /* Título del formulario */
+  .form-title {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  /* Grupo de formulario */
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Etiqueta */
+  .form-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+  }
+  
+  /* Inputs y textarea */
+  .form-input,
+  .form-textarea {
+    width: 100%; /* Ocupa todo el espacio disponible */
+    padding: 10px; /* Reducir el padding */
+    font-size: 0.9rem; /* Reducir el tamaño de fuente */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  .form-textarea {
+    height: 100px; /* Altura más moderada */
+    resize: none; /* Deshabilita el redimensionamiento */
+  }
+  
+  /* Botón de enviar */
+  .submit-button {
+    display: block;
+    width: 50%; /* Botón más compacto */
+    margin: 0 auto; /* Centrar el botón */
+    padding: 10px; /* Reducir el padding */
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .submit-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  /* Mensajes de error y éxito */
+  .error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: #2ecc71;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Ajuste para dispositivos pequeños */
+  @media (max-width: 768px) {
+    .review-form {
+      width: 90%; /* Formularios más compactos en dispositivos pequeños */
+      padding: 10px;
+    }
+  
+    .form-title {
+      font-size: 1.2rem;
+    }
+  
+    .submit-button {
+      width: 70%;
+      font-size: 0.8rem;
+    }
+  }
+  
