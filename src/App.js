@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import HomePage from "./feature/catalogue/HomePage.js";
 import Catalogue from "./feature/catalogue/Catalogue.js"
+import Reading from './feature/readings/Reading';
+import AddGenre from './feature/readings/AddGenre.js';
 import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
@@ -43,6 +45,9 @@ function App() {
             {/* Microservicio Descargas */}
             <Route path="/onlineReadings" element={<OnlineReadings />} />
             <Route path="/downloads" element={<Downloads />} />
+            {/* Microservicio Readings List */}
+            <Route path="/reading-list" element={<Reading />} />
+            <Route path="/readings-list/add-genre" element={<AddGenre />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />

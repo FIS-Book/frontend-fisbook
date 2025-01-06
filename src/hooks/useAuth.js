@@ -15,6 +15,22 @@ export const getUserRole = () => {
     return decoded ? decoded.rol : null;
 };
 
+export const getUserId = () => {
+  const token = getToken();
+  if (!token) return null;
+
+  const decoded = decodeToken(token); // Usa la función decodificadora
+  return decoded ? decoded._id : null;
+};
+
+export const getUserMail = () => {
+  const token = getToken();
+  if (!token) return null;
+
+  const decoded = decodeToken(token); // Usa la función decodificadora
+  return decoded ? decoded.email : null;
+};
+
 export const requestWithAuth = async (url, options = {}) => {
   const token = getToken();
   

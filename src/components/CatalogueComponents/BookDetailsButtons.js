@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddListButton from '../../components/ReadingComponents/AddListButton';
 
 function BookDetailsButtons({ book }) {
   const navigate = useNavigate();
@@ -15,6 +16,9 @@ function BookDetailsButtons({ book }) {
 
   return (
     <div className='book-buttons-details'>
+      {/* Botón Agregar */}
+      <AddListButton book={book} />
+
       {/* Read Button */}
       <button 
         className='btn btn-read'

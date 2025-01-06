@@ -5,6 +5,7 @@ import { useFetchStats, useFetchFeaturedBooks, useFetchLatestBooks } from '../..
 import { getUserRole } from '../../hooks/useAuth';
 import StatsBox from '../../components/CatalogueComponents/StatsBox';
 import ButtonCatalogue from '../../components/CatalogueComponents/ButtonCatalogue';
+import ButtonReadings from '../../components/ReadingComponents/ButtonReadings';
 import RecentBooks from '../../components/CatalogueComponents/RecentBooks';
 import FeaturedBooks from '../../components/CatalogueComponents/FeaturedBooks';
 
@@ -32,6 +33,7 @@ function HomePage() {
         <div className="button-container">
             <ButtonCatalogue label="Ver catálogo" onClick={() => navigate('/catalogue')} />
             {userRole === 'Admin' && <ButtonCatalogue label="Administrar catálogo" onClick={() => navigate('/admin/catalogue')} />}
+            <ButtonReadings label="Ver mis listas de lectura" onClick={() => navigate('/reading-list')} />
         </div>
       
       {/* Stats */}
