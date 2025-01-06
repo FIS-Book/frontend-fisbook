@@ -57,7 +57,7 @@ const ReadingsAll = () => {
   return (
     <div>
       <HomeButton onClick={handleGoToHome} />
-      <h1>Listas de Lectura de Todos los Usuarios</h1>
+      <h1>Listas de lecturas de los usuarios</h1>
       {readings.length === 0 ? (
         <p>No hay listas de lectura disponibles.</p>
       ) : (
