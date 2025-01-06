@@ -1,4 +1,4 @@
-import '../../assets/styles/BookDetails.css';
+import '../../assets/styles/CatalogueStyles/BookDetails.css';
 import React from 'react';
 import {useParams} from 'react-router-dom';
 import languageMap from '../../utils/languageMap';
@@ -9,7 +9,7 @@ import BookDetailsButtons from '../../components/CatalogueComponents/BookDetails
 
 
 function BookDetails() {
-  const { isbn } = useParams(); // Obtener el ISBN del libro de la URL
+  const { isbn } = useParams(); 
   const { books, loading, error } = useFetchBooks(isbn);
 
   if (loading) return <p>Cargando detalles del libro...</p>;
@@ -21,10 +21,9 @@ function BookDetails() {
 
   return (
     <div className='book-details-container'>
-      <h2 className='book-title'>{book.title}</h2> {/* Título arriba */}
+      <h2 className='book-title'>{book.title}</h2> 
 
       <div className='book-details-content'>
-        {/* Imagen de la portada del libro a la izquierda */}
         <BookCover coverImage={book.coverImage} title={book.title} />
         <BookInfo book={book} languageMap={languageMap} />
       </div>

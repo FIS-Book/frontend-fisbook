@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../assets/styles/Catalogue.css';
+import '../../assets/styles/CatalogueStyles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
 import HomeButton from '../../components/CatalogueComponents/HomeButton';
@@ -9,39 +9,26 @@ import BookList from '../../components/CatalogueComponents/BookList';
 
 function Catalogue() {
 
-  const navigate = useNavigate();
-
-  // Estado para el filtro y búsqueda
+  const navigate = useNavigate(); 
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBy, setFilterBy] = useState('title');
-
-  // Obtener libros desde el hook personalizado
   const { books, loading, error } = useFetchBooks();
-
-  // Obtener libros filtrados desde el hook personalizado
   const filteredBooks = useFilteredBooks(books, searchTerm, filterBy);
 
-  // Manejo del evento para ir a la página de detalles de un libro
+  // Event handler for navigating to the book details page
   const handleViewDetails = (book) => {
     const bookDetailsUrl = `/catalogue/book-details/${book.isbn}`;
     navigate(bookDetailsUrl);
   };
 
-  // Manejo del evento para volver al HomePage
+  // Event handler for navigating back to the HomePage
   const handleGoToHome = () => {
-    navigate('/homePage'); // Ruta del HomePage
+    navigate('/homePage'); 
   };
 
-  // Renderización condicional según el estado de carga o error
-  if (loading) {
-    return <p>Cargando libros...</p>;
-  }
+  if (loading) { return <p>Cargando libros...</p>; }
+  if (error) { return  <p>{error}</p>;}
 
-  if (error) {
-    return  <p>{error}</p>;
-  }
-
-  // Renderizar libros cuando estén disponibles
   return (
     <div className="catalogue-container">
       <h2>Catálogo de Libros</h2>
