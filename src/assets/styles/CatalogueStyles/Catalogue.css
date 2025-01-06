@@ -1,18 +1,10 @@
-/* Estilo general del contenedor principal */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-}
-
-/* Contenedor principal del catálogo */
+/* Main container of the catalog */
 .catalogue-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%; /* Un poco más ancho que el máximo de los libros */
-    max-width: 600px; /* Ajusta el ancho máximo del contenedor principal */
+    width: 80%;
+    max-width: 600px;
     padding: 20px;
     background-color: #D3D3D3;
     border-radius: 8px;
@@ -21,17 +13,17 @@
     box-sizing: border-box;
 }
 
-/* Título del catálogo */
+/* Catalogue title */
 .catalogue-container h2 {
     text-align: center;
     color: #2C3E50;
     margin-bottom: 20px;
 }
 
-/* Barra de búsqueda */
+/* Search bar */
 .search-bar {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    max-width: 600px; /* Ancho máximo para limitarlo */
+    width: 100%; 
+    max-width: 700px; 
     padding: 10px 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -40,15 +32,7 @@
     margin-bottom: 20px;
 }
 
-/* Contenedor de la barra de búsqueda */
-.search-container {
-    display: flex;
-    justify-content: center;
-    width: 100%; /* Ocupa todo el ancho del contenedor principal */
-    margin-bottom: 20px;
-}
-
-/* Input de búsqueda */
+/* Search input */
 .search-input {
     flex: 1;
     padding: 10px;
@@ -57,7 +41,7 @@
     border-radius: 5px;
 }
   
-/* Dropdown de filtros */
+/* Filter dropdown */
 .filter-dropdown {
     padding: 10px;
     font-size: 16px;
@@ -72,30 +56,31 @@
     border-color: #007bff;
 }
 
+
 .book-column {
     display: flex;
-    flex-direction: column; /* Asegura que los libros se apilen verticalmente */
+    flex-direction: column; 
     width: 100%;
     padding: 15px;
 }
 
-
-/* Contenedor individual de cada libro */
+/* Individual book container */
 .book-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #faedd6;
-    width: 100%; /* Ajusta al ancho del contenedor principal */
+    width: 100%; 
     max-width: 600px;
-    padding: 15px 30px;
-    margin-bottom: 15px;
+    padding: 20px;
+    margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-height: 80px;
     box-sizing: border-box;
 }
 
-/* Imagen de la portada del libro */
+/* Book cover image */
 .book-cover {
     width: 70px;
     height: auto;
@@ -104,16 +89,19 @@
     border-radius: 5px;
 }
 
-/* Detalles del libro (título y autor) */
+/* Book details (title and author) */
 .book-details {
     display: flex;
+    text-align: left;
     flex-direction: column;
     flex-grow: 1;
-    margin-left: 10px;
+    margin-left: 0;
+    max-width: 40%;
+    align-items: flex-start;
 }
 
 .book-details h4 {
-    font-size: 18px;
+    font-size: 16px;
     color: #2C3E50;
     margin: 0;
 }
@@ -123,7 +111,15 @@
     font-size: 16px;
 }
 
-/* Botón de ver detalle */
+/* Buttons */
+.book-buttons {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end;
+    gap: 10px; 
+}
+
+/* View Detail button */
 .btn-primary {
     align-self: flex-end;
     margin-left: auto;
@@ -134,6 +130,7 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    font-size: 12px;
 }
 
 .btn-primary:hover {
@@ -146,11 +143,89 @@
     height: 1.2rem;
 }
 
-/* Botón "Home" flotante a la izquierda */
+/* Delete button */
+.btn-delete {
+    background-color: #ff1e00;
+    color: white;
+    border: none;
+    padding: 8 px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+}
+
+.btn-delete:hover {
+    background-color: #ff6666;
+}
+
+.btn-delete svg {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Update Button */
+.btn-update {
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+}
+
+.btn-update:hover {
+    background-color: #4A4A4A;
+    color: white;
+}
+
+.btn-update svg {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Add book button */
+.btn-add-book {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+  
+.btn-add-book:hover {
+    background-color: #218838;
+}
+  
+.btn-add-book svg {
+    width: 16px;
+    height: 16px;
+}
+  
+/* Floating ‘Home’ button on the left-hand side */
 .btn-home {
     position: fixed;
-    left: 40px; /* Distancia desde la izquierda de la pantalla */
-    top: 80px; /* Distancia desde la parte superior */
+    left: 40px; 
+    top: 80px;
     padding: 10px 20px;
     background-color: #D3D3D3; 
     color: black;

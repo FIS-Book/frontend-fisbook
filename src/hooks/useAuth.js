@@ -1,3 +1,5 @@
+/* This hook provides utility functions to manage user authentication and authorization in the application. */
+
 import axios from "axios";
 import decodeToken from "../utils/jwtDecode";
 
@@ -9,7 +11,7 @@ export const getUserRole = () => {
     const token = getToken();
     if (!token) return null;
   
-    const decoded = decodeToken(token); // Usa la función decodificadora
+    const decoded = decodeToken(token); 
     return decoded ? decoded.rol : null;
 };
 
@@ -56,7 +58,7 @@ export const requestWithAuth = async (url, options = {}) => {
       window.location.href = '/'; 
       throw new Error('Token expirado. Por favor, inicia sesión de nuevo.');
     }
-
-    throw new Error(error.response ? error.response.data : 'Error en la solicitud');
+    
+    return error.response ? error.response : { message: 'Error en la solicitud' };
   }
 };

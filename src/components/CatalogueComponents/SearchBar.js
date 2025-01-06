@@ -1,4 +1,13 @@
-// Search Bar Component
+/* Search Bar Component that renders a search input and a filter dropdown to search for books in the catalogue.
+   The SearchBar component receives the following props: 
+    - searchTerm: String with the search term. 
+    - onSearchChange: Function to handle the search input change.
+    - filterBy: String with the filter option. 
+    - onFilterChange: Function to handle the filter dropdown change.
+   The SearchBar component renders an input field for the search term and a dropdown to select the filter option.
+   The placeholder text of the input field changes based on the selected filter option.
+   The SearchBar component is used in the Catalogue and AdminCatalogue components to filter books by different criteria. */
+
 import React from 'react';
 
 const SearchBar = ({ searchTerm, onSearchChange, filterBy, onFilterChange }) => (
