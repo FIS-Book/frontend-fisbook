@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/styles/HomePage.css';
+import '../../assets/styles/CatalogueStyles/HomePage.css';
 import { useFetchStats, useFetchFeaturedBooks, useFetchLatestBooks } from '../../hooks/useCatalogueHooks';
 import { getUserRole } from '../../hooks/useAuth';
 import StatsBox from '../../components/CatalogueComponents/StatsBox';
 import ButtonCatalogue from '../../components/CatalogueComponents/ButtonCatalogue';
+import ButtonReadings from '../../components/ReadingComponents/ButtonReadings';
 import RecentBooks from '../../components/CatalogueComponents/RecentBooks';
 import FeaturedBooks from '../../components/CatalogueComponents/FeaturedBooks';
 
@@ -16,12 +17,12 @@ function HomePage() {
   const { latestBooks, loading: latestLoading, error: latestError } = useFetchLatestBooks();
   const { stats, loading: statsLoading } = useFetchStats();
 
-  // Función para manejar el click en un libro
+  // Function to handle book click
   const handleBookClick = (isbn) => {
     navigate(`/catalogue/book-details/${isbn}`);  
   };
 
-  // Categorizar los libros destacados por `featuredType`
+  // Categorize featured books by `featuredType`
   const bestsellers = featuredBooks.filter(book => book.featuredType === 'bestSeller');
   const awardWinner = featuredBooks.filter(book => book.featuredType === 'awardWinner');
 
@@ -29,16 +30,16 @@ function HomePage() {
   return (
     <div>
       <h1>Bienvenido a nuestra librería</h1>
-        {/* Contenedor para centrar el botón */}
         <div className="button-container">
             <ButtonCatalogue label="Ver catálogo" onClick={() => navigate('/catalogue')} />
             {userRole === 'Admin' && <ButtonCatalogue label="Administrar catálogo" onClick={() => navigate('/admin/catalogue')} />}
+            <ButtonReadings label="Ver mis listas de lectura" onClick={() => navigate('/reading-list')} />
         </div>
       
-      {/* Estadísticas */}
+      {/* Stats */}
       <StatsBox stats={stats} loading={statsLoading} />
       
-      {/* Catálogo de libros destacados */}
+      {/* Featured Books Catalogue */}
       <div className="catalogue">
         <FeaturedBooks 
           title="BestSellers" 

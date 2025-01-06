@@ -1,3 +1,4 @@
+/* Book information container */
 .book-details-container {
     width: 80%;
     margin: 20px auto;
@@ -7,23 +8,26 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Book title */
 .book-title {
     text-align: center;
     color: #2C3E50;
     margin-bottom: 20px;
 }
 
+/* Book details content */
 .book-details-content {
     display: flex;
-    flex-direction: row; /* Alinea imagen a la izquierda y la descripción a la derecha */
+    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
 }
 
+/* Book cover image */
 .book-cover-container {
-    flex-shrink: 0; /* Evita que la imagen se reduzca en tamaño */
-    width: 200px; /* Ancho de la imagen */
-    margin-right: 20px; /* Espacio entre la imagen y el contenido de la derecha */
+    flex-shrink: 0; 
+    width: 200px;
+    margin-right: 20px; 
 }
 
 .book-cover-large {
@@ -33,6 +37,7 @@
     object-fit: cover;
 }
 
+/* Book information */
 .book-info {
     flex-grow: 1;
     display: flex;
@@ -49,13 +54,16 @@
     color: #2C3E50;
 }
 
-.book-buttons {
-    margin-top: 20px;
+/* Buttons */
+.book-buttons-details {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     gap: 10px;
+    margin-top: 20px;
 }
 
-/* Estilo general de los botones */
+/* General button style */
 .btn {
     padding: 10px 20px;
     font-size: 1rem;
@@ -67,32 +75,34 @@
 }
 
 .btn svg {
-    margin-right: 0.5rem; /* Espacio entre el icono y el texto */
-    width: 1.2 rem;
+    margin-right: 0.5rem; 
+    width: 1.2rem;
     height: 1.2rem;
 }
-  
-.btn-primary {
+
+/* Read Button */
+.btn-read {
     background-color: #0056b3;
     color: white;
     border: none;
 }
 
-.btn-primary:hover {
-    background-color: #2C3E50;;
+.btn-read:hover {
+    background-color: #2C3E50;
 }
 
-.btn-secondary {
+/* Download Button */
+.btn-download {
     background-color: #31b164;
     color: white;
     border: none;
 }
 
-.btn-secondary:hover {
+.btn-download:hover {
     background-color: #218838;
 }
 
-/* Botón específico para "Volver al Catálogo" */
+/* Return Button */
 .btn-return {
     background-color: #f79862; 
     color: #F9F9F9; 
@@ -110,12 +120,7 @@
     transform: scale(0.95); 
 }
   
-/* Alineación para centrar el botón "Volver al Catálogo" */
-.btn-return-container {
-    margin-top: 30px;
-    text-align: center; /* Centrar el botón */
-}
-
+/* Tags */
 .tag {
     display: inline-block;
     padding: 0.2em 0.5em;
@@ -127,78 +132,37 @@
 }
 
 .best-seller {
-    background-color: #ff9800; /* Naranja para bestseller */
+    background-color: #ff9800; 
 }
 
 .award-winner {
-    background-color: #4caf50; /* Verde para premiado */
-}  
-
-.review-card {
-    border: 1px solid #ddd; /* Borde para separar cada reseña */
-    border-radius: 5px;
-    padding: 16px;
-    margin-bottom: 16px;
-    background-color: #f9f9f9; /* Fondo ligero */
-  }
-  
-.review-header {
-    display: flex;
-    justify-content: space-between; /* Espacio entre el nombre y el score */
-    align-items: center; /* Alineación vertical */
-    margin-bottom: 8px; /* Separación del resto del contenido */
-    }
-
-.review-user {
-    font-size: 1em;
-    color: #333;
+    background-color: #4caf50; 
 }
 
-.review-score {
-    text-align: right;
-    display: flex;
-    align-items: center; /* Asegura que las estrellas se alineen correctamente */
-}
-
-.review-body {
-margin-top: 8px;
-}
-
-.review-title {
-font-size: 1.1em;
-font-weight: bold;
-margin-bottom: 4px;
-}
-
-.review-comment {
-font-size: 0.95em;
-color: #555;
-margin: 0;
-}
-
-/* Respuestas responsivas (adaptación a pantallas pequeñas) */
+/* Responsive adjustments (adaptation to small screens) */
 @media (max-width: 768px) {
     .book-details-container {
-        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        flex-direction: column; 
         align-items: center;
     }
 
     .book-cover-large {
-        width: 200px; /* Ajusta el tamaño de la imagen */
+        width: 200px; 
     }
 
     .book-details {
         margin-left: 0;
-        text-align: center; /* Centra el texto en pantallas pequeñas */
+        text-align: center; 
     }
 
-    .book-buttons {
+    .book-buttons-details {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-end;
+        gap: 10px; 
     }
 
-    .btn-primary, .btn-secondary {
-        width: 100%; /* Los botones ocupan todo el ancho en pantallas pequeñas */
+    .btn-read, .btn-download, .btn-return {
+        width: 100%;
         margin-bottom: 10px;
     }
     .book-reviews {

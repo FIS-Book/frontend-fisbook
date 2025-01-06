@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header";
 import HomePage from "./feature/catalogue/HomePage.js";
 import Catalogue from "./feature/catalogue/Catalogue.js"
+import Reading from './feature/readings/Reading';
+import AddGenre from './feature/readings/AddGenre.js';
 import Users from './feature/users/Users.js';
 import Login from './feature/users/LogIn.js';
 import Register from './feature/users/Register.js';
@@ -17,6 +19,7 @@ import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
+import AdminBookForm from './feature/catalogue/AdminBookForm.js';
 
 function App() {
   const [user, setUser] = useState(null); 
@@ -36,6 +39,8 @@ function App() {
             <Route path="/catalogue" element={<Catalogue />} />
             <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
             <Route path="/admin/catalogue" element={<AdminCatalogue />} />
+            <Route path="/admin/catalogue/new" element={< AdminBookForm mode="create" />} />
+            <Route path="/admin/catalogue/edit/:isbn" element={<AdminBookForm mode="edit" />} />
             {/* Microservicio Usuarios */}
             <Route path="/register" element={<Register />} />
             <Route path="/users/:id" element={<Profile />} />
@@ -43,6 +48,9 @@ function App() {
             {/* Microservicio Descargas */}
             <Route path="/onlineReadings" element={<OnlineReadings />} />
             <Route path="/downloads" element={<Downloads />} />
+            {/* Microservicio Readings List */}
+            <Route path="/reading-list" element={<Reading />} />
+            <Route path="/readings-list/add-genre" element={<AddGenre />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />
