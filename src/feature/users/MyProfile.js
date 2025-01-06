@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
-import '../../assets/styles/Profile.css';
+import '../../assets/styles/MyProfile.css';
 
 function MyProfile() {
     const [userData, setUserData] = useState(null);
@@ -52,8 +52,12 @@ function MyProfile() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('tokenExpiration'); 
+        localStorage.removeItem('tokenExpiration');
         navigate('/');
+    };
+
+    const handleEditClick = () => {
+        navigate(`/admin/users/${userData._id}/update`);
     };
 
     if (loading) {
@@ -86,39 +90,50 @@ function MyProfile() {
                 )}
             </div>
             {userData && (
-                <div className="profile-details">
-                    <p><strong>Email:</strong> {userData.email || 'No especificado'}</p>
-                    <p><strong>Rol:</strong> {userData.rol || 'Sin rol asignado'}</p>
-                    <p><strong>Plan:</strong> {userData.plan || 'Sin plan seleccionado'}</p>
-                    <p>
-                        <strong>Lista de Lecturas:</strong> {userData.listaLecturasId && userData.listaLecturasId.length > 0 ? (
-                            <ul className="profile-list">
-                                {userData.listaLecturasId.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                            </ul>
-                        ) : 'No hay lecturas.'}
-                    </p>
-                    <p><strong>Número de Descargas:</strong> {userData.numDescargas || 0}</p>
-                    <p>
-                        <strong>Reseñas:</strong> {userData.resenasId && userData.resenasId.length > 0 ? (
-                            <ul className="profile-list">
-                                {userData.resenasId.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                            </ul>
-                        ) : 'No hay reseñas.'}
-                    </p>
-                    <button className="btn btn-danger" onClick={handleLogout}>
-                            Cerrar sesión
-                        </button>
-                </div>
+                <form className="profile-form">
+                    <div className="profile-field">
+                        <label htmlFor="nombre">Nombre:</label>
+                        <input type="text" id="nombre" value={userData.nombre} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="apellidos">Apellido:</label>
+                        <input type="text" id="apellidos" value={userData.apellidos} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="username">Nombre de usuario:</label>
+                        <input type="text" id="username" value={userData.username} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="email">Correo Electrónico:</label>
+                        <input type="email" id="email" value={userData.email} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="rol">Rol:</label>
+                        <input type="text" id="rol" value={userData.rol} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="plan">Plan:</label>
+                        <input type="text" id="plan" value={userData.plan} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="lecturas">Lista de Lecturas:</label>
+                        <textarea id="lecturas" value={userData.listaLecturasId.join(", ")} readOnly></textarea>
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="descargas">Número de Descargas:</label>
+                        <input type="number" id="descargas" value={userData.numDescargas} readOnly />
+                    </div>
+
+                    <button onClick={() => navigate(`/admin/users/${userData._id}/update`)}>Editar perfil</button>
+                    <button className="btn btn-danger" type="button" onClick={handleLogout}>Cerrar sesión</button>
+                </form>
             )}
         </div>
     );
 }
 
 export default MyProfile;
+
 
 
 

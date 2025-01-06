@@ -11,6 +11,7 @@ import Register from './feature/users/Register.js';
 import Profile from './feature/users/Profile.js';
 import MyProfile from './feature/users/MyProfile.js';
 import Admin from './feature/users/Admin.js';
+import UpdateUser from './feature/users/UpdateUser.js';
 import DownloadsInfo from './feature/downloadsAndOnline/DownloadsInfo.js';
 import Downloads from './feature/downloadsAndOnline/Downloads.js';
 import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js'
@@ -44,6 +45,7 @@ function App() {
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/users/:id/update" element={<UpdateUser />} />
             <Route path="/admin/downloads" element={<DownloadsInfo />} />
             <Route path="/admin/onlineReadings" element={<OnlineReadingInfo />} />
           </Routes>

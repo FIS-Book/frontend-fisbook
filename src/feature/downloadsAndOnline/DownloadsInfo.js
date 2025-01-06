@@ -22,7 +22,6 @@ function DownloadsInfo() {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
                 });
-                console.log(response.data); // Verifica los datos retornados por la API
                 setDownloads(response.data);
             } catch (err) {
                 setError('Error loading downloads');
@@ -61,12 +60,11 @@ function DownloadsInfo() {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/downloads/${downloadId}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
                 });
-                // Display the download details
-                setDownloads([response.data]); // Show only the found download
-                setError(''); // Reset error if search is successful
+                setDownloads([response.data]); // Muestra solo la descarga encontrada
+                setError(''); // Restablece el error si la búsqueda es exitosa
             } catch (err) {
                 console.error('Error searching for download:', err.response || err.message || err);
                 setError('Download not found');
@@ -99,7 +97,6 @@ function DownloadsInfo() {
                             <tr>
                                 <th>ID</th>
                                 <th>ISBN</th>
-                                <th>User ID</th>
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Language</th>
@@ -114,12 +111,11 @@ function DownloadsInfo() {
                                     onClick={() => handleSelectDownload(download)} 
                                     style={{ 
                                         cursor: 'pointer', 
-                                        backgroundColor: selectedDownload && selectedDownload._id === download._id ? 'lightblue' : 'transparent'
+                                        backgroundColor: selectedDownload && selectedDownload.id === download.id ? 'lightblue' : 'transparent'
                                     }}
                                 >
                                     <td>{download.id}</td>
                                     <td>{download.isbn}</td>
-                                    <td>{download.usuarioId}</td>
                                     <td>{download.titulo}</td>
                                     <td>{download.autor}</td>
                                     <td>{download.idioma}</td>
@@ -136,5 +132,6 @@ function DownloadsInfo() {
 }
 
 export default DownloadsInfo;
+
 
 
