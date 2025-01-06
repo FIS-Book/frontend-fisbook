@@ -69,7 +69,7 @@ const ReadingsAll = () => {
                 <h3>Género: {genre.genre}</h3>
                 <p>Título: {genre.title}</p>
                 <p>Descripción: {genre.description}</p>
-                <h3>Valoraciones:</h3>
+                <h3>Valoraciones de la lista:</h3>
                 <p><strong>Número de reseñas: {genre.numberReviews}</strong></p>
                 <p><strong>Puntuación: {genre.score}</strong></p>
                 <h3>Libros:</h3>
