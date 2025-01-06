@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../assets/styles/DownloadsInfo.css'; // Asegúrate de que esta hoja de estilo exista
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
+import { useNavigate } from 'react-router-dom';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function DownloadsInfo() {
     const [downloads, setDownloads] = useState([]);
@@ -32,6 +34,7 @@ function DownloadsInfo() {
 
         fetchDownloads();
     }, []);
+
 
     // Función para eliminar la descarga seleccionada
     const handleDelete = async () => {
@@ -77,14 +80,18 @@ function DownloadsInfo() {
         setSelectedDownload(download);
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="container">
             <h1>Downloads</h1>
             {error && <p className="error-message">{error}</p>}
+            <HomeButton onClick={() => navigate('/homePage')} />
 
             {/* Barra de botones */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Search</button>
+                <button onClick={() => navigate('/admin/downloads/create')}>Add</button>
                 <button onClick={handleDelete} disabled={!selectedDownload}>Delete</button>
             </div>
 

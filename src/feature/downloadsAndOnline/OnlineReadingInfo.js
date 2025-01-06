@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../assets/styles/DownloadsInfo.css'; // Asegúrate de que esta hoja de estilos exista
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
+import { useNavigate } from 'react-router-dom';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
-function OnlineReadings() {
+function OnlineReadingsInfo() {
     const [readings, setReadings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -96,14 +98,18 @@ function OnlineReadings() {
         setSelectedReading(reading);
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="container">
             <h1>Lecturas en línea</h1>
             {error && <p className="error-message">{error}</p>}
+            <HomeButton onClick={() => navigate('/homePage')} />
 
             {/* Barra de botones */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Buscar</button>
+                <button onClick={() => navigate('/admin/onlineReadings/create')}>Añadir</button>
                 <button onClick={handleUpdate}>Actualizar</button>
                 <button onClick={handleDelete} disabled={!selectedReading}>Eliminar</button>
             </div>
@@ -158,5 +164,5 @@ function OnlineReadings() {
     );
 }
 
-export default OnlineReadings;
+export default OnlineReadingsInfo;
 

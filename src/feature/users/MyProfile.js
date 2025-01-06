@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 import '../../assets/styles/MyProfile.css';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function MyProfile() {
     const [userData, setUserData] = useState(null);
@@ -78,6 +79,7 @@ function MyProfile() {
 
     return (
         <div className="profile-container">
+                <HomeButton onClick={() => navigate('/homePage')} />
             <div className="profile-header">
                 {userData ? (
                     <>
@@ -116,16 +118,39 @@ function MyProfile() {
                         <input type="text" id="plan" value={userData.plan} readOnly />
                     </div>
                     <div className="profile-field">
-                        <label htmlFor="lecturas">Lista de Lecturas:</label>
-                        <textarea id="lecturas" value={userData.listaLecturasId.join(", ")} readOnly></textarea>
+                        <label htmlFor="resenas">Listas de lectura:</label>
+                        <input
+                            type="text"
+                            id="resenas"
+                            value={userData.listaLecturasId && userData.listaLecturasId.length > 0 
+                                ? userData.listaLecturasId.join(", ")  // Si hay reseñas, las muestra separadas por comas
+                                : "No tienes reseñas disponibles." // Si no hay reseñas, muestra este mensaje
+                            }
+                            readOnly
+                        />
                     </div>
                     <div className="profile-field">
                         <label htmlFor="descargas">Número de Descargas:</label>
                         <input type="number" id="descargas" value={userData.numDescargas} readOnly />
                     </div>
+                    <div className="profile-field">
+                        <label htmlFor="resenas">Reseñas:</label>
+                        <input
+                            type="text"
+                            id="resenas"
+                            value={userData.resenasId && userData.resenasId.length > 0 
+                                ? userData.resenasId.join(", ")  // Si hay reseñas, las muestra separadas por comas
+                                : "No tienes reseñas disponibles." // Si no hay reseñas, muestra este mensaje
+                            }
+                            readOnly
+                        />
+                    </div>
 
-                    <button onClick={() => navigate(`/admin/users/${userData._id}/update`)}>Editar perfil</button>
-                    <button className="btn btn-danger" type="button" onClick={handleLogout}>Cerrar sesión</button>
+
+
+
+                    <button style={{backgroundColor: '#007bff'}} className="btn btn-danger" type="button" onClick={() => navigate('/users/me/update')}>Editar perfil</button>
+                    <button style={{ backgroundColor: '#ec5353', color: 'white'}} className="btn btn-danger" type="button" onClick={handleLogout}>Cerrar sesión</button>
                 </form>
             )}
         </div>
