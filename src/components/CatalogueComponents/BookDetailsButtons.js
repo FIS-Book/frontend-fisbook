@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddListButton from '../../components/ReadingComponents/AddListButton';
+import AddListButton from '../ReadingComponents/AddListButton';
 
 function BookDetailsButtons({ book }) {
   const navigate = useNavigate();
