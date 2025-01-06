@@ -1,7 +1,9 @@
 import React from 'react';
 
 function RatingDisplay({ rating }) {
-    const fullStars = rating;
+    const validRating = Math.max(0, Math.min(5, isNaN(rating) ? 0 : rating));
+
+    const fullStars = validRating;
     const emptyStars = 5 - fullStars;
 
     return (
