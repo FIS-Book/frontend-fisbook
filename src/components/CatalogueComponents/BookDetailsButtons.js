@@ -1,7 +1,7 @@
 // Component that renders the Read, Download, and Return to Catalogue buttons in the book details view
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddListButton from '../../components/CatalogueComponents/AddListButton';
+import AddListButton from '../ReadingComponents/AddListButton';
 
 function BookDetailsButtons({ book }) {
   const navigate = useNavigate();

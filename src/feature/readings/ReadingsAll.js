@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/styles/Reading.css";
 import { getToken } from "../../hooks/useAuth";
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 const ReadingsAll = () => {
   const [readings, setReadings] = useState([]); // Estado para almacenar las listas de lectura
@@ -16,7 +17,7 @@ const ReadingsAll = () => {
     const fetchAllReadings = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/v1/readings/all`, // URL del endpoint
+          `${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings/all`, // URL del endpoint
           {
             headers: {
               Authorization: `Bearer ${token}`, // Token para autenticación
@@ -45,11 +46,17 @@ const ReadingsAll = () => {
     navigate(`/catalogue/book-details/${isbn}`);
   };
 
+  // Manejo del evento para volver al HomePage
+  const handleGoToHome = () => {
+    navigate('/homePage'); // Ruta del HomePage
+  };
+
   if (loading) return <p>Cargando...</p>; // Mostrar mensaje mientras se cargan los datos
   if (error) return <p>{error}</p>; // Mostrar mensaje de error si ocurre un problema
 
   return (
     <div>
+      <HomeButton onClick={handleGoToHome} />
       <h1>Listas de Lectura de Todos los Usuarios</h1>
       {readings.length === 0 ? (
         <p>No hay listas de lectura disponibles.</p>
