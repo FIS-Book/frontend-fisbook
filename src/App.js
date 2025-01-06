@@ -18,6 +18,7 @@ import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
+import ReadingsAll from './feature/readings/ReadingsAll.js';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             {/* Microservicio Readings List */}
             <Route path="/reading-list" element={<Reading />} />
             <Route path="/readings-list/add-genre" element={<AddGenre />} />
+            <Route path="/all" element={<ReadingsAll />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />

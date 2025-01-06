@@ -43,6 +43,9 @@ function HomePage() {
             <ButtonCatalogue label="Ver catálogo" onClick={() => navigate('/catalogue')} />
             {userRole === 'Admin' && <ButtonCatalogue label="Administrar catálogo" onClick={() => navigate('/admin/catalogue')} />}
             <ButtonReadings label="Ver mis listas de lectura" onClick={() => navigate('/reading-list')} />
+            <ButtonReadings label="Ver tolas las listas de lecturas" onClick={() => navigate('/all')} />
+            
+
         </div>
       
       {/* Estadísticas */}
