@@ -181,6 +181,52 @@ margin: 0;
       font-size: 0.9rem; 
       color: #777; 
     }
+    .review-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .review-actions button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .review-actions button:hover {
+      background-color: #0056b3;
+    }
+    .review-edit-form {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    .review-edit-form .form-group {
+      margin-bottom: 10px;
+    }
+    
+    .review-edit-form .edit-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .review-edit-form .edit-buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .review-edit-form .edit-buttons button:hover {
+      background-color: #0056b3;
+    }
+    
   /* Ajuste para dispositivos pequeños */
   @media (max-width: 768px) {
     .review-form {

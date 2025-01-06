@@ -9,34 +9,76 @@ export function useBookReviews(isbn) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        setLoading(true);
-        const url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/reviews/books/bk/${isbn}`;
-        const response = await requestWithAuth(url);
-        if (response.status === 404) {
-          setReviews([]);
-        }else if (!response) {
-          throw new Error('Error al cargar las reseñas');
-        } else {
-          const data = await response;
-          console.log("Reviews by ISBN: ", data);
-          setReviews(data);
-        }
-      } catch (err) {
-        if (err.message !== 'Error al cargar las reseñas') {
-          setError(err.message);
-        }
-      } finally {
-        setLoading(false);
+  const fetchReviews = async () => {
+    try {
+      setLoading(true);
+      const url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/reviews/books/bk/${isbn}`;
+      const response = await requestWithAuth(url);
+      if (response.status === 404) {
+        setReviews([]);
+      }else if (!response) {
+        throw new Error('Error al cargar las reseñas');
+      } else {
+        const data = await response;
+        console.log("Reviews by ISBN: ", data);
+        setReviews(data);
       }
-    };
+    } catch (err) {
+      if (err.message !== 'Error al cargar las reseñas') {
+        setError(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchReviews();
   }, [isbn]);
 
-  return { reviews, setReviews, loading, error };
+  return { reviews, setReviews, loading, error, refetch: fetchReviews};
+}
+export async function editReview(reviewId, updatedData) {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/reviews/books/${reviewId}`;
+    const body = JSON.stringify(updatedData);
+
+    const response = await requestWithAuth(url, {
+      method: 'PUT',
+      data: body,
+    });
+
+    if (!response.ok) {
+      const errorData = await response;
+      throw new Error(errorData.message || 'Error al actualizar la reseña');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating review:', error);
+    throw error;
+  }
+}
+
+export async function deleteReview(reviewId) {
+  try {
+    const url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/reviews/books/${reviewId}`;
+    const response = await requestWithAuth(url, {
+      method: 'DELETE',
+    });
+
+    console.log("Delete review response: ", response);  
+    if (!response.ok && response.message !== "Book Review deleted successfully.") {
+      const errorData = await response;
+      throw new Error(errorData.message || 'Error al eliminar la reseña');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting review:', error);
+    throw error;
+  }
 }
 
 export function ReviewForm({ isbn, onReviewAdded }) {
@@ -143,22 +185,71 @@ export function ReviewForm({ isbn, onReviewAdded }) {
   </form>
   );
 }
-export function ReviewsList({ reviews }) {
+export function ReviewsList({ reviews, editReview, deleteReview }) {
   ReviewsList.propTypes = {
     reviews: PropTypes.array.isRequired,
+    editReview: PropTypes.func.isRequired,
+    deleteReview: PropTypes.func.isRequired,
   };
+
+  const currentUser = getUserInfo();
+  const [editingReviewId, setEditingReviewId] = useState(null);
+  const [editData, setEditData] = useState({
+    title: '',
+    comment: '',
+    score: 0,
+  });
+
+  const handleEdit = (review) => {
+    setEditingReviewId(review._id);
+    setEditData({
+      title: review.title,
+      comment: review.comment,
+      score: review.score,
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingReviewId(null);
+    setEditData({ title: '', comment: '', score: 0 });
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      await editReview(editingReviewId, editData);
+      setEditingReviewId(null);
+    } catch (err) {
+      console.error('Error saving edited review:', err);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditData((prev) => ({
+      ...prev,
+      [name]: name === 'score' ? parseInt(value) : value,
+    }));
+  };
+
+  const handleDelete = (reviewId) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar esta reseña?')) {
+      deleteReview(reviewId);
+    }
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('es-ES', { 
-      weekday: 'long', // Día de la semana (opcional)
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: '2-digit', 
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false, // Para formato de 24 horas
+      hour12: false,
     });
   };
+
   return (
     <div className='reviews-list-container'>
       <h3>Reseñas</h3>
@@ -168,22 +259,83 @@ export function ReviewsList({ reviews }) {
         <div className='reviews-list'>
           {reviews.map((review, index) => (
             <div key={index} className="review-card">
-            <div className="review-header">
-            <div className='review-user'>
-                <strong>{review.user ? `${review.user.nombre} ${review.user.apellidos}` : 'Nombre Apellido'}</strong>, {review.user ? review.user.username : 'Username'}
-              </div>
-              <div className='review-score'>
-                  <RatingDisplay rating={review.score} />
+              {editingReviewId === review._id ? (
+                <div className="review-edit-form">
+                  <div className="form-group">
+                    <label htmlFor="edit-title">Título</label>
+                    <input
+                      id="edit-title"
+                      name="title"
+                      type="text"
+                      value={editData.title}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="edit-comment">Comentario</label>
+                    <textarea
+                      id="edit-comment"
+                      name="comment"
+                      value={editData.comment}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="edit-score">Calificación</label>
+                    <select
+                      id="edit-score"
+                      name="score"
+                      value={editData.score}
+                      onChange={handleChange}
+                      required
+                    >
+                      {[0, 1, 2, 3, 4, 5].map((score) => (
+                        <option key={score} value={score}>
+                          {score}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="edit-buttons">
+                    <button onClick={handleSaveEdit}>Guardar</button>
+                    <button onClick={handleCancelEdit}>Cancelar</button>
+                  </div>
                 </div>
+              ) : (
+                <>
+                  <div className="review-header">
+                    <div className="review-user">
+                      <strong>
+                        {review.user
+                          ? `${review.user.nombre} ${review.user.apellidos}`
+                          : 'Nombre Apellido'}
+                      </strong>
+                      , {review.user ? review.user.username : 'Username'}
+                    </div>
+                    <div className="review-score">
+                      <RatingDisplay rating={review.score} />
+                    </div>
+                  </div>
+                  <div className="review-date">
+                    <p>{formatDate(review.lastUpdate)}</p>
+                  </div>
+                  <div className="review-body">
+                    <p>
+                      <strong>{review.title}</strong>
+                    </p>
+                    <p>{review.comment}</p>
+                  </div>
+                  {currentUser._id === review.user_id && (
+                    <div className="review-actions">
+                      <button onClick={() => handleEdit(review)}>Editar</button>
+                      <button onClick={() => handleDelete(review._id)}>Eliminar</button>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
-            <div className='review-date'>
-                  <p >{formatDate(review.lastUpdate)}</p>
-            </div>
-            <div className="review-body">
-              <p><strong>{review.title}</strong></p>
-              <p>{review.comment}</p>
-            </div>
-          </div>
           ))}
         </div>
       )}
