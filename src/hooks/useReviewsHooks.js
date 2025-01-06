@@ -327,7 +327,7 @@ export function ReviewsList({ reviews, editReview, deleteReview }) {
                     </p>
                     <p>{review.comment}</p>
                   </div>
-                  {currentUser._id === review.user_id && (
+                  {(currentUser._id === review.user_id || currentUser.rol =="Admin" ) && (
                     <div className="review-actions">
                       <button onClick={() => handleEdit(review)}>Editar</button>
                       <button onClick={() => handleDelete(review._id)}>Eliminar</button>
