@@ -1,11 +1,13 @@
+/* This util function decodes a JWT token and returns the payload. */
+
 import { jwtDecode } from 'jwt-decode';
 
 const decodeToken = (token) => {
   try {
-    return jwtDecode(token); // Devuelve el payload decodificado del token
+    return jwtDecode(token); 
   } catch (error) {
     console.error('Error al decodificar el token:', error);
-    return null; // Si el token es inválido, devolvemos null
+    return null; 
   }
 };
 

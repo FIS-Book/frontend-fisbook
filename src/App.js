@@ -20,6 +20,7 @@ import OnlineReadingInfo from './feature/downloadsAndOnline/OnlineReadingInfo.js
 import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
+import AdminBookForm from './feature/catalogue/AdminBookForm.js';
 
 function App() {
   const [user, setUser] = useState(null); 
@@ -39,6 +40,8 @@ function App() {
             <Route path="/catalogue" element={<Catalogue />} />
             <Route path="/catalogue/book-details/:isbn" element={<BookDetails />} />
             <Route path="/admin/catalogue" element={<AdminCatalogue />} />
+            <Route path="/admin/catalogue/new" element={< AdminBookForm mode="create" />} />
+            <Route path="/admin/catalogue/edit/:isbn" element={<AdminBookForm mode="edit" />} />
             {/* Microservicio Usuarios */}
             <Route path="/register" element={<Register />} />
             <Route path="/users/:id" element={<Profile />} />
