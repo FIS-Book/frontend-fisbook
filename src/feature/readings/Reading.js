@@ -191,7 +191,7 @@ const Reading = () => {
   if (!readings || !readings.genres || readings.genres.length === 0 || error) {
     return(
       <div>
-        <HomeButton onClick={handleGoToHome} />
+        {/*<HomeButton onClick={handleGoToHome} />*/}
         <ButtonAllLists/>
         <div
           className="button-container"

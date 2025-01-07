@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../assets/styles/CatalogueStyles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import SearchBar from '../../components/CatalogueComponents/SearchBar';
 import BookList from '../../components/CatalogueComponents/BookList';
 
@@ -31,6 +32,7 @@ function Catalogue() {
   return (
     <div className="catalogue-container">
       <h2>Catálogo de Libros</h2>
+      <HomeButton onClick={handleGoToHome} />
       <SearchBar
         searchTerm={searchTerm}
         onSearchChange={(e) => setSearchTerm(e.target.value)}
