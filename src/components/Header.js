@@ -22,6 +22,8 @@ function Header() {
                 console.error("Error decodificando el token", error);
                 localStorage.removeItem('token'); // Si hay un error al decodificar el token, lo eliminamos
             }
+        }else{
+            setUser(null);
         }
     }, [location]);
 
