@@ -19,8 +19,8 @@ const BookInfo = ({ book, languageMap }) => {
         <p><strong>Categorías:</strong> {book.categories.join(', ')}</p>
       )}
       <p><strong>Número de descargas:</strong> {book.downloadCount}</p>
-      <p><strong>Puntuación:</strong> {book.totalRating}</p>
-      <p><strong>Número de reseñas:</strong> {book.totalReviews}</p>
+      <p id="rev-score"><strong>Puntuación:</strong> {book.totalRating}</p>
+      <p id="num-rev"><strong>Número de reseñas:</strong> {book.totalReviews}</p>
       <p><strong>Listas de lectura:</strong> {book.inReadingLists}</p>
       {book.featuredType && book.featuredType !== 'none' && (
         <p><strong>Clasificación:</strong>{' '}

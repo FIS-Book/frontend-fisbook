@@ -53,8 +53,8 @@ function ReadingDetails() {
                 <p>Título: {genre.title}</p>
                 <p>Descripción: {genre.description}</p>
                 <h3>Valoraciones de la lista:</h3>
-                <p><strong>Número de reseñas: {genre.numberReviews}</strong></p>
-                <p><strong>Puntuación: {genre.score}</strong></p></div>)}
+                <p id="num-rev"><strong>Número de reseñas: {genre.numberReviews}</strong></p>
+                <p id="rev-score"><strong>Puntuación: {genre.score}</strong></p></div>)}
 
                 <div className="review-form-container">
                     {userHasReview ? (

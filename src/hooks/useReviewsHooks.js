@@ -299,8 +299,8 @@ export function ReviewsList({ reviews, editReview, deleteReview }) {
                     </select>
                   </div>
                   <div className="edit-buttons">
-                    <button onClick={handleSaveEdit}>Guardar</button>
-                    <button onClick={handleCancelEdit}>Cancelar</button>
+                    <button id={`save-button-${review.user_id}`} onClick={handleSaveEdit}>Guardar</button>
+                    <button id={`cancel-button-${review.user_id}`} onClick={handleCancelEdit}>Cancelar</button>
                   </div>
                 </div>
               ) : (
@@ -329,8 +329,8 @@ export function ReviewsList({ reviews, editReview, deleteReview }) {
                   </div>
                   {(currentUser._id === review.user_id || currentUser.rol === "Admin" ) && (
                     <div className="review-actions">
-                      <button onClick={() => handleEdit(review)}>Editar</button>
-                      <button onClick={() => handleDelete(review._id)}>Eliminar</button>
+                      <button id={`edit-button-${review.user_id}`} onClick={() => handleEdit(review)}>Editar</button>
+                      <button id={`delete-button-${review.user_id}`} onClick={() => handleDelete(review._id)}>Eliminar</button>
                     </div>
                   )}
                 </>
@@ -551,8 +551,8 @@ export function ReadingReviewsList({ reviews, editReview, deleteReview }) {
                     </select>
                   </div>
                   <div className="edit-buttons">
-                    <button onClick={handleSaveEdit}>Guardar</button>
-                    <button onClick={handleCancelEdit}>Cancelar</button>
+                    <button id={`save-button-${review.user_id}`} onClick={handleSaveEdit}>Guardar</button>
+                    <button id={`cancel-button-${review.user_id}`} onClick={handleCancelEdit}>Cancelar</button>
                   </div>
                 </div>
               ) : (
@@ -578,8 +578,8 @@ export function ReadingReviewsList({ reviews, editReview, deleteReview }) {
                   </div>
                   {(currentUser._id === review.user_id || currentUser.rol === "Admin" ) && (
                     <div className="review-actions">
-                      <button onClick={() => handleEdit(review)}>Editar</button>
-                      <button onClick={() => handleDelete(review._id)}>Eliminar</button>
+                      <button  id={`edit-button-${review.user_id}`} onClick={() => handleEdit(review)}>Editar</button>
+                      <button  id={`delete-button-${review.user_id}`}  onClick={() => handleDelete(review._id)}>Eliminar</button>
                     </div>
                   )}
                 </>

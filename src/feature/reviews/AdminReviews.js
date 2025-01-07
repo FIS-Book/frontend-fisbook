@@ -41,9 +41,9 @@ function AdminReviews() {
       <h1>Reseñas</h1>
         <button style={{ marginBottom: '16px' }} onClick={() => refetch()}>Recargar Reseñas</button>
         <div className="filter-buttons">
-            <button onClick={() => handleFilterChange("all")}>Todas</button>
-            <button onClick={() => handleFilterChange("books")}>Libros</button>
-            <button onClick={() => handleFilterChange("readingLists")}>Listas de Lectura</button>
+            <button id="all-reviews" onClick={() => handleFilterChange("all")}>Todas</button>
+            <button id="book-reviews" onClick={() => handleFilterChange("books")}>Libros</button>
+            <button id="reading-reviews" onClick={() => handleFilterChange("readingLists")}>Listas de Lectura</button>
         </div>
         <></>
       <table>
@@ -62,7 +62,7 @@ function AdminReviews() {
         </thead>
         <tbody>
           {reviews.map((review) => (
-            <tr key={review.id}>
+            <tr key={review.id} id={review._id}>
               <td><button onClick={() => handleUserClick(review.user_id)}
                     style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
                   >
