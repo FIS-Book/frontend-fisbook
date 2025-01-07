@@ -36,7 +36,6 @@ function HomePage() {
             {userRole === 'Admin' && <ButtonCatalogue label="Administrar catálogo" onClick={() => navigate('/admin/catalogue')} />}
             {userRole === 'Admin' && <ButtonAdmin label="Administración" />}
             <ButtonReadings label="Ver mis listas de lectura" onClick={() => navigate('/reading-list')} />
-            <ButtonReadings label="Ver todas las listas de lecturas" onClick={() => navigate('/all')} />
         </div>
       
       {/* Stats */}

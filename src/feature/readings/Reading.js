@@ -5,6 +5,7 @@ import { getUserId, getUserMail, getToken } from '../../hooks/useAuth';
 
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import AgregarButton from "../../components/ReadingComponents/ButtonAgregar";
+import ButtonAllLists from "../../components/ReadingComponents/ButtonAllLists";
 
 const Reading = () => {
   const [readings, setReadings] = useState(null); // Estado para almacenar los datos de la respuesta
@@ -214,6 +215,7 @@ const Reading = () => {
     <div>
       {/* Nueva funcionalidad: Nuevo Género */}
       <HomeButton onClick={handleGoToHome} />
+      <ButtonAllLists/>
       <div className="new-genre-header">
         <h3>Nueva lista de lectura</h3>
         <AgregarButton userId={userId}/>

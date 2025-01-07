@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/styles/Reading.css";
 import { getToken } from "../../hooks/useAuth";
 import HomeButton from '../../components/CatalogueComponents/HomeButton';
+import ButtonMyLists from "../../components/ReadingComponents/ButtonMyLists";
 
 const ReadingsAll = () => {
   const [readings, setReadings] = useState([]); // Estado para almacenar las listas de lectura
@@ -61,6 +62,7 @@ const ReadingsAll = () => {
   return (
     <div className="readings-all-container">
       <HomeButton onClick={handleGoToHome} />
+      <ButtonMyLists/>
       <h1>Listas de lecturas de los usuarios</h1>
       {readings.length === 0 ? (
         <p>No hay listas de lectura disponibles.</p>
