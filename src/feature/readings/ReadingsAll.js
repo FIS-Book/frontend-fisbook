@@ -59,7 +59,7 @@ const ReadingsAll = () => {
   if (error) return <p>{error}</p>; // Mostrar mensaje de error si ocurre un problema
 
   return (
-    <div>
+    <div className="readings-all-container">
       <HomeButton onClick={handleGoToHome} />
       <h1>Listas de lecturas de los usuarios</h1>
       {readings.length === 0 ? (
