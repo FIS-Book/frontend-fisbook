@@ -60,7 +60,7 @@ function OnlineReadings() {
 
       // Hacer la petición para registrar la lectura online
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL || ''}/api/v1/online-readings`, // Cambia la URL por la ruta de tu API
+        `${process.env.REACT_APP_BASE_URL || ''}/api/v1/read-and-download/online-readings`,
         readingData,
         {
           headers: {
@@ -128,7 +128,6 @@ function OnlineReadings() {
             </div>
           )}
         </div>
-        {/* Las demás páginas, que muestran texto */}
         {page > 1 && (
           <div className={`pdf-page page-${page}`}>
             <div className="pdf-text">

@@ -3,7 +3,6 @@ import '../../assets/styles/CatalogueStyles/Catalogue.css';
 import { useNavigate } from 'react-router-dom';
 import { useFetchBooks, useFilteredBooks } from '../../hooks/useCatalogueHooks';
 import { requestWithAuth } from '../../hooks/useAuth';
-import HomeButton from '../../components/CatalogueComponents/HomeButton';
 import SearchBar from '../../components/CatalogueComponents/SearchBar';
 import AdminBookList from '../../components/CatalogueComponents/AdminBookList';
 import AddBookButton from '../../components/CatalogueComponents/AddBookButton';
@@ -55,7 +54,6 @@ function AdminCatalogue() {
   return (
     <div className="catalogue-container">
       <h2>Administrar Catálogo de Libros</h2>
-      <HomeButton onClick={() => navigate('/homePage')} />
       <SearchBar
         searchTerm={searchTerm}
         onSearchChange={(e) => setSearchTerm(e.target.value)}

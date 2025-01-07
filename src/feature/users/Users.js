@@ -3,7 +3,6 @@ import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration'; /
 import axios from 'axios';
 import '../../assets/styles/Users.css';
 import { useNavigate } from 'react-router-dom';
-import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
@@ -99,7 +98,6 @@ function Usuarios() {
         <div>
             <h1>Usuarios de Fisbook</h1>
             {error && <p className="error-message">{error}</p>}
-            <HomeButton onClick={() => navigate('/homePage')} />
             
             {/* Botones generales */}
             <div className="buttons-container">

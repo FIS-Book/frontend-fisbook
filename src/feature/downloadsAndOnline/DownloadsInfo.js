@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../../assets/styles/DownloadsInfo.css'; // Asegúrate de que esta hoja de estilo exista
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
 import { useNavigate } from 'react-router-dom';
-import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function DownloadsInfo() {
     const [downloads, setDownloads] = useState([]);
@@ -94,7 +93,6 @@ function DownloadsInfo() {
         <div className="container">
             <h1>Descargas</h1>
             {error && <p className="error-message">{error}</p>}
-            <HomeButton onClick={() => navigate('/homePage')} />
 
             {/* Barra de botones */}
             <div className="buttons-container">
