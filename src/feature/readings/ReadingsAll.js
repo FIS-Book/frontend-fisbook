@@ -12,6 +12,10 @@ const ReadingsAll = () => {
   const navigate = useNavigate();
   const token = getToken();
 
+  const handleGenreClick = (genreId) => {
+    navigate(`/reading-list/${genreId}/reviews/`); // Redirige a la página de reseñas
+  };
+
   useEffect(() => {
     // Función para recuperar todas las listas de lectura desde el backend
     const fetchAllReadings = async () => {
@@ -65,7 +69,7 @@ const ReadingsAll = () => {
           <div key={index} className="reading-block">
             {/* <h2>Usuario: {reading.userId}</h2> */}
             {reading.genres.map((genre, genreIndex) => (
-              <div key={genreIndex} className="genre-block">
+              <div key={genreIndex}  className="genre-block" onClick={() => handleGenreClick(genre.genreId)} style={{ cursor: "pointer", border: "1px solid #ccc", padding: "10px", margin: "10px 0" }}>
                 <h3>Género: {genre.genre}</h3>
                 <p>Título: {genre.title}</p>
                 <p>Descripción: {genre.description}</p>

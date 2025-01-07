@@ -20,6 +20,7 @@ import OnlineReadings from './feature/downloadsAndOnline/OnlineReadings.js';
 import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
 import ReadingsAll from './feature/readings/ReadingsAll.js';
+import ReviewReadings from './feature/reviews/ReviewReadings.js';
 import AdminBookForm from './feature/catalogue/AdminBookForm.js';
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
             <Route path="/reading-list" element={<Reading />} />
             <Route path="/readings-list/add-genre" element={<AddGenre />} />
             <Route path="/all" element={<ReadingsAll />} />
+            {/* Microservicio Reviews */}
+            <Route path="/reading-list/:id/reviews" element={<ReviewReadings />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />
