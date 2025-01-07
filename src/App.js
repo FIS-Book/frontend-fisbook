@@ -49,7 +49,7 @@ function App() {
             {/* Microservicio Readings List */}
             <Route path="/reading-list" element={<Reading />} />
             <Route path="/readings-list/add-genre" element={<AddGenre />} />
-            <Route path="/all" element={<ReadingsAll />} />
+            <Route path="/readings-list/all" element={<ReadingsAll />} />
             {/* Página de administradores */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/users" element={<Users />} />
