@@ -159,19 +159,6 @@ function Register() {
                         <option value="Plan3">Plan3</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="rol">Rol</label>
-                    <select
-                        id="rol"
-                        className="form-control"
-                        value={rol}
-                        onChange={(e) => setRol(e.target.value)} // Mantiene el valor exacto
-                        disabled={loading}
-                    >
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
                 {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="btn btn-primary" disabled={loading}>
                     {loading ? 'Registrando...' : 'Registrar Usuario'}

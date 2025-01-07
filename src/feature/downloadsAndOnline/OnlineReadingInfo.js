@@ -23,8 +23,16 @@ function OnlineReadingsInfo() {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            if (Array.isArray(response.data)) {
-                return response.data;
+            
+            // Verificar qué datos estás recibiendo
+            console.log(response.data);
+            
+            // Acceder a la propiedad onlineReadings y verificar el _id
+            if (Array.isArray(response.data.onlineReadings)) {
+                response.data.onlineReadings.forEach(item => {
+                    console.log(item._id);  // Verifica que se pueda acceder a _id
+                });
+                return response.data.onlineReadings;
             } else {
                 setError('Formato de datos inválido recibido');
                 return [];
@@ -47,13 +55,6 @@ function OnlineReadingsInfo() {
         loadData();
     }, []);
 
-    // Función para actualizar las lecturas
-    const handleUpdate = async () => {
-        const url = `${process.env.REACT_APP_BASE_URL || ""}/api/v1/readings`;
-        const data = await fetchData(url);
-        setReadings(data);
-    };
-
     // Función para eliminar la descarga seleccionada
     const handleDelete = async () => {
         if (!selectedReading) {
@@ -62,12 +63,12 @@ function OnlineReadingsInfo() {
         }
 
         try {
-            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/onlineReadings/${selectedReading.id}`, {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/onlineReadings/${selectedReading._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                 },
             });
-            setReadings(readings.filter((reading) => reading.id !== selectedReading.id)); // Elimina la descarga de la lista
+            setReadings(readings.filter((reading) => reading._id !== selectedReading._id)); // Elimina la descarga de la lista
             setSelectedReading(null); // Deselecciona la descarga después de eliminarla
         } catch (err) {
             setError('Error deleting the download');
@@ -109,8 +110,7 @@ function OnlineReadingsInfo() {
             {/* Barra de botones */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Buscar</button>
-                <button onClick={() => navigate('/admin/onlineReadings/create')}>Añadir</button>
-                <button onClick={handleUpdate}>Actualizar</button>
+                <button onClick={() => navigate('/admin/onlineReadings/create')}>Crear</button>
                 <button onClick={handleDelete} disabled={!selectedReading}>Eliminar</button>
             </div>
 
@@ -135,14 +135,14 @@ function OnlineReadingsInfo() {
                             {Array.isArray(readings) ? (
                                 readings.map((reading) => (
                                     <tr 
-                                    key={reading.id}
+                                    key={reading._id}
                                     onClick={() => handleSelectReading(reading)} 
                                     style={{ 
                                         cursor: 'pointer', 
-                                        backgroundColor: selectedReading && selectedReading.id === reading.id ? 'lightblue' : 'transparent'
+                                        backgroundColor: selectedReading && selectedReading._id === reading._id ? 'lightblue' : 'transparent'
                                     }}
                                     >
-                                        <td>{reading.id}</td>
+                                        <td>{reading._id}</td>
                                         <td>{reading.isbn}</td>
                                         <td>{reading.titulo}</td>
                                         <td>{reading.autor}</td>
