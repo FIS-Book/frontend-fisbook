@@ -59,7 +59,7 @@ function ReadingDetails() {
                 <div className="review-form-container">
                     {userHasReview ? (
                         <p className="centered-text" style={{ textAlign: 'center', marginTop: '20px' }}>
-                        Ya has enviado una reseña para este libro.
+                        Ya has enviado una reseña para esta lista de lectura.
                         </p>) : (
                         <>
                         <h3>Deja tu reseña</h3>
