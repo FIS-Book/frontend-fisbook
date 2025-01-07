@@ -1,3 +1,7 @@
+.readings-all-container{
+  max-width: none !important;
+  align-self: center;
+}
 .genre-block {
     margin-bottom: 20px;
     padding: 15px;
