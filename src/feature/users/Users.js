@@ -3,145 +3,147 @@ import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration'; /
 import axios from 'axios';
 import '../../assets/styles/Users.css';
 import { useNavigate } from 'react-router-dom';
-import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
-function Users() {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+function Usuarios() {
+    const [usuarios, setUsuarios] = useState([]);
+    const [cargando, setCargando] = useState(true);
     const [error, setError] = useState('');
-    const [selectedUser, setSelectedUser] = useState(null); // Store the selected user
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null); // Almacena el usuario seleccionado
     const navigate = useNavigate(); // Usar useNavigate fuera del handleUpdate
 
     // Verificar si el token ha expirado al cargar la página
     useCheckTokenExpiration();
 
-    // Fetches the list of users when the page loads
+    // Carga la lista de usuarios cuando la página se carga
     useEffect(() => {
-        const fetchUsers = async () => {
+        const obtenerUsuarios = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users`, {
+                const respuesta = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token almacenado
                     },
                 });
-                setUsers(response.data);
+                console.log("Usuarios cargados:", respuesta.data); // Verifica los datos de los usuarios
+                setUsuarios(respuesta.data);
             } catch (err) {
-                setError('Error loading users');
+                setError('Error al cargar los usuarios');
             } finally {
-                setLoading(false);
+                setCargando(false);
             }
         };
 
-        fetchUsers();
+        obtenerUsuarios();
     }, []);
 
-    // Function to delete the selected user
-    const handleDelete = async () => {
-        if (!selectedUser || !selectedUser.id) { // Cambiado _id por id
-            alert('No user selected or invalid ID');
+    // Función para eliminar el usuario seleccionado
+    const handleEliminar = async () => {
+        if (!usuarioSeleccionado || !usuarioSeleccionado.id) {
+            alert('No se ha seleccionado ningún usuario o ID inválido');
             return;
         }
     
         try {
-            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${usuarioSeleccionado.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            setUsers(users.filter((user) => user.id !== selectedUser.id)); // Cambiado _id por id
-            setSelectedUser(null); // Deselecciona al usuario después de eliminarlo
+            setUsuarios(usuarios.filter((usuario) => usuario.id !== usuarioSeleccionado.id));
+            setUsuarioSeleccionado(null); // Deselecciona al usuario después de eliminarlo
         } catch (err) {
-            console.error('Error deleting user:', err.response || err.message || err);
-            setError('Error deleting user');
+            console.error('Error al eliminar el usuario:', err.response || err.message || err);
+            setError('Error al eliminar el usuario');
         }
     };
 
-    // Function to update the selected user
-    const handleUpdate = () => {
-        if (!selectedUser) {
-            alert('No user selected');
+    // Función para actualizar el usuario seleccionado
+    const handleActualizar = () => {
+        if (!usuarioSeleccionado) {
+            alert('No se ha seleccionado ningún usuario');
             return;
         }
 
         // Redirigir al formulario de actualización del usuario
-        navigate(`/admin/users/${selectedUser.id}/update`);
+        navigate(`/admin/users/${usuarioSeleccionado.id}/update`);
     };
 
-    // Function to select a user
-    const handleSelectUser = (user) => {
-        if (selectedUser && selectedUser.id === user.id) {
-            // If the same user is clicked, deselect it
-            setSelectedUser(null);
+    const handleSeleccionarUsuario = (usuario) => {
+        console.log("Usuario seleccionado:", usuario); // Verifica qué usuario estás seleccionando
+        if (usuarioSeleccionado && usuarioSeleccionado.id === usuario.id) {
+            setUsuarioSeleccionado(null); // Deselecciona si el usuario ya está seleccionado
         } else {
-            // If a different user is clicked, select it
-            setSelectedUser(user);
+            setUsuarioSeleccionado(usuario); // Selecciona el usuario
         }
     };
 
-    // Searches for a user by ID
-    const handleSearch = async () => {
-        const userId = prompt('Enter the user ID to search for:');
+    const handleSearchUser = async () => {
+        const userId = prompt('Ingresa el ID del usuario que deseas buscar:');
         if (userId) {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${userId}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
                 });
-                alert(JSON.stringify(response.data, null, 2)); // Shows user details
+                setUsuarios([response.data]); // Muestra solo el usuario encontrado
+                setError(''); // Restablece el error si la búsqueda es exitosa
             } catch (err) {
-                console.error('Error searching for user:', err.response || err.message || err);
-                setError('Error searching for user');
+                console.error('Error al buscar el usuario:', err.response || err.message || err);
+                setError('Usuario no encontrado');
             }
         }
     };
 
     return (
         <div>
-            <h1>Fisbook Users</h1>
+            <h1>Usuarios de Fisbook</h1>
             {error && <p className="error-message">{error}</p>}
-            <HomeButton onClick={() => navigate('/homePage')} />
             
-            {/* General Buttons */}
+            {/* Botones generales */}
             <div className="buttons-container">
-                <button onClick={handleSearch}>Search</button>
-                <button onClick={() => navigate('/admin/users/create')}>Create</button>
-                <button onClick={handleUpdate} disabled={!selectedUser}>Update</button>
-                <button onClick={handleDelete} disabled={!selectedUser}>Delete</button>
+                <button onClick={handleSearchUser}>Buscar</button>
+                <button onClick={() => navigate('/admin/users/create')}>Crear</button>
+                <button onClick={handleActualizar} disabled={!usuarioSeleccionado}>Actualizar</button>
+                <button onClick={handleEliminar} disabled={!usuarioSeleccionado}>Eliminar</button>
             </div>
 
-            {loading ? (
-                <p>Loading...</p>
+            {cargando ? (
+                <p>Cargando...</p>
             ) : (
                 <table>
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Surname</th>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            <th>Rol</th>
                             <th>Plan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => (
-                            <tr 
-                                key={user.id}
-                                onClick={() => handleSelectUser(user)} 
-                                style={{ 
-                                    cursor: 'pointer', 
-                                    backgroundColor: selectedUser && selectedUser.id === user.id ? 'lightblue' : 'transparent'
-                                }}
-                            >
-                                <td>{user.username}</td>
-                                <td>{user.nombre}</td>
-                                <td>{user.apellidos}</td>
-                                <td>{user.email}</td>
-                                <td>{user.rol}</td>
-                                <td>{user.plan}</td>
-                            </tr>
-                        ))}
+                        {usuarios.map((usuario) => {
+                            console.log("Usuario en la lista:", usuario); // Verifica los datos de cada usuario
+                            return (
+                                <tr 
+                                    key={usuario.id}
+                                    onClick={() => handleSeleccionarUsuario(usuario)} 
+                                    style={{ 
+                                        cursor: 'pointer', 
+                                        backgroundColor: usuarioSeleccionado && usuarioSeleccionado.id === usuario.id ? 'lightblue' : 'transparent'
+                                    }}
+                                >
+                                    <td>{usuario.id}</td>
+                                    <td>{usuario.username}</td>
+                                    <td>{usuario.nombre}</td>
+                                    <td>{usuario.apellidos}</td>
+                                    <td>{usuario.email}</td>
+                                    <td>{usuario.rol}</td>
+                                    <td>{usuario.plan}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             )}
@@ -149,4 +151,5 @@ function Users() {
     );
 }
 
-export default Users;
+export default Usuarios;
+

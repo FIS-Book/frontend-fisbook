@@ -17,22 +17,22 @@ const UpdateUser = () => {
     const { id } = useParams(); // Obtener el id del usuario desde los parámetros de la URL
 
     useEffect(() => {
-        // Función para obtener los datos del usuario
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                });
-                setUserData(response.data); // Suponiendo que la respuesta contiene los datos del usuario
-            } catch (err) {
-                setError('Error loading user data');
-            }
-        };
-
-        fetchUserData();
-    }, [id]); // El efecto se ejecuta cuando el id cambia
+      console.log('ID from params:', id); // Verifica si `id` tiene el valor esperado
+      const fetchUserData = async () => {
+          try {
+              const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${id}`, {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+              });
+              setUserData(response.data);
+          } catch (err) {
+              setError('Error loading user data');
+          }
+      };
+  
+      if (id) fetchUserData();
+  }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Evita el comportamiento por defecto del formulario
