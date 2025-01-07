@@ -218,7 +218,7 @@ const Reading = () => {
   return (
     <div>
       {/* Nueva funcionalidad: Nuevo Género */}
-      <HomeButton onClick={handleGoToHome} />
+      {/* <HomeButton onClick={handleGoToHome} /> */}
       <ButtonAllLists/>
       <div className="new-genre-header">
         <h3>Nueva lista de lectura</h3>

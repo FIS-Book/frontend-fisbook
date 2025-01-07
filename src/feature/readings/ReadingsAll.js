@@ -61,7 +61,7 @@ const ReadingsAll = () => {
 
   return (
     <div className="readings-all-container">
-      <HomeButton onClick={handleGoToHome} />
+      {/* <HomeButton onClick={handleGoToHome} /> */}
       <ButtonMyLists/>
       <h1>Listas de lecturas de los usuarios</h1>
       {readings.length === 0 ? (
