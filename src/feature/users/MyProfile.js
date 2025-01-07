@@ -3,7 +3,8 @@ import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
-import '../../assets/styles/Profile.css';
+import '../../assets/styles/MyProfile.css';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function MyProfile() {
     const [userData, setUserData] = useState(null);
@@ -52,8 +53,12 @@ function MyProfile() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('tokenExpiration'); 
+        localStorage.removeItem('tokenExpiration');
         navigate('/');
+    };
+
+    const handleEditClick = () => {
+        navigate(`/admin/users/${userData._id}/update`);
     };
 
     if (loading) {
@@ -74,6 +79,7 @@ function MyProfile() {
 
     return (
         <div className="profile-container">
+                <HomeButton onClick={() => navigate('/homePage')} />
             <div className="profile-header">
                 {userData ? (
                     <>
@@ -86,39 +92,73 @@ function MyProfile() {
                 )}
             </div>
             {userData && (
-                <div className="profile-details">
-                    <p><strong>Email:</strong> {userData.email || 'No especificado'}</p>
-                    <p><strong>Rol:</strong> {userData.rol || 'Sin rol asignado'}</p>
-                    <p><strong>Plan:</strong> {userData.plan || 'Sin plan seleccionado'}</p>
-                    <p>
-                        <strong>Lista de Lecturas:</strong> {userData.listaLecturasId && userData.listaLecturasId.length > 0 ? (
-                            <ul className="profile-list">
-                                {userData.listaLecturasId.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                            </ul>
-                        ) : 'No hay lecturas.'}
-                    </p>
-                    <p><strong>Número de Descargas:</strong> {userData.numDescargas || 0}</p>
-                    <p>
-                        <strong>Reseñas:</strong> {userData.resenasId && userData.resenasId.length > 0 ? (
-                            <ul className="profile-list">
-                                {userData.resenasId.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                            </ul>
-                        ) : 'No hay reseñas.'}
-                    </p>
-                    <button className="btn btn-danger" onClick={handleLogout}>
-                            Cerrar sesión
-                        </button>
-                </div>
+                <form className="profile-form">
+                    <div className="profile-field">
+                        <label htmlFor="nombre">Nombre:</label>
+                        <input type="text" id="nombre" value={userData.nombre} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="apellidos">Apellido:</label>
+                        <input type="text" id="apellidos" value={userData.apellidos} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="username">Nombre de usuario:</label>
+                        <input type="text" id="username" value={userData.username} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="email">Correo Electrónico:</label>
+                        <input type="email" id="email" value={userData.email} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="rol">Rol:</label>
+                        <input type="text" id="rol" value={userData.rol} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="plan">Plan:</label>
+                        <input type="text" id="plan" value={userData.plan} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="resenas">Listas de lectura:</label>
+                        <input
+                            type="text"
+                            id="resenas"
+                            value={userData.listaLecturasId && userData.listaLecturasId.length > 0 
+                                ? userData.listaLecturasId.join(", ")  // Si hay reseñas, las muestra separadas por comas
+                                : "No tienes reseñas disponibles." // Si no hay reseñas, muestra este mensaje
+                            }
+                            readOnly
+                        />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="descargas">Número de Descargas:</label>
+                        <input type="number" id="descargas" value={userData.numDescargas} readOnly />
+                    </div>
+                    <div className="profile-field">
+                        <label htmlFor="resenas">Reseñas:</label>
+                        <input
+                            type="text"
+                            id="resenas"
+                            value={userData.resenasId && userData.resenasId.length > 0 
+                                ? userData.resenasId.join(", ")  // Si hay reseñas, las muestra separadas por comas
+                                : "No tienes reseñas disponibles." // Si no hay reseñas, muestra este mensaje
+                            }
+                            readOnly
+                        />
+                    </div>
+
+
+
+
+                    <button style={{backgroundColor: '#007bff'}} className="btn btn-danger" type="button" onClick={() => navigate('/users/me/update')}>Editar perfil</button>
+                    <button style={{ backgroundColor: '#ec5353', color: 'white'}} className="btn btn-danger" type="button" onClick={handleLogout}>Cerrar sesión</button>
+                </form>
             )}
         </div>
     );
 }
 
 export default MyProfile;
+
 
 
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../assets/styles/DownloadsInfo.css'; // Asegúrate de que esta hoja de estilo exista
 import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
+import { useNavigate } from 'react-router-dom';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function DownloadsInfo() {
     const [downloads, setDownloads] = useState([]);
@@ -22,7 +24,6 @@ function DownloadsInfo() {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
                 });
-                console.log(response.data); // Verifica los datos retornados por la API
                 setDownloads(response.data);
             } catch (err) {
                 setError('Error loading downloads');
@@ -33,6 +34,7 @@ function DownloadsInfo() {
 
         fetchDownloads();
     }, []);
+
 
     // Función para eliminar la descarga seleccionada
     const handleDelete = async () => {
@@ -61,12 +63,11 @@ function DownloadsInfo() {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/read-and-download/downloads/${downloadId}`, {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Using the stored token
+                        Authorization: `Bearer ${localStorage.getItem('token')}`, // Usando el token guardado
                     },
                 });
-                // Display the download details
-                setDownloads([response.data]); // Show only the found download
-                setError(''); // Reset error if search is successful
+                setDownloads([response.data]); // Muestra solo la descarga encontrada
+                setError(''); // Restablece el error si la búsqueda es exitosa
             } catch (err) {
                 console.error('Error searching for download:', err.response || err.message || err);
                 setError('Download not found');
@@ -79,14 +80,18 @@ function DownloadsInfo() {
         setSelectedDownload(download);
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="container">
             <h1>Downloads</h1>
             {error && <p className="error-message">{error}</p>}
+            <HomeButton onClick={() => navigate('/homePage')} />
 
             {/* Barra de botones */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Search</button>
+                <button onClick={() => navigate('/admin/downloads/create')}>Add</button>
                 <button onClick={handleDelete} disabled={!selectedDownload}>Delete</button>
             </div>
 
@@ -99,7 +104,6 @@ function DownloadsInfo() {
                             <tr>
                                 <th>ID</th>
                                 <th>ISBN</th>
-                                <th>User ID</th>
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Language</th>
@@ -114,12 +118,11 @@ function DownloadsInfo() {
                                     onClick={() => handleSelectDownload(download)} 
                                     style={{ 
                                         cursor: 'pointer', 
-                                        backgroundColor: selectedDownload && selectedDownload._id === download._id ? 'lightblue' : 'transparent'
+                                        backgroundColor: selectedDownload && selectedDownload.id === download.id ? 'lightblue' : 'transparent'
                                     }}
                                 >
                                     <td>{download.id}</td>
                                     <td>{download.isbn}</td>
-                                    <td>{download.usuarioId}</td>
                                     <td>{download.titulo}</td>
                                     <td>{download.autor}</td>
                                     <td>{download.idioma}</td>
@@ -136,5 +139,6 @@ function DownloadsInfo() {
 }
 
 export default DownloadsInfo;
+
 
 

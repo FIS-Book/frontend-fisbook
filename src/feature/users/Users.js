@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration';  // Importa el hook
+import { useCheckTokenExpiration } from '../../hooks/usecheckTokenExpiration'; // Importa el hook
 import axios from 'axios';
 import '../../assets/styles/Users.css';
+import { useNavigate } from 'react-router-dom';
+import HomeButton from '../../components/CatalogueComponents/HomeButton';
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [selectedUser, setSelectedUser] = useState(null); // Store the selected user
+    const navigate = useNavigate(); // Usar useNavigate fuera del handleUpdate
 
     // Verificar si el token ha expirado al cargar la página
     useCheckTokenExpiration();
 
-     // Fetches the list of users when the page loads
-     useEffect(() => {
+    // Fetches the list of users when the page loads
+    useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users`, {
@@ -54,32 +57,14 @@ function Users() {
     };
 
     // Function to update the selected user
-    const handleUpdate = async () => {
+    const handleUpdate = () => {
         if (!selectedUser) {
             alert('No user selected');
             return;
         }
 
-        const newUserData = {
-            nombre: 'New name',
-            apellidos: 'New surname',
-            email: 'newemail@example.com',
-            plan: 'Plan1',
-            rol: 'User',
-        };
-
-        try {
-            const response = await axios.put(`${process.env.REACT_APP_BASE_URL || ""}/api/v1/auth/users/${selectedUser.id}`, newUserData, { // Cambiado _id por id
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            });
-            const updatedUser = response.data;
-            setUsers(users.map(user => (user.id === selectedUser.id ? updatedUser : user))); // Cambiado _id por id
-            setSelectedUser(updatedUser); // Updates the selected user
-        } catch (err) {
-            setError('Error updating user');
-        }
+        // Redirigir al formulario de actualización del usuario
+        navigate(`/admin/users/${selectedUser.id}/update`);
     };
 
     // Function to select a user
@@ -115,13 +100,12 @@ function Users() {
         <div>
             <h1>Fisbook Users</h1>
             {error && <p className="error-message">{error}</p>}
-
-            {/* Instruction */}
-            <p>Click on a user to select them, then choose an action (Update/Delete).</p>
-
+            <HomeButton onClick={() => navigate('/homePage')} />
+            
             {/* General Buttons */}
             <div className="buttons-container">
                 <button onClick={handleSearch}>Search</button>
+                <button onClick={() => navigate('/admin/users/create')}>Create</button>
                 <button onClick={handleUpdate} disabled={!selectedUser}>Update</button>
                 <button onClick={handleDelete} disabled={!selectedUser}>Delete</button>
             </div>
@@ -130,41 +114,39 @@ function Users() {
                 <p>Loading...</p>
             ) : (
                 <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Plan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map((user) => (
-                        <tr 
-                            key={user.id}
-                            onClick={() => handleSelectUser(user)} 
-                            style={{ 
-                                cursor: 'pointer', 
-                                backgroundColor: selectedUser && selectedUser.id === user.id ? 'lightblue' : 'transparent'
-                            }}
-                        >
-                            <td>{user.username}</td>
-                            <td>{user.nombre}</td>
-                            <td>{user.apellidos}</td>
-                            <td>{user.email}</td>
-                            <td>{user.rol}</td>
-                            <td>{user.plan}</td>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Plan</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users.map((user) => (
+                            <tr 
+                                key={user.id}
+                                onClick={() => handleSelectUser(user)} 
+                                style={{ 
+                                    cursor: 'pointer', 
+                                    backgroundColor: selectedUser && selectedUser.id === user.id ? 'lightblue' : 'transparent'
+                                }}
+                            >
+                                <td>{user.username}</td>
+                                <td>{user.nombre}</td>
+                                <td>{user.apellidos}</td>
+                                <td>{user.email}</td>
+                                <td>{user.rol}</td>
+                                <td>{user.plan}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             )}
         </div>
     );
 }
 
 export default Users;
-
-
