@@ -22,6 +22,7 @@ import BookDetails from './feature/catalogue/BookDetails.js';
 import AdminCatalogue from './feature/catalogue/AdminCatalogue.js';
 import ReadingsAll from './feature/readings/ReadingsAll.js';
 import ReviewReadings from './feature/reviews/ReviewReadings.js';
+import AdminReviews from './feature/reviews/AdminReviews.js';
 import AdminBookForm from './feature/catalogue/AdminBookForm.js';
 import UpdateMyProfile from './feature/users/UpdateMyProfile.js';
 
@@ -68,6 +69,7 @@ function App() {
             {/* <Route path="/admin/downloads/create" element={<NewDownload/>} /> */}
             <Route path="/admin/onlineReadings" element={<OnlineReadingsInfo />} />
             {/* <Route path="/admin/onlineReadings/create" element={<NewOnlineReading/>} /> */}
+            <Route path="/admin/reviews" element={<AdminReviews/>} />
           </Routes>
         </div>
       </div>
