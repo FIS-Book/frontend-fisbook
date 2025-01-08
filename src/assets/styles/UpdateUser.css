@@ -1,0 +1,125 @@
+.profile-container { 
+    width: 80%;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .profile-header {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #ddd;
+    margin-bottom: 15px;
+  }
+  
+  .profile-avatar-initials {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .profile-header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .profile-header p {
+    font-size: 16px;
+    color: #777;
+    margin: 5px 0 0;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .profile-details label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .profile-details input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .profile-details input:focus {
+    border-color: #5cb85c;
+    outline: none;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .profile-details select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    font-size: 14px;
+    color: #555;
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+}
+
+.profile-details select:focus {
+    border-color: #5cb85c;
+    outline: none;
+}
+
+.profile-details select option {
+    font-size: 14px;
+    color: #333;
+}

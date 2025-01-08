@@ -1,0 +1,253 @@
+/* Main container of the catalog */
+.catalogue-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #D3D3D3;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+/* Catalogue title */
+.catalogue-container h2 {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 20px;
+}
+
+/* Search bar */
+.search-bar {
+    width: 100%; 
+    max-width: 700px; 
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Search input */
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+  
+/* Filter dropdown */
+.filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+  
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+
+.book-column {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    padding: 15px;
+}
+
+/* Individual book container */
+.book-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #faedd6;
+    width: 100%; 
+    max-width: 600px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 80px;
+    box-sizing: border-box;
+}
+
+/* Book cover image */
+.book-cover {
+    width: 70px;
+    height: auto;
+    margin-right: 20px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Book details (title and author) */
+.book-details {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 0;
+    max-width: 40%;
+    align-items: flex-start;
+}
+
+.book-details h4 {
+    font-size: 16px;
+    color: #2C3E50;
+    margin: 0;
+}
+
+.book-details p {
+    color: #4A4A4A;
+    font-size: 16px;
+}
+
+/* Buttons */
+.book-buttons {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end;
+    gap: 10px; 
+}
+
+/* View Detail button */
+.btn-primary {
+    align-self: flex-end;
+    margin-left: auto;
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary svg {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: #ff1e00;
+    color: white;
+    border: none;
+    padding: 8 px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+}
+
+.btn-delete:hover {
+    background-color: #ff6666;
+}
+
+.btn-delete svg {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Update Button */
+.btn-update {
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+}
+
+.btn-update:hover {
+    background-color: #4A4A4A;
+    color: white;
+}
+
+.btn-update svg {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Add book button */
+.btn-add-book {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+  
+.btn-add-book:hover {
+    background-color: #218838;
+}
+  
+.btn-add-book svg {
+    width: 16px;
+    height: 16px;
+}
+  
+/* Floating ‘Home’ button on the left-hand side */
+.btn-home {
+    position: fixed;
+    left: 40px; 
+    top: 80px;
+    padding: 10px 20px;
+    background-color: #D3D3D3; 
+    color: black;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+  
+.btn-home:hover {
+    background-color: #f9f9f9; 
+}
+  
+.btn-home svg {
+    margin-right: 8px;
+    font-size: 20px;
+}
+  
+
+  
+
+  

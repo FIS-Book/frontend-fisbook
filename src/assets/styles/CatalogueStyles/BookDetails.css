@@ -1,0 +1,172 @@
+/* Book information container */
+.book-details-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Book title */
+.book-title {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 20px;
+}
+
+/* Book details content */
+.book-details-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* Book cover image */
+.book-cover-container {
+    flex-shrink: 0; 
+    width: 200px;
+    margin-right: 20px; 
+}
+
+.book-cover-large {
+    width: 100%; 
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Book information */
+.book-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info p {
+    font-size: 16px;
+    color: #4A4A4A;
+    margin-bottom: 10px;
+}
+
+.book-info strong {
+    color: #2C3E50;
+}
+
+/* Buttons */
+.book-buttons-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* General button style */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn svg {
+    margin-right: 0.5rem; 
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Read Button */
+.btn-read {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+}
+
+.btn-read:hover {
+    background-color: #2C3E50;
+}
+
+/* Download Button */
+.btn-download {
+    background-color: #31b164;
+    color: white;
+    border: none;
+}
+
+.btn-download:hover {
+    background-color: #218838;
+}
+
+/* Return Button */
+.btn-return {
+    background-color: #f79862; 
+    color: #F9F9F9; 
+    border: 1px solid #ced4da;
+}
+  
+.btn-return:hover {
+    background-color: #FF7F50; 
+    color: #000; 
+    transform: scale(1.05); 
+}
+  
+.btn-return:active {
+    background-color: #fb6128; 
+    transform: scale(0.95); 
+}
+  
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin-left: 0.5em;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.best-seller {
+    background-color: #ff9800; 
+}
+
+.award-winner {
+    background-color: #4caf50; 
+}
+
+/* Responsive adjustments (adaptation to small screens) */
+@media (max-width: 768px) {
+    .book-details-container {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .book-cover-large {
+        width: 200px; 
+    }
+
+    .book-details {
+        margin-left: 0;
+        text-align: center; 
+    }
+
+    .book-buttons-details {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px; 
+    }
+
+    .btn-read, .btn-download, .btn-return {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .book-reviews {
+    margin-top: 32px;
+    }
+    
+}

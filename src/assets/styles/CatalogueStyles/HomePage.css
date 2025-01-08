@@ -1,0 +1,110 @@
+/* Styles for the homepage */
+.catalogue {
+    display: flex;
+    justify-content: space-between; 
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Styles for the book column */
+.book-column {
+    width: 30%; 
+    padding: 10px;
+}
+
+.book-column h3 {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+
+/* Styles for each book */
+.book-item {
+    display: flex;
+    align-items: center;
+    background-color: #faedd6;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the cover image */
+.book-cover {
+    width: 70px;
+    height: auto;
+    margin-right: 20px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Styles for the book details */
+.book-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.book-details h4 {
+    font-size: 18px;
+    color: #2C3E50;
+    margin: 0;
+}
+
+.book-details p {
+    color: #4A4A4A;
+    font-size: 16px;
+}
+
+/* Styles for the statistics */
+.stats-box {
+    background-color: #D3D3D3;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #A9A9A9;
+}
+
+.stats-box h3 {
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+
+.stats-box p {
+    font-size: 16px;
+    color: #4A4A4A;
+}
+
+/* Styles for buttons */
+.button-catalogue {
+    background-color: #2C3E50;   
+    color: whitesmoke;                
+    border: black;                
+    padding: 10px 20px;          
+    font-size: 16px;            
+    font-weight: bold;          
+    border-radius: 8px;          
+    cursor: pointer;             
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    display: block;              
+    margin: 20px auto;          
+    width: 200px;                
+    text-align: center;         
+}
+
+.button-catalogue:hover {
+    background-color: #D3D3D3;   
+    transform: translateY(-3px); 
+}
+
+.button-catalogue:active {
+    transform: translateY(0);    
+}
+
+.button-catalogue svg {
+    margin-right: 0.5rem; 
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
