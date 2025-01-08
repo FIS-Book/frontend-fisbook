@@ -1,0 +1,268 @@
+
+.reviews-list-container {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.reviews-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Esto asegura que los elementos estén uno encima del otro */
+  gap: 15px; /* Añade un espacio entre cada reseña */
+}
+
+.review-item {
+  background-color: #f9f9f9; /* Fondo suave para diferenciar cada reseña */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombras para un diseño más atractivo */
+}
+
+.review-item h4 {
+  margin: 0 0 5px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.review-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.review-item p:last-of-type {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre estrellas y título */
+  margin-bottom: 8px;
+  }
+
+.review-title {
+font-size: 1.2em;
+margin: 0;
+}
+/* Contenedor del formulario */
+  .review-form {
+    width: 100%; /* Ocupa el ancho completo del contenedor padre */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  /* Título del formulario */
+  .form-title {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  /* Grupo de formulario */
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Etiqueta */
+  .form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+  }
+  
+  /* Inputs y textarea */
+  
+/* Inputs y textarea */
+  .form-input,
+  .form-textarea {
+    width: 100%; /* Ocupa todo el espacio disponible */
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+    
+  .form-textarea {
+    height: 150px; /* Aumenta la altura del textarea */
+  }
+  
+  /* Botón de enviar */
+  .submit-button {
+    display: block;
+    width: 50%; /* Botón más compacto */
+    margin: 0 auto; /* Centrar el botón */
+    padding: 10px; /* Reducir el padding */
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .submit-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  /* Mensajes de error y éxito */
+  .error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: #2ecc71;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .review-username {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 8px;
+    }
+    
+    .review-comment {
+    font-size: 1em;
+    color: #333;
+    }
+    
+    .rating-display {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    color: #ffc107; /* Color dorado para las estrellas */
+    }
+    .review-score{
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+    .review-date {
+      font-size: 0.9rem; 
+      color: #777; 
+    }
+    .review-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .review-actions button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .review-actions button:hover {
+      background-color: #0056b3;
+    }
+    .review-edit-form {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    .review-edit-form .form-group {
+      margin-bottom: 10px;
+    }
+    
+    .review-edit-form .edit-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .review-edit-form .edit-buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .review-edit-form .edit-buttons button:hover {
+      background-color: #0056b3;
+    }
+    
+  /* Ajuste para dispositivos pequeños */
+  @media (max-width: 768px) {
+    .review-form {
+      width: 90%; /* Formularios más compactos en dispositivos pequeños */
+      padding: 10px;
+    }
+  
+    .form-title {
+      font-size: 1.2rem;
+    }
+  
+    .submit-button {
+      width: 70%;
+      font-size: 0.8rem;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; /* Espacio entre las reseñas */
+      }
+      
+    .review-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+      
+    .review-header {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Espacio entre estrellas y título */
+        margin-bottom: 8px;
+        }
+      
+  }
+  

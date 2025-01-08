@@ -179,31 +179,35 @@ const Reading = () => {
     }
   };
 
-  // Renderizamos el contenido basado en el estado
-  if (loading) return <p>Cargando...</p>;   // Mientras se cargan los datos
-  if (error) return <button onClick={handleFirstListCreation}>Inicializar una lista</button>;
-  if (error) return <p>{error}</p>;         // Si ocurre un error
-  if (!readings || !readings.genres || readings.genres.length === 0) {
-    return(
-      <div
-        className="button-container"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '10px',
-        }}
-      >
-        <p>No se encontraron géneros o libros.</p>
-        <AgregarButton userId={userId}/>
-      </div>  // Si no hay géneros, mostramos un mensaje
-    )
-  }
-
   // Manejo del evento para volver al HomePage
   const handleGoToHome = () => {
     navigate('/homePage'); // Ruta del HomePage
   };
+
+  // Renderizamos el contenido basado en el estado
+  if (loading) return <p>Cargando...</p>;   // Mientras se cargan los datos
+  // if (error) return <button onClick={handleFirstListCreation}>Inicializar una lista</button>;
+  // if (error) return <p>{error}</p>;         // Si ocurre un error
+  if (!readings || !readings.genres || readings.genres.length === 0 || error) {
+    return(
+      <div>
+        {/*<HomeButton onClick={handleGoToHome} />*/}
+        <ButtonAllLists/>
+        <div
+          className="button-container"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '10px',
+          }}
+        >
+          <p>No se encontraron géneros o libros.</p>
+          <AgregarButton userId={userId}/>
+        </div>
+      </div>
+    )
+  }
 
   // Función para manejar el click en un libro
   const handleBookClick = (isbn) => {
@@ -214,7 +218,7 @@ const Reading = () => {
   return (
     <div>
       {/* Nueva funcionalidad: Nuevo Género */}
-      <HomeButton onClick={handleGoToHome} />
+      {/* <HomeButton onClick={handleGoToHome} /> */}
       <ButtonAllLists/>
       <div className="new-genre-header">
         <h3>Nueva lista de lectura</h3>

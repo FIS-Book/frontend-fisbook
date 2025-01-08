@@ -15,6 +15,14 @@ export const getUserRole = () => {
     return decoded ? decoded.rol : null;
 };
 
+export const getUserInfo = () => {
+  const token = getToken();
+  if (!token) return null;
+
+  const decoded = decodeToken(token);
+  return decoded;
+};
+
 export const getUserId = () => {
   const token = getToken();
   if (!token) return null;
